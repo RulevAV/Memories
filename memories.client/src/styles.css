@@ -1,1 +1,32 @@
 /* You can add global styles to this file, and also import other style files */
+.Main {
+  display: grid;
+  height: 100vh;
+  width: 100vw;
+  grid-template-columns: auto;
+  grid-template-rows: 50px 1fr;
+  grid-template-areas:
+    "h"
+    "c";
+}
+
+.header {
+  grid-area: h;
+  color: #000;
+  padding: 0 16px;
+  font: 300 1.3rem/1 Roboto;
+  display: flex;
+  align-items: center;
+}
+
+.menu {
+  grid-area: m;
+}
+
+.content {
+  grid-area: c;
+}
+
+.footer {
+  grid-area: f;
+}
