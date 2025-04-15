@@ -10,6 +10,8 @@ import { PostComponent } from './Pages/post/post.component';
 import { NotFoundComponent } from './Pages/not-found/not-found.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { NavbarComponent } from './components/navbar/navbar.component';
+import { MenuComponent } from './modal/menu/menu.component';
+import { AppLinkComponent } from './components/app-link/app-link.component';
 
 @NgModule({
   declarations: [
@@ -19,6 +21,8 @@ import { NavbarComponent } from './components/navbar/navbar.component';
     PostComponent,
     NotFoundComponent,
     NavbarComponent,
+    MenuComponent,
+    AppLinkComponent,
   ],
   imports: [
     BrowserModule, HttpClientModule,

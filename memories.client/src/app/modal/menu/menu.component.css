@@ -1,0 +1,17 @@
+/* Opening offcanvas as a component requires this style in order to scroll */
+:host {
+  height: 100%;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.menu {
+  height: 100%;
+}
+
+
+.test666{
+  width: 100%;!important;
+  background-color: blueviolet;
+}

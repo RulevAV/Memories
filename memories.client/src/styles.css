@@ -4,7 +4,7 @@
   height: 100vh;
   width: 100vw;
   grid-template-columns: auto;
-  grid-template-rows: 50px 100px;
+  grid-template-rows: 50px auto;
   grid-template-areas:
     "h"
     "c";
@@ -29,4 +29,9 @@
 
 .footer {
   grid-area: f;
+}
+
+.test333{
+  width: 100%;!important;
+  background-color: blueviolet;
 }
