@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { OffcanvasComponent } from './offcanvas.component';
+import { NavbarComponent } from './navbar.component';
 
-describe('OffcanvasComponent', () => {
-  let component: OffcanvasComponent;
-  let fixture: ComponentFixture<OffcanvasComponent>;
+describe('NavbarComponent', () => {
+  let component: NavbarComponent;
+  let fixture: ComponentFixture<NavbarComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [OffcanvasComponent]
+      declarations: [NavbarComponent]
     })
     .compileComponents();
 
-    fixture = TestBed.createComponent(OffcanvasComponent);
+    fixture = TestBed.createComponent(NavbarComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

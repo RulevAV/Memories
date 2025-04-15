@@ -9,7 +9,7 @@ import { ProfileComponent } from './Pages/profile/profile.component';
 import { PostComponent } from './Pages/post/post.component';
 import { NotFoundComponent } from './Pages/not-found/not-found.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
-import { OffcanvasComponent } from './modal/offcanvas/offcanvas.component';
+import { NavbarComponent } from './components/navbar/navbar.component';
 
 @NgModule({
   declarations: [
@@ -18,7 +18,7 @@ import { OffcanvasComponent } from './modal/offcanvas/offcanvas.component';
     ProfileComponent,
     PostComponent,
     NotFoundComponent,
-    OffcanvasComponent,
+    NavbarComponent,
   ],
   imports: [
     BrowserModule, HttpClientModule,
