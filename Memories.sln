@@ -1,0 +1,33 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.13.35931.197 d17.13
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{54A90642-561A-4BB1-A94E-469ADEE60C69}") = "memories.client", "memories.client\memories.client.esproj", "{A90C6B2E-E8B1-C1EF-CDB4-D5F652C7E93A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Memories.Server", "Memories.Server\Memories.Server.csproj", "{1711E55A-C5B7-4989-BC10-E831F1397F2E}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{A90C6B2E-E8B1-C1EF-CDB4-D5F652C7E93A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A90C6B2E-E8B1-C1EF-CDB4-D5F652C7E93A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A90C6B2E-E8B1-C1EF-CDB4-D5F652C7E93A}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
+		{A90C6B2E-E8B1-C1EF-CDB4-D5F652C7E93A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A90C6B2E-E8B1-C1EF-CDB4-D5F652C7E93A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A90C6B2E-E8B1-C1EF-CDB4-D5F652C7E93A}.Release|Any CPU.Deploy.0 = Release|Any CPU
+		{1711E55A-C5B7-4989-BC10-E831F1397F2E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1711E55A-C5B7-4989-BC10-E831F1397F2E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1711E55A-C5B7-4989-BC10-E831F1397F2E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1711E55A-C5B7-4989-BC10-E831F1397F2E}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {BC8AA3C8-BFD3-41A0-B46E-A7B780EF781D}
+	EndGlobalSection
+EndGlobal
