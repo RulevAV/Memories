@@ -8,7 +8,7 @@ import {UserComponent} from './Pages/Admin/user/user.component';
 
 const routes: Routes = [{ path: "", component: HomeComponent},
   { path: "admin/user", component: UserComponent},
-  { path: "post", component: PostComponent},
+  { path: "area", component: PostComponent},
   { path: "profile", component: ProfileComponent},
   { path: "**", component: NotFoundComponent }];
 
