@@ -1,21 +1,19 @@
 <ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
   <li class="nav-item">
-    <a class="nav-link active" href="#home" (click)="close()" routerLink="/">Главная</a>
+    <a class="nav-link" routerLinkActive="active" href="#home" (click)="close()" routerLink="/" [routerLinkActiveOptions]="{exact:true}">Главная</a>
   </li>
   <li class="nav-item">
-    <a class="nav-link" href="#profile" (click)="close()" routerLink="/profile">Профиль</a>
+    <a class="nav-link" routerLinkActive="active" href="#profile" (click)="close()" routerLink="/profile">Профиль</a>
   </li>
   <li class="nav-item">
-    <a class="nav-link" href="#post" (click)="close()" routerLink="/post">Посты</a>
+    <a class="nav-link" routerLinkActive="active" href="#post" (click)="close()" routerLink="/post">Посты</a>
   </li>
   <li ngbDropdown class="d-inline-block">
-    <a class="nav-link" id="dropdownBasic1" ngbDropdownToggle>
+    <a class="nav-link" routerLinkActive="active" id="dropdownBasic1" ngbDropdownToggle>
       Админка
     </a>
     <div ngbDropdownMenu aria-labelledby="dropdownBasic1">
-      <a class="nav-link" (click)="close()" ngbDropdownItem>Action - 1</a>
-      <a class="nav-link" (click)="close()" ngbDropdownItem>Another Action</a>
-      <a class="nav-link" (click)="close()" ngbDropdownItem>Something else is here</a>
+      <a class="nav-link" routerLinkActive="active" href="#admin/user" (click)="close()" routerLink="/admin/user">Посты</a>
     </div>
   </li>
 </ul>

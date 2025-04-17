@@ -10,4 +10,5 @@ import {NgbActiveOffcanvas} from '@ng-bootstrap/ng-bootstrap';
 export class MenuComponent {
   activeOffcanvas = inject(NgbActiveOffcanvas);
 
+  protected readonly close = close;
 }

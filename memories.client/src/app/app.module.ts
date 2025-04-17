@@ -12,6 +12,7 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { NavbarComponent } from './components/navbar/navbar.component';
 import { MenuComponent } from './modal/menu/menu.component';
 import { AppLinkComponent } from './components/app-link/app-link.component';
+import { UserComponent } from './Pages/Admin/user/user.component';
 
 @NgModule({
   declarations: [
@@ -23,6 +24,7 @@ import { AppLinkComponent } from './components/app-link/app-link.component';
     NavbarComponent,
     MenuComponent,
     AppLinkComponent,
+    UserComponent,
   ],
   imports: [
     BrowserModule, HttpClientModule,
