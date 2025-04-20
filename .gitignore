@@ -1,0 +1,15 @@
+.vs/Memories/
+
+# Node
+node_modules/
+
+.angular/
+
+Memories.Server/obj/
+
+Memories.Server/bin/
+
+memories.client/.idea/
+memories.client/obj/
+
+.vs/
