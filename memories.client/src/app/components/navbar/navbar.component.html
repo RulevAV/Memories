@@ -4,12 +4,16 @@
       <img src="logo.svg" height="40px">
       <h5 class="offcanvas-title m-2">Memory</h5>
     </a>
-    <button class="navbar-toggler" type="button" (click)="open()">
+    <button *ngIf="!!user; else elseBlock" class="navbar-toggler" type="button" (click)="open()">
       <span class="navbar-toggler-icon"></span>
     </button>
-    <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasNavbar" aria-labelledby="offcanvasNavbarLabel">
+    <ng-template #elseBlock>
+      <button (click)="logIn()" type="button" class="btn btn-success ms-5 ">Вход</button>
+    </ng-template>
+
+    <div *ngIf="!!user;" class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasNavbar" aria-labelledby="offcanvasNavbarLabel">
       <div class="offcanvas-body">
-       <app-link class="navbar-nav justify-content-end flex-grow-1 pe-3"/>
+       <app-link [user]="user" class="navbar-nav justify-content-end flex-grow-1 pe-3"/>
       </div>
     </div>
   </div>

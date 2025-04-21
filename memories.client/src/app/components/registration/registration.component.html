@@ -1,0 +1,21 @@
+<form class="mt-2 d-flex flex-column container-md container-lg" [formGroup]="profileForm">
+  <mat-form-field class="example-full-width">
+    <mat-label>Логин</mat-label>
+    <input matInput formControlName="firstName">
+  </mat-form-field>
+  <mat-form-field class="example-full-width">
+    <mat-label>Пароль</mat-label>
+    <input matInput formControlName="lastName">
+  </mat-form-field>
+  <mat-form-field class="example-full-width">
+    <mat-label>Повторный пароль</mat-label>
+    <input matInput formControlName="lastName">
+  </mat-form-field>
+  <mat-form-field class="example-full-width">
+    <mat-label>Email</mat-label>
+    <input matInput formControlName="lastName">
+  </mat-form-field>
+  <div class="d-flex justify-content-center">
+    <button type="button" class="btn btn-primary w-75">Зарегистрироваться</button>
+  </div>
+</form>
