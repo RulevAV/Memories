@@ -1,4 +1,5 @@
-﻿using Memories.Server.Model;
+﻿using Memories.Server.Entities;
+using Memories.Server.Model;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.IdentityModel.Tokens;
@@ -14,45 +15,62 @@ namespace Memories.Server.Controllers
     {
         private readonly ILogger<WeatherForecastController> _logger;
         private conMemories context;
+        private readonly IConfiguration _config;
 
-        public AuthenticationController(ILogger<WeatherForecastController> logger, conMemories con)
+        public AuthenticationController(ILogger<WeatherForecastController> logger, conMemories con, IConfiguration config)
         {
             _logger = logger;
             context = con;
+            _config = config;
         }
 
-
-        // POST api/accounts
-        [HttpPost("[action]")]
-        public async Task<IActionResult> Registration([FromBody] User model)
+        [HttpPost("login")]
+        public IActionResult Login(User loginModel)
         {
-            if (!ModelState.IsValid)
+            // Authenticate user
+            var user = context.Users.FirstOrDefault(u=> u.Login == loginModel.Login && u.Password == loginModel.Password); //_userService.Authenticate(loginModel.Username, loginModel.Password);
+
+            if (user == null)
+                return Unauthorized();
+
+            // Generate tokens
+            var accessToken = TokenUtils.GenerateAccessToken(user, _config["Jwt:Secret"]);
+            var refreshToken = TokenUtils.GenerateRefreshToken();
+
+            // Save refresh token (for demo purposes, this might be stored securely in a database)
+            // _userService.SaveRefreshToken(user.Id, refreshToken);
+
+            var response = new TokenResponse
             {
-                return BadRequest(ModelState);
-            }
+                AccessToken = accessToken,
+                RefreshToken = refreshToken
+            };
 
-            //var userIdentity = _mapper.Map<AppUser>(model);
-            //var result = await _userManager.CreateAsync(userIdentity, model.Password);
-
-            //if (!result.Succeeded) return new BadRequestObjectResult(Errors.AddErrorsToModelState(result, ModelState));
-
-            //await _appDbContext.JobSeekers.AddAsync(new JobSeeker { IdentityId = userIdentity.Id, Location = model.Location });
-            //await _appDbContext.SaveChangesAsync();
-
-            return new OkResult();
+            return Ok(response);
         }
-        [HttpGet("[action]")]
-        public async Task<string> Login()
+
+        [HttpPost("refresh")]
+        public IActionResult Refresh(TokenResponse tokenResponse)
         {
-            var claims = new List<Claim> { new Claim(ClaimTypes.Name, "username") };
-            var jwt = new JwtSecurityToken(
-            issuer: AuthOptions.ISSUER,
-            audience: AuthOptions.AUDIENCE,
-            claims: claims,
-            expires: DateTime.UtcNow.Add(TimeSpan.FromMinutes(2)), // время действия 2 минуты
-            signingCredentials: new SigningCredentials(AuthOptions.GetSymmetricSecurityKey(), SecurityAlgorithms.HmacSha256));
+            // For simplicity, assume the refresh token is valid and stored securely
+            // var storedRefreshToken = _userService.GetRefreshToken(userId);
 
-            return new JwtSecurityTokenHandler().WriteToken(jwt);
+            // Verify refresh token (validate against the stored token)
+            // if (storedRefreshToken != tokenResponse.RefreshToken)
+            //    return Unauthorized();
+
+            // For demonstration, let's just generate a new access token
+            var newAccessToken = TokenUtils.GenerateAccessTokenFromRefreshToken(tokenResponse.RefreshToken, _config["Jwt:Secret"]);
+
+            var response = new TokenResponse
+            {
+                AccessToken = newAccessToken,
+                RefreshToken = tokenResponse.RefreshToken // Return the same refresh token
+            };
+
+            return Ok(response);
         }
+
     }
+
 }
