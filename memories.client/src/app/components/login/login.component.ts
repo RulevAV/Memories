@@ -12,4 +12,5 @@ export class LoginComponent {
     firstName: new FormControl(''),
     lastName: new FormControl(''),
   });
+
 }
