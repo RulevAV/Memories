@@ -71,6 +71,33 @@ namespace Memories.Server.Controllers
             return Ok(response);
         }
 
-    }
+        [HttpPost("register")]
+        public IActionResult Register(User loginModel)
+        {
+            loginModel.Id = Guid.NewGuid();
+            // Authenticate user
+            var user = context.Users.FirstOrDefault(u => u.Login == loginModel.Login || u.Mail == loginModel.Mail); //_userService.Authenticate(loginModel.Username, loginModel.Password);
 
+            if (user != null)
+                return BadRequest("Пользователь уже зарегистрирован!");
+
+            context.Users.Add(loginModel);
+            context.SaveChanges();
+
+            return Ok(loginModel);
+        }
+
+        [HttpGet("[action]")]
+        public IEnumerable<WeatherForecast> Test()
+        {
+            return Enumerable.Range(1, 5).Select(index => new WeatherForecast
+            {
+                Date = DateOnly.FromDateTime(DateTime.Now.AddDays(index)),
+                TemperatureC = Random.Shared.Next(-20, 55),
+                Summary = "qwe"
+            })
+            .ToArray();
+        }
+
+    }
 }

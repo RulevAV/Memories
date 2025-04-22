@@ -1,21 +1,26 @@
 import { Injectable } from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import User from '../../model/user';
+import {BaseService} from './core/base.service';
+import {MatDialog} from '@angular/material/dialog';
+import {Observable} from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
-export class AuthenticationService {
+export class AuthenticationService extends BaseService<any> {
   user: User | null;
-  constructor(private http: HttpClient){
+
+  constructor(protected override httpClient: HttpClient,  override dialog: MatDialog) {
+    super(httpClient, 'authentication',dialog);
     this.user = null;
   }
 
-  register(user: User){
-    console.log(user)
-    return this.http.post("https://localhost:7264/postuser", user);
+  test(): Observable<any[]> {
+    return this.Get("test");
   }
-  test(){
-    return this.http.get("https://localhost:7264/WeatherForecast/Get");
+
+  register(user: User): Observable<any[]> {
+    return this.Post('register', user);
   }
 }

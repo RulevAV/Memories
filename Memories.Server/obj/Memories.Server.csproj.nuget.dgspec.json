@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Andrey\\source\\repos\\Memories\\Memories.Server\\Memories.Server.csproj": {}
+    "C:\\Users\\Andrey\\Desktop\\Memories\\Memories.Server\\Memories.Server.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Andrey\\source\\repos\\Memories\\Memories.Server\\Memories.Server.csproj": {
+    "C:\\Users\\Andrey\\Desktop\\Memories\\Memories.Server\\Memories.Server.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Andrey\\source\\repos\\Memories\\Memories.Server\\Memories.Server.csproj",
+        "projectUniqueName": "C:\\Users\\Andrey\\Desktop\\Memories\\Memories.Server\\Memories.Server.csproj",
         "projectName": "Memories.Server",
-        "projectPath": "C:\\Users\\Andrey\\source\\repos\\Memories\\Memories.Server\\Memories.Server.csproj",
+        "projectPath": "C:\\Users\\Andrey\\Desktop\\Memories\\Memories.Server\\Memories.Server.csproj",
         "packagesPath": "C:\\Users\\Andrey\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Andrey\\source\\repos\\Memories\\Memories.Server\\obj\\",
+        "outputPath": "C:\\Users\\Andrey\\Desktop\\Memories\\Memories.Server\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages",

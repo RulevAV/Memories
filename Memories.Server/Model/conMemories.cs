@@ -25,13 +25,16 @@ public partial class conMemories : DbContext
     {
         modelBuilder.Entity<User>(entity =>
         {
-            entity
-                .HasNoKey()
-                .ToTable("users");
+            entity.HasKey(e => e.Id).HasName("users_pkey");
 
-            entity.Property(e => e.Login).HasMaxLength(20);
-            entity.Property(e => e.Mail).HasColumnType("character varying");
-            entity.Property(e => e.Password).HasMaxLength(20);
+            entity.ToTable("users");
+
+            entity.HasIndex(e => e.Login, "users_Login_key").IsUnique();
+
+            entity.Property(e => e.Id).ValueGeneratedNever();
+            entity.Property(e => e.Login).HasMaxLength(10);
+            entity.Property(e => e.Mail).HasMaxLength(10);
+            entity.Property(e => e.Password).HasMaxLength(10);
         });
 
         OnModelCreatingPartial(modelBuilder);

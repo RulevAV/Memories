@@ -3,7 +3,7 @@
 "ServerUrl": "https://localhost:52303",
 "RedirectUrl": "",
 "LaunchCommand": "npm start",
-"WorkingDirectory": "C:\\Users\\Andrey\\source\\repos\\Memories\\Memories.Server\\..\\memories.client",
+"WorkingDirectory": "C:\\Users\\Andrey\\Desktop\\Memories\\Memories.Server\\..\\memories.client",
 "MaxTimeoutInSeconds": "120",
 "KeepRunning": "false"
 }
