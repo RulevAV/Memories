@@ -12,10 +12,10 @@ import {MatDialog} from '@angular/material/dialog';
 })
 export class RegistrationComponent {
   profileForm = new FormGroup({
-    login: new FormControl('maag', [Validators.required]),
-    password: new FormControl('1', [Validators.required]),
-    confirmPassword: new FormControl('1'),
-    mail: new FormControl('rulandrei99@mail.ru', [Validators.required, Validators.email]),
+    login: new FormControl('', [Validators.required]),
+    password: new FormControl('', [Validators.required]),
+    confirmPassword: new FormControl(''),
+    mail: new FormControl('', [Validators.required, Validators.email]),
   },
     [CustomValidators.MatchValidator('password', 'confirmPassword')]
     );
@@ -41,9 +41,8 @@ export class RegistrationComponent {
       this.profileForm.reset();
       this._dialog.closeAll();
     }, error =>{
+      if (error.status !== 500)
         this.errorserver = error.error;
     });
-
-    this.authenticationService.test().subscribe(res=> console.log(res));
   }
 }

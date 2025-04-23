@@ -31,8 +31,8 @@ export class BaseService<T extends any> {
           return throwError(err);
         }));
   }
-  protected Post(url: string, body: T) {
-    return this.httpClient.post<T>(`${this.controllerName}/${url}`, body, { headers: new HttpHeaders({ 'content-type': 'application/json' }) })
+  protected Post<A>(url: string, body: T) {
+    return this.httpClient.post<A>(`${this.controllerName}/${url}`, body, { headers: new HttpHeaders({ 'content-type': 'application/json' }) })
       .pipe(
         map(res => {
           return res;
@@ -42,8 +42,8 @@ export class BaseService<T extends any> {
           return throwError(err);
         }));
   }
-  protected Put(url: string, body: T) {
-    return this.httpClient.put<T>(`${this.controllerName}/${url}`, body, { headers: new HttpHeaders({ 'content-type': 'application/json' }) })
+  protected Put<A>(url: string, body: T) {
+    return this.httpClient.put<A>(`${this.controllerName}/${url}`, body, { headers: new HttpHeaders({ 'content-type': 'application/json' }) })
       .pipe(
         map(res => {
           return res;
@@ -53,8 +53,8 @@ export class BaseService<T extends any> {
           return throwError(err);
         }));
   }
-  protected Delete(url: string) {
-    return this.httpClient.delete<T>(`${this.controllerName}/${url}`, { withCredentials: true })
+  protected Delete<A>(url: string) {
+    return this.httpClient.delete<A>(`${this.controllerName}/${url}`, { withCredentials: true })
       .pipe(
         map(res => {
           return res;

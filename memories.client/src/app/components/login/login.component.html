@@ -1,13 +1,15 @@
 <form class="mt-2 d-flex flex-column container-md container-lg" [formGroup]="profileForm">
   <mat-form-field class="example-full-width">
     <mat-label>Логин</mat-label>
-    <input matInput formControlName="firstName">
+    <input matInput formControlName="login">
+    <mat-hint class="text-danger" *ngIf="profileForm.get('login')?.invalid && profileForm.get('login')?.touched" >Логин не должен быть пустым</mat-hint>
   </mat-form-field>
   <mat-form-field class="example-full-width">
     <mat-label>Пароль</mat-label>
-    <input matInput formControlName="lastName">
+    <input matInput formControlName="password">
+    <mat-hint class="text-danger" *ngIf="profileForm.get('password')?.invalid && profileForm.get('password')?.touched" >Пароль не должен быть пустым</mat-hint>
   </mat-form-field>
   <div class="d-flex justify-content-center">
-    <button type="button" class="btn btn-primary w-75">Войти</button>
+    <button type="button" class="btn btn-primary w-75" [disabled]="profileForm.invalid"  (click)="signin()">Войти</button>
   </div>
 </form>

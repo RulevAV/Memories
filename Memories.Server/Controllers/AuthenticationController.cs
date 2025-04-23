@@ -43,7 +43,8 @@ namespace Memories.Server.Controllers
             var response = new TokenResponse
             {
                 AccessToken = accessToken,
-                RefreshToken = refreshToken
+                RefreshToken = refreshToken,
+                User = user
             };
 
             return Ok(response);
@@ -52,15 +53,20 @@ namespace Memories.Server.Controllers
         [HttpPost("refresh")]
         public IActionResult Refresh(TokenResponse tokenResponse)
         {
-            // For simplicity, assume the refresh token is valid and stored securely
-            // var storedRefreshToken = _userService.GetRefreshToken(userId);
+            if (!TokenUtils.VerifyJwtToken(tokenResponse.AccessToken, _config["Jwt:Secret"]))
+            {
+                return BadRequest("Ключ шифрования токена устарел!");
+            }
 
-            // Verify refresh token (validate against the stored token)
-            // if (storedRefreshToken != tokenResponse.RefreshToken)
-            //    return Unauthorized();
+            var Id = TokenUtils.GetIdUser(tokenResponse.AccessToken);
+            var user = context.Users.FirstOrDefault(u => u.Id.ToString() == Id);
 
-            // For demonstration, let's just generate a new access token
-            var newAccessToken = TokenUtils.GenerateAccessTokenFromRefreshToken(tokenResponse.RefreshToken, _config["Jwt:Secret"]);
+            if (user == null)
+            {
+                return BadRequest("Пользователь не найден");
+            }
+            
+            var newAccessToken = TokenUtils.GenerateAccessTokenFromRefreshToken(tokenResponse.RefreshToken, user, _config["Jwt:Secret"]);
 
             var response = new TokenResponse
             {

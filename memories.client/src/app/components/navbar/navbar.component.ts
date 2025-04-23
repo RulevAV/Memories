@@ -1,10 +1,12 @@
-import { Component, inject } from '@angular/core';
+import {Component, inject, OnDestroy, OnInit} from '@angular/core';
 import { NgbOffcanvas } from '@ng-bootstrap/ng-bootstrap';
 import {MenuComponent} from '../../modal/menu/menu.component';
 import {AuthenticationComponent} from '../../modal/authentication/authentication.component';
 import {
   MatDialog
 } from '@angular/material/dialog';
+import {AuthenticationService} from '../../services/authentication.service';
+import {Subscription} from 'rxjs';
 
 @Component({
   selector: 'app-navbar',
@@ -12,11 +14,22 @@ import {
   templateUrl: './navbar.component.html',
   styleUrl: './navbar.component.css'
 })
-export class NavbarComponent {
+export class NavbarComponent implements OnInit, OnDestroy {
   private offcanvasService = inject(NgbOffcanvas);
   readonly dialog = inject(MatDialog);
+  authenticationService: AuthenticationService = inject(AuthenticationService);
+  subscription!: Subscription;
   user: any;
   constructor() {}
+
+  ngOnInit() {
+    this.authenticationService.refresh()?.subscribe();
+    this.subscription = this.authenticationService.user$.subscribe(u => this.user = u)
+  }
+
+  ngOnDestroy() {
+    this.subscription.unsubscribe()
+  }
 
   open() {
     const offcanvasRef = this.offcanvasService.open(MenuComponent,
