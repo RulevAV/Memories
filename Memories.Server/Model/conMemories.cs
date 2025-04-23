@@ -32,8 +32,8 @@ public partial class conMemories : DbContext
             entity.HasIndex(e => e.Login, "users_Login_key").IsUnique();
 
             entity.Property(e => e.Id).ValueGeneratedNever();
+            entity.Property(e => e.Email).HasMaxLength(20);
             entity.Property(e => e.Login).HasMaxLength(20);
-            entity.Property(e => e.Mail).HasMaxLength(20);
             entity.Property(e => e.Password).HasMaxLength(20);
             entity.Property(e => e.RefreshToken).HasMaxLength(100);
             entity.Property(e => e.RefreshTokenExpiryTime).HasColumnType("timestamp(0) without time zone");

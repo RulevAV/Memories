@@ -80,7 +80,8 @@ namespace Memories.Server.Controllers
 
             User user = new()
             {
-                Mail = model.Email,
+                Id = Guid.NewGuid(),
+                Email = model.Email,
                 Login = model.Login,
                 Password = model.Password
             };
@@ -88,7 +89,10 @@ namespace Memories.Server.Controllers
             _context.Users.Add(user);
             await _context.SaveChangesAsync();
 
-            return Ok("User created successfully!");
+            return Ok(new
+            {
+                user
+            });
         }
 
         //[HttpPost]

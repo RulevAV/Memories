@@ -11,20 +11,20 @@ import {AuthenticationService} from '../../services/core/authentication.service'
 export class HomeComponent {
   userService: UserService = inject(UserService);
   authenticationService: AuthenticationService = inject(AuthenticationService);
-  test1(){
-    this.userService.getUser().subscribe();
+  async test1(){
+    this.userService.getUser_W();
   }
   async test2(){
     await this.userService.postUser_W();
   }
-  test3(){
-    this.userService.putUser().subscribe();
+  async test3(){
+    await this.userService.putUser_W();
   }
-  test4(){
-    this.userService.deleteUser().subscribe();
+  async test4(){
+    await this.userService.deleteUser_W();
   }
 
-  refresh(){
+  async refresh(){
     this.authenticationService.refresh()?.subscribe();
   }
 }

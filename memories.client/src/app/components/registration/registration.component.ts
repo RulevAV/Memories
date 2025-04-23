@@ -35,7 +35,7 @@ export class RegistrationComponent {
     this.authenticationService.register({
       login: this.profileForm.get('login')?.value as string,
       password: this.profileForm.get('password')?.value as string,
-      mail: this.profileForm.get('mail')?.value as string
+      email: this.profileForm.get('mail')?.value as string
     }).subscribe(res=> {
       this.errorserver = '';
       this.profileForm.reset();
