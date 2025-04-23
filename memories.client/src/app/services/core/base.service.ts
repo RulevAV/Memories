@@ -21,9 +21,11 @@ export class BaseService<T extends any> {
   protected static readonly GET_USER = 'GetUser';
 
   protected Get<R>(url: string, params?:  HttpParams) {
-    return this.httpClient.get<R>(`${this.controllerName}/${url}`, { params: params })
+    const headers = { 'Authorization': `Bearer ${localStorage.getItem('accessToken')}` }
+    return this.httpClient.get<R>(`${this.controllerName}/${url}`, { params, headers })
       .pipe(
         map(res => {
+          console.log(res);
           return res;
         }),
         catchError(err => {
@@ -32,7 +34,12 @@ export class BaseService<T extends any> {
         }));
   }
   protected Post<A>(url: string, body: T) {
-    return this.httpClient.post<A>(`${this.controllerName}/${url}`, body, { headers: new HttpHeaders({ 'content-type': 'application/json' }) })
+    const headers = {
+      'Authorization': `Bearer ${localStorage.getItem('accessToken')}`,
+      'content-type': 'application/json'
+    }
+
+    return this.httpClient.post<A>(`${this.controllerName}/${url}`, body, { headers })
       .pipe(
         map(res => {
           return res;
@@ -43,7 +50,11 @@ export class BaseService<T extends any> {
         }));
   }
   protected Put<A>(url: string, body: T) {
-    return this.httpClient.put<A>(`${this.controllerName}/${url}`, body, { headers: new HttpHeaders({ 'content-type': 'application/json' }) })
+    const headers = {
+      'Authorization': `Bearer ${localStorage.getItem('accessToken')}`,
+      'content-type': 'application/json'
+    }
+    return this.httpClient.put<A>(`${this.controllerName}/${url}`, body, { headers })
       .pipe(
         map(res => {
           return res;
@@ -54,7 +65,10 @@ export class BaseService<T extends any> {
         }));
   }
   protected Delete<A>(url: string) {
-    return this.httpClient.delete<A>(`${this.controllerName}/${url}`, { withCredentials: true })
+    const headers = {
+      'Authorization': `Bearer ${localStorage.getItem('accessToken')}`
+    }
+    return this.httpClient.delete<A>(`${this.controllerName}/${url}`, { withCredentials: true, headers })
       .pipe(
         map(res => {
           return res;
