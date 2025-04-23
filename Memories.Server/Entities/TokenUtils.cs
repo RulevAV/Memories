@@ -37,6 +37,7 @@ namespace Memories.Server.Entities
 
             return tokenHandler.WriteToken(token);
         }
+
         public static string GetIdUser(string AccessToken)
         {
             var ReadToken = new JwtSecurityTokenHandler().ReadJwtToken(AccessToken);

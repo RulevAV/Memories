@@ -12,8 +12,9 @@ export class HomeComponent {
   test1(){
     this.userService.getUser().subscribe();
   }
-  test2(){
-    this.userService.postUser().subscribe();
+  async test2(){
+    var asd = await this.userService.postUser2();
+    console.log(asd);
   }
   test3(){
     this.userService.putUser().subscribe();

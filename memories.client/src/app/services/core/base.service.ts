@@ -7,7 +7,7 @@ import {MatDialog} from '@angular/material/dialog';
 @Injectable({
   providedIn: 'root'
 })
-export class BaseService<T extends any> {
+export class BaseService<T> {
   private readonly controllerName: string;
   env = environment;
 
@@ -25,7 +25,6 @@ export class BaseService<T extends any> {
     return this.httpClient.get<R>(`${this.controllerName}/${url}`, { params, headers })
       .pipe(
         map(res => {
-          console.log(res);
           return res;
         }),
         catchError(err => {
