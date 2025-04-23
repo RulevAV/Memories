@@ -1,8 +1,13 @@
-﻿<div class="Main">
-  <div class="header">
-    <app-navbar></app-navbar>
-  </div>
-  <div class="content container">
-    <router-outlet></router-outlet>
-  </div>
+﻿<div class="wrapper" *ngIf="user === undefined; else loading">
+  <div class="item1"><mat-spinner></mat-spinner></div>
 </div>
+<ng-template #loading>
+  <div class="Main">
+    <div class="header">
+      <app-navbar></app-navbar>
+    </div>
+    <div class="content container">
+      <router-outlet></router-outlet>
+    </div>
+  </div>
+</ng-template>

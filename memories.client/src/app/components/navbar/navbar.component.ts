@@ -5,8 +5,9 @@ import {AuthenticationComponent} from '../../modal/authentication/authentication
 import {
   MatDialog
 } from '@angular/material/dialog';
-import {AuthenticationService} from '../../services/authentication.service';
 import {Subscription} from 'rxjs';
+import {AuthenticationService} from '../../services/core/authentication.service';
+import {UserService} from '../../services/user.service';
 
 @Component({
   selector: 'app-navbar',
@@ -18,13 +19,14 @@ export class NavbarComponent implements OnInit, OnDestroy {
   private offcanvasService = inject(NgbOffcanvas);
   readonly dialog = inject(MatDialog);
   authenticationService: AuthenticationService = inject(AuthenticationService);
+  userService: UserService = inject(UserService);
   subscription!: Subscription;
   user: any;
   constructor() {}
 
   ngOnInit() {
-    // this.authenticationService.refresh()?.subscribe();
-    this.subscription = this.authenticationService.user$.subscribe(u => this.user = u)
+     this.subscription = this.authenticationService.user$.subscribe( async u => {
+       this.user = u;});
   }
 
   ngOnDestroy() {

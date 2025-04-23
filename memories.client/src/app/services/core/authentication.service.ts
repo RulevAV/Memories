@@ -1,20 +1,22 @@
 import { Injectable } from '@angular/core';
 import {HttpClient} from '@angular/common/http';
-import User from '../../model/user';
-import {BaseService} from './core/base.service';
 import {MatDialog} from '@angular/material/dialog';
 import {BehaviorSubject, map, Observable} from 'rxjs';
-import TokenResponse from '../../model/token-response';
+import {BaseService} from './base.service';
+import User from '../../../model/user';
+import TokenResponse from '../../../model/token-response';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthenticationService extends BaseService<any> {
+
+  accessToken$: BehaviorSubject<string | undefined> = new BehaviorSubject<string | undefined>(undefined);
   user!: User | null;
   user$: BehaviorSubject<User | null | undefined> = new BehaviorSubject<User | null | undefined>(undefined);
 
   constructor(protected override httpClient: HttpClient,  override dialog: MatDialog) {
-    super(httpClient, 'authentication',dialog);
+    super(httpClient, 'authenticate',dialog);
   }
 
   test(): Observable<any[]> {
@@ -28,14 +30,18 @@ export class AuthenticationService extends BaseService<any> {
   refresh(){
     const accessToken = localStorage.getItem('accessToken');
     const refreshToken = localStorage.getItem('refreshToken');
-    if (!refreshToken || !accessToken)
+    if (!refreshToken || !accessToken){
+      this.accessToken$.next('');
       return;
-    return this.Post<TokenResponse>('refresh', {
+    }
+
+    return this.Post<TokenResponse>('refresh-token', {
       accessToken,
       refreshToken
     }).pipe(map(res =>{
-      localStorage.setItem('accessToken', accessToken);
-      localStorage.setItem('refreshToken', refreshToken)
+      localStorage.setItem('accessToken', res.accessToken);
+      localStorage.setItem('refreshToken',res.refreshToken);
+      this.accessToken$.next(res.accessToken);
       this.user = res.user;
       this.user$.next(this.user);
       return res;
@@ -45,7 +51,8 @@ export class AuthenticationService extends BaseService<any> {
   login(user: User): Observable<TokenResponse> {
     return this.Post<TokenResponse>('login', user).pipe(map(res =>{
       localStorage.setItem('accessToken', res.accessToken);
-      localStorage.setItem('refreshToken',res.refreshToken)
+      localStorage.setItem('refreshToken',res.refreshToken);
+      this.accessToken$.next(res.accessToken);
       this.user = res.user;
       this.user$.next(this.user);
       return res;
@@ -54,6 +61,7 @@ export class AuthenticationService extends BaseService<any> {
   logout(){
     localStorage.setItem('accessToken', '');
     localStorage.setItem('refreshToken', '')
+    this.accessToken$.next('');
     this.user = null;
     this.user$.next(this.user);
   }

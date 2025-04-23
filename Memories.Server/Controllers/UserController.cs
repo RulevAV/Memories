@@ -16,6 +16,13 @@ namespace Memories.Server.Controllers
             _logger = logger;
             context = con;
         }
+        
+        [HttpGet("[action]")]
+        public User InfoUser()
+        {
+            var mass = context.Users.ToList();
+            return mass.First();
+        }
 
         [HttpGet("[action]")]
         [Authorize]

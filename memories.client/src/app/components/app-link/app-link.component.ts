@@ -1,6 +1,7 @@
 import {Component, EventEmitter, inject, Input, input, Output} from '@angular/core';
-import {AuthenticationService} from '../../services/authentication.service';
 import {Router} from '@angular/router';
+import {AuthenticationService} from '../../services/core/authentication.service';
+import {UserService} from '../../services/user.service';
 
 @Component({
   selector: 'app-link',
@@ -12,13 +13,14 @@ export class AppLinkComponent {
   @Output() onClick: EventEmitter<any> = new EventEmitter();
   @Input() user?: any;
 
-
+  userService: UserService = inject(UserService);
   authenticationService: AuthenticationService = inject(AuthenticationService);
   router = inject(Router);
 
   logout(){
     this.router.navigate(['']);
     this.authenticationService.logout();
+    this.close();
   }
 
   close(){

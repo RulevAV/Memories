@@ -3,24 +3,40 @@
   "WorkspaceRootPath": "C:\\Users\\Andrey\\Desktop\\Memories\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{1711E55A-C5B7-4989-BC10-E831F1397F2E}|Memories.Server\\Memories.Server.csproj|c:\\users\\andrey\\desktop\\memories\\memories.server\\entities\\tokenutils.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{1711E55A-C5B7-4989-BC10-E831F1397F2E}|Memories.Server\\Memories.Server.csproj|solutionrelative:memories.server\\entities\\tokenutils.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{1711E55A-C5B7-4989-BC10-E831F1397F2E}|Memories.Server\\Memories.Server.csproj|c:\\users\\andrey\\desktop\\memories\\memories.server\\controllers\\authenticatecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{1711E55A-C5B7-4989-BC10-E831F1397F2E}|Memories.Server\\Memories.Server.csproj|solutionrelative:memories.server\\controllers\\authenticatecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{1711E55A-C5B7-4989-BC10-E831F1397F2E}|Memories.Server\\Memories.Server.csproj|c:\\users\\andrey\\desktop\\memories\\memories.server\\controllers\\authenticationcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{1711E55A-C5B7-4989-BC10-E831F1397F2E}|Memories.Server\\Memories.Server.csproj|solutionrelative:memories.server\\controllers\\authenticationcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{1711E55A-C5B7-4989-BC10-E831F1397F2E}|Memories.Server\\Memories.Server.csproj|c:\\users\\andrey\\desktop\\memories\\memories.server\\appsettings.development.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
-      "RelativeMoniker": "D:0:0:{1711E55A-C5B7-4989-BC10-E831F1397F2E}|Memories.Server\\Memories.Server.csproj|solutionrelative:memories.server\\appsettings.development.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{1711E55A-C5B7-4989-BC10-E831F1397F2E}|Memories.Server\\Memories.Server.csproj|c:\\users\\andrey\\desktop\\memories\\memories.server\\controllers\\usercontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{1711E55A-C5B7-4989-BC10-E831F1397F2E}|Memories.Server\\Memories.Server.csproj|solutionrelative:memories.server\\controllers\\usercontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
+      "AbsoluteMoniker": "D:0:0:{1711E55A-C5B7-4989-BC10-E831F1397F2E}|Memories.Server\\Memories.Server.csproj|c:\\users\\andrey\\desktop\\memories\\memories.server\\appsettings.development.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
+      "RelativeMoniker": "D:0:0:{1711E55A-C5B7-4989-BC10-E831F1397F2E}|Memories.Server\\Memories.Server.csproj|solutionrelative:memories.server\\appsettings.development.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{1711E55A-C5B7-4989-BC10-E831F1397F2E}|Memories.Server\\Memories.Server.csproj|c:\\users\\andrey\\desktop\\memories\\memories.server\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{1711E55A-C5B7-4989-BC10-E831F1397F2E}|Memories.Server\\Memories.Server.csproj|solutionrelative:memories.server\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{1711E55A-C5B7-4989-BC10-E831F1397F2E}|Memories.Server\\Memories.Server.csproj|c:\\users\\andrey\\desktop\\memories\\memories.server\\entities\\tokenmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{1711E55A-C5B7-4989-BC10-E831F1397F2E}|Memories.Server\\Memories.Server.csproj|solutionrelative:memories.server\\entities\\tokenmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{1711E55A-C5B7-4989-BC10-E831F1397F2E}|Memories.Server\\Memories.Server.csproj|c:\\users\\andrey\\desktop\\memories\\memories.server\\controllers\\weatherforecastcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{1711E55A-C5B7-4989-BC10-E831F1397F2E}|Memories.Server\\Memories.Server.csproj|solutionrelative:memories.server\\controllers\\weatherforecastcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{1711E55A-C5B7-4989-BC10-E831F1397F2E}|Memories.Server\\Memories.Server.csproj|c:\\users\\andrey\\desktop\\memories\\memories.server\\entities\\registermodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{1711E55A-C5B7-4989-BC10-E831F1397F2E}|Memories.Server\\Memories.Server.csproj|solutionrelative:memories.server\\entities\\registermodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{1711E55A-C5B7-4989-BC10-E831F1397F2E}|Memories.Server\\Memories.Server.csproj|c:\\users\\andrey\\desktop\\memories\\memories.server\\entities\\loginmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{1711E55A-C5B7-4989-BC10-E831F1397F2E}|Memories.Server\\Memories.Server.csproj|solutionrelative:memories.server\\entities\\loginmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -30,7 +46,7 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 11,
+          "SelectedChildIndex": 12,
           "Children": [
             {
               "$type": "Bookmark",
@@ -66,20 +82,85 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 4,
+              "Title": "Program.cs",
+              "DocumentMoniker": "C:\\Users\\Andrey\\Desktop\\Memories\\Memories.Server\\Program.cs",
+              "RelativeDocumentMoniker": "Memories.Server\\Program.cs",
+              "ToolTip": "C:\\Users\\Andrey\\Desktop\\Memories\\Memories.Server\\Program.cs",
+              "RelativeToolTip": "Memories.Server\\Program.cs",
+              "ViewState": "AgIAAC0AAACAmpmZmVkqwBUAAAA2AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-04-23T18:19:40.372Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "TokenModel.cs",
+              "DocumentMoniker": "C:\\Users\\Andrey\\Desktop\\Memories\\Memories.Server\\Entities\\TokenModel.cs",
+              "RelativeDocumentMoniker": "Memories.Server\\Entities\\TokenModel.cs",
+              "ToolTip": "C:\\Users\\Andrey\\Desktop\\Memories\\Memories.Server\\Entities\\TokenModel.cs",
+              "RelativeToolTip": "Memories.Server\\Entities\\TokenModel.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAYAAAAFAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-04-23T18:15:57.033Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "RegisterModel.cs",
+              "DocumentMoniker": "C:\\Users\\Andrey\\Desktop\\Memories\\Memories.Server\\Entities\\RegisterModel.cs",
+              "RelativeDocumentMoniker": "Memories.Server\\Entities\\RegisterModel.cs",
+              "ToolTip": "C:\\Users\\Andrey\\Desktop\\Memories\\Memories.Server\\Entities\\RegisterModel.cs",
+              "RelativeToolTip": "Memories.Server\\Entities\\RegisterModel.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAqwAYAAAAIAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-04-23T18:09:13.304Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 8,
+              "Title": "LoginModel.cs",
+              "DocumentMoniker": "C:\\Users\\Andrey\\Desktop\\Memories\\Memories.Server\\Entities\\LoginModel.cs",
+              "RelativeDocumentMoniker": "Memories.Server\\Entities\\LoginModel.cs",
+              "ToolTip": "C:\\Users\\Andrey\\Desktop\\Memories\\Memories.Server\\Entities\\LoginModel.cs",
+              "RelativeToolTip": "Memories.Server\\Entities\\LoginModel.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAUAAAAsAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-04-23T18:07:45.681Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "AuthenticateController.cs",
+              "DocumentMoniker": "C:\\Users\\Andrey\\Desktop\\Memories\\Memories.Server\\Controllers\\AuthenticateController.cs",
+              "RelativeDocumentMoniker": "Memories.Server\\Controllers\\AuthenticateController.cs",
+              "ToolTip": "C:\\Users\\Andrey\\Desktop\\Memories\\Memories.Server\\Controllers\\AuthenticateController.cs",
+              "RelativeToolTip": "Memories.Server\\Controllers\\AuthenticateController.cs",
+              "ViewState": "AgIAAJYAAACAMzMzM7MvwKUAAAANAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-04-23T17:41:53.825Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
               "Title": "UserController.cs",
               "DocumentMoniker": "C:\\Users\\Andrey\\Desktop\\Memories\\Memories.Server\\Controllers\\UserController.cs",
               "RelativeDocumentMoniker": "Memories.Server\\Controllers\\UserController.cs",
               "ToolTip": "C:\\Users\\Andrey\\Desktop\\Memories\\Memories.Server\\Controllers\\UserController.cs",
               "RelativeToolTip": "Memories.Server\\Controllers\\UserController.cs",
-              "ViewState": "AgIAABIAAAAAzczMzAwmwBcAAAAMAAAAAAAAAA==",
+              "ViewState": "AgIAAA0AAAAAZ2ZmZuYRwBQAAAATAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-04-23T11:31:03.889Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 4,
+              "DocumentIndex": 6,
               "Title": "WeatherForecastController.cs",
               "DocumentMoniker": "C:\\Users\\Andrey\\Desktop\\Memories\\Memories.Server\\Controllers\\WeatherForecastController.cs",
               "RelativeDocumentMoniker": "Memories.Server\\Controllers\\WeatherForecastController.cs",
@@ -92,28 +173,15 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 3,
               "Title": "appsettings.Development.json",
               "DocumentMoniker": "C:\\Users\\Andrey\\Desktop\\Memories\\Memories.Server\\appsettings.Development.json",
               "RelativeDocumentMoniker": "Memories.Server\\appsettings.Development.json",
               "ToolTip": "C:\\Users\\Andrey\\Desktop\\Memories\\Memories.Server\\appsettings.Development.json",
               "RelativeToolTip": "Memories.Server\\appsettings.Development.json",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAsAAABQAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABAAAAADAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
               "WhenOpened": "2025-04-23T11:02:00.195Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "TokenUtils.cs",
-              "DocumentMoniker": "C:\\Users\\Andrey\\Desktop\\Memories\\Memories.Server\\Entities\\TokenUtils.cs",
-              "RelativeDocumentMoniker": "Memories.Server\\Entities\\TokenUtils.cs",
-              "ToolTip": "C:\\Users\\Andrey\\Desktop\\Memories\\Memories.Server\\Entities\\TokenUtils.cs",
-              "RelativeToolTip": "Memories.Server\\Entities\\TokenUtils.cs",
-              "ViewState": "AgIAACcAAACQZmZmZgY7wC0AAAAbAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-04-23T09:48:05.01Z",
               "EditorCaption": ""
             },
             {
@@ -124,7 +192,7 @@
               "RelativeDocumentMoniker": "Memories.Server\\Controllers\\AuthenticationController.cs",
               "ToolTip": "C:\\Users\\Andrey\\Desktop\\Memories\\Memories.Server\\Controllers\\AuthenticationController.cs",
               "RelativeToolTip": "Memories.Server\\Controllers\\AuthenticationController.cs",
-              "ViewState": "AgIAABcAAAAQAAAAAIAwwDcAAAAzAAAAAAAAAA==",
+              "ViewState": "AgIAAFoAAAAANDMzM7MSwBAAAAAyAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-04-23T09:47:15.971Z",
               "EditorCaption": ""

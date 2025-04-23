@@ -1,8 +1,8 @@
 import {Component, inject} from '@angular/core';
 import {FormControl, FormGroup, Validators} from '@angular/forms';
-import {AuthenticationService} from '../../services/authentication.service';
 import {CustomValidators} from '../../../validators';
 import {MatDialog} from '@angular/material/dialog';
+import {AuthenticationService} from '../../services/core/authentication.service';
 
 @Component({
   selector: 'registration',
