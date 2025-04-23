@@ -36,7 +36,6 @@ export class AuthenticationService extends BaseService<any> {
     }).pipe(map(res =>{
       localStorage.setItem('accessToken', accessToken);
       localStorage.setItem('refreshToken', refreshToken)
-      console.log(res);
       this.user = res.user;
       this.user$.next(this.user);
       return res;
