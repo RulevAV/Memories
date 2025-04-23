@@ -43,6 +43,28 @@ namespace Memories.Server.Entities
             return ReadToken.Claims.First(c => c.Type == "id").Value;
         }
 
+        public static bool VerifyJwtTokenSecretKey(string jwtToken, string key)
+        {
+            var handler = new JwtSecurityTokenHandler();
+            var validationParameters = new TokenValidationParameters
+            {
+                ValidateIssuerSigningKey = true,
+                IssuerSigningKey = new SymmetricSecurityKey(Encoding.ASCII.GetBytes(key)),
+                ValidateIssuer = false,
+                ValidateAudience = false,
+                // ClockSkew = TimeSpan.Zero
+            };
+            try
+            {
+                var claimsPrincipal = handler.ValidateToken(jwtToken, validationParameters, out var securityToken);
+                return true;
+            }
+            catch
+            {
+                return false;
+            }
+        }
+
         public static bool VerifyJwtToken(string jwtToken, string key)
         {
             var handler = new JwtSecurityTokenHandler();

@@ -53,7 +53,7 @@ namespace Memories.Server.Controllers
         [HttpPost("refresh")]
         public IActionResult Refresh(TokenResponse tokenResponse)
         {
-            if (!TokenUtils.VerifyJwtToken(tokenResponse.AccessToken, _config["Jwt:Secret"]))
+            if (!TokenUtils.VerifyJwtTokenSecretKey(tokenResponse.AccessToken, _config["Jwt:Secret"]))
             {
                 return BadRequest("Ключ шифрования токена устарел!");
             }
@@ -71,7 +71,8 @@ namespace Memories.Server.Controllers
             var response = new TokenResponse
             {
                 AccessToken = newAccessToken,
-                RefreshToken = tokenResponse.RefreshToken // Return the same refresh token
+                RefreshToken = tokenResponse.RefreshToken, // Return the same refresh token
+                User = user
             };
 
             return Ok(response);
