@@ -4,6 +4,8 @@ using Microsoft.AspNetCore.Authentication.OAuth;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
 using System.Text;
+using System.Text.Json;
+using System.Text.Json.Serialization;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -34,6 +36,20 @@ builder.Services.AddCors(options =>
 
 builder.Services.AddAuthorization();
 
+// Создаем экземпляр JsonSerializerOptions
+JsonSerializerOptions options = new()
+{
+    ReferenceHandler = ReferenceHandler.IgnoreCycles,
+    WriteIndented = true
+};
+
+// Настраиваем контроллеры с использованием созданных параметров
+builder.Services.AddControllers().AddJsonOptions(opts =>
+{
+    opts.JsonSerializerOptions.ReferenceHandler = options.ReferenceHandler;
+    opts.JsonSerializerOptions.WriteIndented = options.WriteIndented;
+});
+
 var secret = builder.Configuration["Jwt:Secret"];
 var key = Encoding.ASCII.GetBytes(secret);
 
@@ -62,19 +78,6 @@ builder.Services.AddAuthentication(options =>
         IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(builder.Configuration["JWT:Secret"]))
     };
 });
-//builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
-//    .AddJwtBearer(options =>
-//    {
-//        options.TokenValidationParameters = new TokenValidationParameters
-//        {
-//            ValidateIssuer = false,
-//            ValidateAudience = false,
-//            ValidateLifetime = true,
-//            ValidateIssuerSigningKey = true,
-//            IssuerSigningKey = new SymmetricSecurityKey(key)
-//        };
-//    });
-
 
 var app = builder.Build();
 

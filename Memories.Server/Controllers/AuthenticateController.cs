@@ -3,11 +3,14 @@ using Memories.Server.Model;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using System.Security.Cryptography;
 using System.Text;
+using System.Text.Json;
+using System.Text.Json.Serialization;
 
 namespace Memories.Server.Controllers
 {
@@ -32,7 +35,7 @@ namespace Memories.Server.Controllers
         [Route("login")]
         public async Task<IActionResult> Login([FromBody] LoginModel model)
         {
-            var user = _context.Users.FirstOrDefault(u=> u.Login == model.Login && u.Password == model.Password);
+            var user = _context.Users.Include(u => u.CodeRoles).FirstOrDefault(u=> u.Login == model.Login && u.Password == model.Password);
             if (user != null)
             {
                 // var userRoles = await _userManager.GetRolesAsync(user);
@@ -157,7 +160,7 @@ namespace Memories.Server.Controllers
 #pragma warning restore CS8602 // Dereference of a possibly null reference.
 #pragma warning restore CS8600 // Converting null literal or possible null value to non-nullable type.
 
-            var user = _context.Users.FirstOrDefault(u=> u.Login == username);
+            var user = _context.Users.Include(u=> u.CodeRoles).FirstOrDefault(u=> u.Login == username);
 
             if (user == null || user.RefreshToken != refreshToken || user.RefreshTokenExpiryTime <= DateTime.Now)
             {
