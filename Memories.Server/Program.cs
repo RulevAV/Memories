@@ -38,7 +38,7 @@ builder.Services.AddAuthorization();
 // Создаем экземпляр JsonSerializerOptions
 JsonSerializerOptions options = new()
 {
-    ReferenceHandler = ReferenceHandler.Preserve,
+    ReferenceHandler = ReferenceHandler.IgnoreCycles,
     WriteIndented = true
 };
 
