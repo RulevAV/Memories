@@ -1,6 +1,5 @@
-using Memories.Server.Model;
+using Memories.Server.Entities;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
-using Microsoft.AspNetCore.Authentication.OAuth;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
 using System.Text;
@@ -39,7 +38,7 @@ builder.Services.AddAuthorization();
 // Создаем экземпляр JsonSerializerOptions
 JsonSerializerOptions options = new()
 {
-    ReferenceHandler = ReferenceHandler.IgnoreCycles,
+    ReferenceHandler = ReferenceHandler.Preserve,
     WriteIndented = true
 };
 

@@ -8,7 +8,7 @@ import {UserComponent} from './Pages/Admin/user/user.component';
 import {authGuard} from './auth/auth.guard';
 
 const routes: Routes = [{ path: "", component: HomeComponent},
-  { path: "admin/user", component: UserComponent, canActivate: [authGuard]},
+  { path: "admin/users", component: UserComponent, canActivate: [authGuard]},
   { path: "area", component: PostComponent,  canActivate: [authGuard]},
   { path: "profile", component: ProfileComponent,  canActivate: [authGuard]},
   { path: "**", component: NotFoundComponent }];

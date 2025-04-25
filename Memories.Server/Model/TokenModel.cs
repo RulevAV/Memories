@@ -1,4 +1,4 @@
-﻿namespace Memories.Server.Entities
+﻿namespace Memories.Server.Model
 {
     public class TokenModel
     {

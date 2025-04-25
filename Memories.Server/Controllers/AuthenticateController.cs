@@ -1,6 +1,5 @@
 ﻿using Memories.Server.Entities;
 using Memories.Server.Model;
-using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
@@ -9,8 +8,6 @@ using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using System.Security.Cryptography;
 using System.Text;
-using System.Text.Json;
-using System.Text.Json.Serialization;
 
 namespace Memories.Server.Controllers
 {
@@ -31,6 +28,16 @@ namespace Memories.Server.Controllers
             _context = context;
         }
 
+        public List<Claim> authClaims(User user)
+        {
+            return new List<Claim>
+                {
+                    new Claim("Id", user.Id.ToString()),
+                    new Claim(ClaimTypes.Name, user.Login),
+                    new Claim(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString()),
+                };
+        }
+
         [HttpPost]
         [Route("login")]
         public async Task<IActionResult> Login([FromBody] LoginModel model)
@@ -38,20 +45,7 @@ namespace Memories.Server.Controllers
             var user = _context.Users.Include(u => u.CodeRoles).FirstOrDefault(u=> u.Login == model.Login && u.Password == model.Password);
             if (user != null)
             {
-                // var userRoles = await _userManager.GetRolesAsync(user);
-
-                var authClaims = new List<Claim>
-                {
-                    new Claim(ClaimTypes.Name, user.Login),
-                    new Claim(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString()),
-                };
-
-                //foreach (var userRole in userRoles)
-                //{
-                //    authClaims.Add(new Claim(ClaimTypes.Role, userRole));
-                //}
-
-                var token = CreateToken(authClaims);
+                var token = CreateToken(authClaims(user));
                 var refreshToken = GenerateRefreshToken();
 
                 _ = int.TryParse(_configuration["JWT:RefreshTokenValidityInDays"], out int refreshTokenValidityInDays);
@@ -102,40 +96,6 @@ namespace Memories.Server.Controllers
             });
         }
 
-        //[HttpPost]
-        //[Route("register-admin")]
-        //public async Task<IActionResult> RegisterAdmin([FromBody] RegisterModel model)
-        //{
-        //    var userExists =  _context.Users.FirstOrDefault(u=> u.Login == model.Login);
-        //    if (userExists != null)
-        //        return StatusCode(StatusCodes.Status500InternalServerError, new Response { Status = "Error", Message = "User already exists!" });
-
-        //    ApplicationUser user = new()
-        //    {
-        //        Email = model.Email,
-        //        SecurityStamp = Guid.NewGuid().ToString(),
-        //        UserName = model.Username
-        //    };
-        //    var result = await _userManager.CreateAsync(user, model.Password);
-        //    if (!result.Succeeded)
-        //        return StatusCode(StatusCodes.Status500InternalServerError, new Response { Status = "Error", Message = "User creation failed! Please check user details and try again." });
-
-        //    if (!await _roleManager.RoleExistsAsync(UserRoles.Admin))
-        //        await _roleManager.CreateAsync(new IdentityRole(UserRoles.Admin));
-        //    if (!await _roleManager.RoleExistsAsync(UserRoles.User))
-        //        await _roleManager.CreateAsync(new IdentityRole(UserRoles.User));
-
-        //    if (await _roleManager.RoleExistsAsync(UserRoles.Admin))
-        //    {
-        //        await _userManager.AddToRoleAsync(user, UserRoles.Admin);
-        //    }
-        //    if (await _roleManager.RoleExistsAsync(UserRoles.Admin))
-        //    {
-        //        await _userManager.AddToRoleAsync(user, UserRoles.User);
-        //    }
-        //    return Ok(new Response { Status = "Success", Message = "User created successfully!" });
-        //}
-
         [HttpPost]
         [Route("refresh-token")]
         public async Task<IActionResult> RefreshToken(TokenModel tokenModel)
@@ -154,11 +114,7 @@ namespace Memories.Server.Controllers
                 return BadRequest("Invalid access token or refresh token");
             }
 
-#pragma warning disable CS8600 // Converting null literal or possible null value to non-nullable type.
-#pragma warning disable CS8602 // Dereference of a possibly null reference.
             string username = principal.Identity.Name;
-#pragma warning restore CS8602 // Dereference of a possibly null reference.
-#pragma warning restore CS8600 // Converting null literal or possible null value to non-nullable type.
 
             var user = _context.Users.Include(u=> u.CodeRoles).FirstOrDefault(u=> u.Login == username);
 
@@ -167,7 +123,7 @@ namespace Memories.Server.Controllers
                 return BadRequest("Invalid access token or refresh token");
             }
 
-            var newAccessToken = CreateToken(principal.Claims.ToList());
+            var newAccessToken = CreateToken(authClaims(user));
             var newRefreshToken = GenerateRefreshToken();
 
             user.RefreshToken = newRefreshToken;
@@ -181,35 +137,6 @@ namespace Memories.Server.Controllers
                 Expiration = newAccessToken.ValidTo
             });
         }
-
-        //[Authorize]
-        //[HttpPost]
-        //[Route("revoke/{username}")]
-        //public async Task<IActionResult> Revoke(string username)
-        //{
-        //    var user = await _userManager.FindByNameAsync(username);
-        //    if (user == null) return BadRequest("Invalid user name");
-
-        //    user.RefreshToken = null;
-        //    await _userManager.UpdateAsync(user);
-
-        //    return NoContent();
-        //}
-
-        //[Authorize]
-        //[HttpPost]
-        //[Route("revoke-all")]
-        //public async Task<IActionResult> RevokeAll()
-        //{
-        //    var users = _userManager.Users.ToList();
-        //    foreach (var user in users)
-        //    {
-        //        user.RefreshToken = null;
-        //        await _userManager.UpdateAsync(user);
-        //    }
-
-        //    return NoContent();
-        //}
 
         private JwtSecurityToken CreateToken(List<Claim> authClaims)
         {

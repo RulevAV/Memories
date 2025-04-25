@@ -1,4 +1,4 @@
-using Memories.Server.Model;
+using Memories.Server.Entities;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 

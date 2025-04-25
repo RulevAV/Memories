@@ -11,6 +11,10 @@ import {AuthenticationService} from '../../services/core/authentication.service'
 export class HomeComponent {
   userService: UserService = inject(UserService);
   authenticationService: AuthenticationService = inject(AuthenticationService);
+
+  async infoUser(){
+    this.userService.infoUser().subscribe();
+  }
   async test1(){
     this.userService.getUser_W();
   }
