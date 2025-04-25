@@ -1,8 +1,8 @@
-<form class="mt-2 d-flex flex-column container-md container-lg" [formGroup]="profileForm">
+<form class="mt-2 d-flex flex-column container-md container-lg" [formGroup]="registerForm">
   <mat-form-field class="example-full-width">
     <mat-label>Логин</mat-label>
     <input matInput formControlName="login">
-    <mat-hint class="text-danger" *ngIf="profileForm.get('login')?.invalid && profileForm.get('login')?.touched" >Логин не должен быть пустым</mat-hint>
+    <mat-hint class="text-danger" *ngIf="registerForm.get('login')?.invalid && registerForm.get('login')?.touched" >Логин не должен быть пустым</mat-hint>
   </mat-form-field>
 
   <mat-form-field class="example-full-width">
@@ -20,11 +20,11 @@
   <mat-form-field class="example-full-width">
     <mat-label>Email</mat-label>
     <input matInput formControlName="mail">
-    <mat-hint class="text-danger" *ngIf="profileForm.get('mail')?.invalid && profileForm.get('mail')?.touched" >Неверный mail</mat-hint>
+    <mat-hint class="text-danger" *ngIf="registerForm.get('mail')?.invalid && registerForm.get('mail')?.touched" >Неверный mail</mat-hint>
     <mat-hint class="text-danger ms-1" *ngIf="!!errorserver">{{errorserver}}</mat-hint>
   </mat-form-field>
 
   <div class="d-flex justify-content-center">
-    <button type="button" [disabled]="profileForm.invalid" (click)="save()" class="btn btn-primary w-75">Зарегистрироваться</button>
+    <button type="button" [disabled]="registerForm.invalid" (click)="save()" class="btn btn-primary w-75">Зарегистрироваться</button>
   </div>
 </form>

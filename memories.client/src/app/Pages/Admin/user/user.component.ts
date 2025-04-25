@@ -1,9 +1,15 @@
-import {Component, inject, ViewChild} from '@angular/core';
-import {HttpClient} from '@angular/common/http';
-import {MatPaginator} from '@angular/material/paginator';
-import {MatSort} from '@angular/material/sort';
-import { map, merge, Observable, startWith, switchMap} from 'rxjs';
-import {SortDirection} from '@angular/material/sort';
+import {AfterViewInit, Component, inject, ViewChild} from '@angular/core';
+import {PageEvent} from '@angular/material/paginator';
+import {MatTableDataSource} from '@angular/material/table';
+import {UserService} from '../../../services/user.service';
+import User from '../../../../model/user';
+import Role from '../../../../model/role';
+import {FormControl, FormGroup, Validators} from '@angular/forms';
+
+interface Item {
+  id: number;
+  name: string;
+}
 
 @Component({
   selector: 'app-user',
@@ -11,79 +17,55 @@ import {SortDirection} from '@angular/material/sort';
   templateUrl: './user.component.html',
   styleUrl: './user.component.css'
 })
-export class UserComponent {
-  private _httpClient = inject(HttpClient);
+export class UserComponent implements AfterViewInit {
+  userService: UserService = inject(UserService);
+  filterForm = new FormGroup({
+    login: new FormControl(''),
+    email: new FormControl(''),
+    role: new FormControl(''),
+  });
 
-  displayedColumns: string[] = ['created', 'state', 'number', 'title'];
-  exampleDatabase!: ExampleHttpDatabase | null;
-  data: GithubIssue[] = [];
+  displayedColumns: string[] = ['login', 'email', 'codeRoles'];
+  dataSource = new MatTableDataSource<User>([]);
 
-  resultsLength = 0;
-  isLoadingResults = true;
-  isRateLimitReached = false;
+  length = 50;
+  pageSize = 10;
+  pageIndex = 0;
+  pageSizeOptions = [5, 10, 25];
 
-  @ViewChild(MatPaginator) paginator!: MatPaginator;
-  @ViewChild(MatSort) sort!: MatSort;
+  hidePageSize = false;
+  showPageSizeOptions = true;
+  showFirstLastButtons = true;
+  disabled = false;
 
-  ngAfterViewInit() {
-    this.exampleDatabase = new ExampleHttpDatabase(this._httpClient);
+  pageEvent!: PageEvent;
 
-    // If the user changes the sort order, reset back to the first page.
-    this.sort.sortChange.subscribe(() => (this.paginator.pageIndex = 0));
-
-    merge(this.sort.sortChange, this.paginator.page)
-      .pipe(
-        startWith({}),
-        switchMap(() => {
-          this.isLoadingResults = true;
-          return this.exampleDatabase!.getRepoIssues(
-            this.sort.active,
-            this.sort.direction,
-            this.paginator.pageIndex,
-          ).pipe();
-        }),
-        map(data => {
-          // Flip flag to show that loading has finished.
-          this.isLoadingResults = false;
-          this.isRateLimitReached = data === null;
-
-          if (data === null) {
-            return [];
-          }
-
-          // Only refresh the result length if there is new data. In case of rate
-          // limit errors, we do not want to reset the paginator to zero, as that
-          // would prevent users from re-triggering requests.
-          this.resultsLength = data.total_count;
-          return data.items;
-        }),
-      )
-      .subscribe(data => (this.data = data));
+ async ngAfterViewInit() {
+  await this.updateTable();
   }
-}
 
-export interface GithubApi {
-  items: GithubIssue[];
-  total_count: number;
-}
+async updateTable(){
+    const data = await this.userService.users_W(this.pageIndex,this.pageSize);
+    this.dataSource.data = data.elements;
+    this.length = data.totalCount;
+  }
 
-export interface GithubIssue {
-  created_at: string;
-  number: string;
-  state: string;
-  title: string;
-}
+async  handlePageEvent(e: PageEvent) {
+    this.pageEvent = e;
+    this.length = e.length;
+    this.pageSize = e.pageSize;
+    this.pageIndex = e.pageIndex;
+    await this.updateTable();
+  }
 
-/** An example database that the data source uses to retrieve data for the table. */
-export class ExampleHttpDatabase {
-  constructor(private _httpClient: HttpClient) {}
+  rolesString(roles: Role[]){
+   return roles.map(r=>r.name).join();
+  }
 
-  getRepoIssues(sort: string, order: SortDirection, page: number): Observable<GithubApi> {
-    const href = 'https://api.github.com/search/issues';
-    const requestUrl = `${href}?q=repo:angular/components&sort=${sort}&order=${order}&page=${
-      page + 1
-    }`;
+  searchTerm: string = '';
+  items: string[] = ['Apple', 'Banana', 'Cherry', 'Date', 'Fig', 'Grape', 'Honeydew'];
 
-    return this._httpClient.get<GithubApi>(requestUrl);
+  get filteredItems() {
+    return this.items.filter(item => item.toLowerCase().includes(this.searchTerm.toLowerCase()));
   }
 }

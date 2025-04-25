@@ -12,7 +12,7 @@ export class LoginComponent {
   @Output() onClick: EventEmitter<any> = new EventEmitter();
   authenticationService: AuthenticationService = inject(AuthenticationService);
 
-  profileForm = new FormGroup({
+  loginForm = new FormGroup({
     login: new FormControl('maag',[Validators.required]),
     password: new FormControl('1', [Validators.required]),
   });
@@ -22,10 +22,10 @@ export class LoginComponent {
 
   signin(){
     this.authenticationService.login({
-      login: this.profileForm.get('login')?.value as string,
-      password: this.profileForm.get('password')?.value as string,
+      login: this.loginForm.get('login')?.value as string,
+      password: this.loginForm.get('password')?.value as string,
     }).subscribe(res=> {
-      this.profileForm.reset();
+      this.loginForm.reset();
       this.onClick.emit();
     }, error =>{
 

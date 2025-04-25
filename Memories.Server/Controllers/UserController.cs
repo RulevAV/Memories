@@ -2,10 +2,12 @@
 using Memories.Server.Model;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
 using Npgsql;
 using System;
 using System.Security.Principal;
+using System.Xml.Linq;
 
 namespace Memories.Server.Controllers
 {
@@ -58,6 +60,25 @@ namespace Memories.Server.Controllers
         {
             var mass = _context.Users.ToList();
             return mass.First();
+        }
+
+        [HttpGet("[action]")]
+        [Authorize]
+        public async Task<PaginatorEntity<User>> Users(int page, int pageSize)
+        {
+            int totalCount = await _context.Users.CountAsync();
+
+            // Fetching paginated results
+            List<User> products = await _context.Users.Include(u=> u.CodeRoles)
+                .OrderBy(p => p.Id)  // or any other column to maintain a consistent order
+                .Skip(page * pageSize)
+                .Take(pageSize)
+                .ToListAsync();
+            return new PaginatorEntity<User>()
+            {
+                Elements = products,
+                TotalCount = totalCount
+            };
         }
     }
 }

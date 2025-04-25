@@ -13,7 +13,7 @@ export class HomeComponent {
   authenticationService: AuthenticationService = inject(AuthenticationService);
 
   async infoUser(){
-    this.userService.infoUser().subscribe();
+    this.userService.infoUser_W();
   }
   async test1(){
     this.userService.getUser_W();

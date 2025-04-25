@@ -18,7 +18,7 @@ import {MatButtonModule} from '@angular/material/button';
 import {MatTabsModule} from '@angular/material/tabs';
 import { LoginComponent } from './components/login/login.component';
 import { RegistrationComponent } from './components/registration/registration.component';
-import {ReactiveFormsModule} from '@angular/forms';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {MatInputModule} from '@angular/material/input';
 import {MatIconModule} from '@angular/material/icon';
 import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
@@ -51,7 +51,8 @@ import {MatPaginator} from '@angular/material/paginator';
     MatIconModule,
     MatProgressSpinnerModule,
     MatTableModule,
-    MatPaginator
+    MatPaginator,
+    FormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

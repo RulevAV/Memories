@@ -1,4 +1,5 @@
 import Role from './role';
+import {PaginatorEntity} from './paginator-entity';
 
 export default interface User {
   id?: string;
@@ -7,4 +8,5 @@ export default interface User {
   email?: string;
   codeRoles?: Role[];
 }
-
+export interface PaginatorUser extends PaginatorEntity<User> {
+}

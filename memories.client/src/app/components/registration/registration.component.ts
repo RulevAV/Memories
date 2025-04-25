@@ -11,7 +11,7 @@ import {AuthenticationService} from '../../services/core/authentication.service'
 })
 export class RegistrationComponent {
   @Output() onClick: EventEmitter<any> = new EventEmitter();
-  profileForm = new FormGroup({
+  registerForm = new FormGroup({
     login: new FormControl('', [Validators.required]),
     password: new FormControl('', [Validators.required]),
     confirmPassword: new FormControl('', [Validators.required]),
@@ -26,19 +26,19 @@ export class RegistrationComponent {
 
   get passwordMatchError() {
     return (
-      this.profileForm.getError('mismatch') &&
-      this.profileForm.get('confirmPassword')?.touched
+      this.registerForm.getError('mismatch') &&
+      this.registerForm.get('confirmPassword')?.touched
     );
   }
 
   save(){
     this.authenticationService.register({
-      login: this.profileForm.get('login')?.value as string,
-      password: this.profileForm.get('password')?.value as string,
-      email: this.profileForm.get('mail')?.value as string
+      login: this.registerForm.get('login')?.value as string,
+      password: this.registerForm.get('password')?.value as string,
+      email: this.registerForm.get('mail')?.value as string
     }).subscribe(res=> {
       this.errorserver = '';
-      this.profileForm.reset();
+      this.registerForm.reset();
       this.onClick.emit();
     }, error =>{
       if (error.status !== 500)
