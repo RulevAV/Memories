@@ -61,7 +61,6 @@ export class UserService extends WrapperService<User> {
     const fn = () => this.deleteUser();
     return await this.wrapper(fn);
   }
-
   logout(){
     this.user = null;
     this.user$.next(this.user);

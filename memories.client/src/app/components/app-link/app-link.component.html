@@ -8,7 +8,7 @@
   <li class="nav-item">
     <a class="nav-link" routerLinkActive="active fw-bold" href="#area" (click)="close()" routerLink="/area">Область изучения</a>
   </li>
-  <li ngbDropdown class="d-inline-block">
+  <li ngbDropdown class="d-inline-block" *ngIf="authenticationService.isAdmin()">
     <a class="nav-link" routerLinkActive="active" id="dropdownBasic1" ngbDropdownToggle>
       Админка
     </a>

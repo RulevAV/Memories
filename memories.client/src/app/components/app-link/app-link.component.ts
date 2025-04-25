@@ -13,7 +13,6 @@ export class AppLinkComponent {
   @Output() onClick: EventEmitter<any> = new EventEmitter();
   @Input() user?: any;
 
-  userService: UserService = inject(UserService);
   authenticationService: AuthenticationService = inject(AuthenticationService);
   router = inject(Router);
 
