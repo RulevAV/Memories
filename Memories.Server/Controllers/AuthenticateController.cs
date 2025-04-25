@@ -74,9 +74,13 @@ namespace Memories.Server.Controllers
         [Route("register")]
         public async Task<IActionResult> Register([FromBody] RegisterModel model)
         {
-            var userExists = _context.Users.FirstOrDefault(u=> u.Login == model.Login);
+            var userExists = _context.Users.FirstOrDefault(u => u.Login == model.Login);
             if (userExists != null)
-                return BadRequest("User already exists!");
+                return BadRequest("Пользователь уже существует!");
+            
+            userExists = _context.Users.FirstOrDefault(u => u.Email == model.Email);
+            if (userExists != null)
+                return BadRequest("Email уже занят!");
 
             User user = new()
             {

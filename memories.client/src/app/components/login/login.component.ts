@@ -1,6 +1,5 @@
-import {Component, inject} from '@angular/core';
+import {Component, EventEmitter, inject, Output} from '@angular/core';
 import {FormControl, FormGroup, Validators} from '@angular/forms';
-import {MatDialog} from '@angular/material/dialog';
 import {AuthenticationService} from '../../services/core/authentication.service';
 
 @Component({
@@ -10,6 +9,7 @@ import {AuthenticationService} from '../../services/core/authentication.service'
   styleUrl: './login.component.css'
 })
 export class LoginComponent {
+  @Output() onClick: EventEmitter<any> = new EventEmitter();
   authenticationService: AuthenticationService = inject(AuthenticationService);
 
   profileForm = new FormGroup({
@@ -17,7 +17,7 @@ export class LoginComponent {
     password: new FormControl('1', [Validators.required]),
   });
 
-  constructor(private _dialog: MatDialog) { }
+  constructor() { }
 
 
   signin(){
@@ -26,7 +26,7 @@ export class LoginComponent {
       password: this.profileForm.get('password')?.value as string,
     }).subscribe(res=> {
       this.profileForm.reset();
-      this._dialog.closeAll();
+      this.onClick.emit();
     }, error =>{
 
     });

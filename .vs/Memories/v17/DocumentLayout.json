@@ -90,8 +90,7 @@
               "RelativeToolTip": "Memories.Server\\Program.cs",
               "ViewState": "AgIAAC0AAACAmpmZmVkqwBUAAAA2AAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-04-23T18:19:40.372Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-04-23T18:19:40.372Z"
             },
             {
               "$type": "Document",
@@ -103,8 +102,7 @@
               "RelativeToolTip": "Memories.Server\\Entities\\TokenModel.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAYAAAAFAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-04-23T18:15:57.033Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-04-23T18:15:57.033Z"
             },
             {
               "$type": "Document",
@@ -116,8 +114,7 @@
               "RelativeToolTip": "Memories.Server\\Entities\\RegisterModel.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAqwAYAAAAIAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-04-23T18:09:13.304Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-04-23T18:09:13.304Z"
             },
             {
               "$type": "Document",
@@ -129,8 +126,7 @@
               "RelativeToolTip": "Memories.Server\\Entities\\LoginModel.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAUAAAAsAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-04-23T18:07:45.681Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-04-23T18:07:45.681Z"
             },
             {
               "$type": "Document",
@@ -140,7 +136,7 @@
               "RelativeDocumentMoniker": "Memories.Server\\Controllers\\AuthenticateController.cs",
               "ToolTip": "C:\\Users\\Andrey\\Desktop\\Memories\\Memories.Server\\Controllers\\AuthenticateController.cs",
               "RelativeToolTip": "Memories.Server\\Controllers\\AuthenticateController.cs",
-              "ViewState": "AgIAADUAAACANDMzMzMhwEoAAAA9AAAAAAAAAA==",
+              "ViewState": "AgIAAEsAAAAA0szMzEwZwFMAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-04-23T17:41:53.825Z",
               "EditorCaption": ""
@@ -155,8 +151,7 @@
               "RelativeToolTip": "Memories.Server\\Controllers\\UserController.cs",
               "ViewState": "AgIAAA0AAAAAZ2ZmZuYRwBQAAAATAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-04-23T11:31:03.889Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-04-23T11:31:03.889Z"
             },
             {
               "$type": "Document",
@@ -168,8 +163,7 @@
               "RelativeToolTip": "Memories.Server\\Controllers\\WeatherForecastController.cs",
               "ViewState": "AgIAABcAAAAgzczMzAwtwCMAAAAJAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-04-23T11:17:38.957Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-04-23T11:17:38.957Z"
             },
             {
               "$type": "Document",
@@ -181,8 +175,7 @@
               "RelativeToolTip": "Memories.Server\\appsettings.Development.json",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAABAAAAADAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
-              "WhenOpened": "2025-04-23T11:02:00.195Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-04-23T11:02:00.195Z"
             },
             {
               "$type": "Document",
@@ -194,8 +187,7 @@
               "RelativeToolTip": "Memories.Server\\Controllers\\AuthenticationController.cs",
               "ViewState": "AgIAACIAAABAZ2ZmZuYcwFwAAAAiAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-04-23T09:47:15.971Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-04-23T09:47:15.971Z"
             }
           ]
         }

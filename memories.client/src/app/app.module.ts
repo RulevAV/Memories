@@ -13,7 +13,6 @@ import { NavbarComponent } from './components/navbar/navbar.component';
 import { MenuComponent } from './modal/menu/menu.component';
 import { AppLinkComponent } from './components/app-link/app-link.component';
 import { UserComponent } from './Pages/Admin/user/user.component';
-import { AuthenticationComponent } from './modal/authentication/authentication.component';
 import {MatDialogModule} from '@angular/material/dialog';
 import {MatButtonModule} from '@angular/material/button';
 import {MatTabsModule} from '@angular/material/tabs';
@@ -35,7 +34,6 @@ import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
     MenuComponent,
     AppLinkComponent,
     UserComponent,
-    AuthenticationComponent,
     LoginComponent,
     RegistrationComponent,
   ],

@@ -1,7 +1,6 @@
-import {Component, inject} from '@angular/core';
+import {Component, EventEmitter, inject, Output} from '@angular/core';
 import {FormControl, FormGroup, Validators} from '@angular/forms';
 import {CustomValidators} from '../../../validators';
-import {MatDialog} from '@angular/material/dialog';
 import {AuthenticationService} from '../../services/core/authentication.service';
 
 @Component({
@@ -11,10 +10,11 @@ import {AuthenticationService} from '../../services/core/authentication.service'
   styleUrl: './registration.component.css'
 })
 export class RegistrationComponent {
+  @Output() onClick: EventEmitter<any> = new EventEmitter();
   profileForm = new FormGroup({
     login: new FormControl('', [Validators.required]),
     password: new FormControl('', [Validators.required]),
-    confirmPassword: new FormControl(''),
+    confirmPassword: new FormControl('', [Validators.required]),
     mail: new FormControl('', [Validators.required, Validators.email]),
   },
     [CustomValidators.MatchValidator('password', 'confirmPassword')]
@@ -22,7 +22,7 @@ export class RegistrationComponent {
   errorserver: string = '';
   authenticationService: AuthenticationService = inject(AuthenticationService);
 
-  constructor(private _dialog: MatDialog) { }
+  constructor() { }
 
   get passwordMatchError() {
     return (
@@ -39,7 +39,7 @@ export class RegistrationComponent {
     }).subscribe(res=> {
       this.errorserver = '';
       this.profileForm.reset();
-      this._dialog.closeAll();
+      this.onClick.emit();
     }, error =>{
       if (error.status !== 500)
         this.errorserver = error.error;

@@ -1,10 +1,6 @@
-import {Component, inject, OnDestroy, OnInit} from '@angular/core';
-import { NgbOffcanvas } from '@ng-bootstrap/ng-bootstrap';
+import {Component, inject, OnDestroy, OnInit, TemplateRef} from '@angular/core';
+import {NgbModal, NgbOffcanvas} from '@ng-bootstrap/ng-bootstrap';
 import {MenuComponent} from '../../modal/menu/menu.component';
-import {AuthenticationComponent} from '../../modal/authentication/authentication.component';
-import {
-  MatDialog
-} from '@angular/material/dialog';
 import {Subscription} from 'rxjs';
 import {AuthenticationService} from '../../services/core/authentication.service';
 import {UserService} from '../../services/user.service';
@@ -17,7 +13,8 @@ import {UserService} from '../../services/user.service';
 })
 export class NavbarComponent implements OnInit, OnDestroy {
   private offcanvasService = inject(NgbOffcanvas);
-  readonly dialog = inject(MatDialog);
+  // readonly dialog = inject(MatDialog);
+  private modalService = inject(NgbModal);
   authenticationService: AuthenticationService = inject(AuthenticationService);
   userService: UserService = inject(UserService);
   subscription!: Subscription;
@@ -39,12 +36,12 @@ export class NavbarComponent implements OnInit, OnDestroy {
     offcanvasRef.componentInstance.name = 'World';
   }
 
-  logIn() {
-    const dialogRef = this.dialog.open(AuthenticationComponent, {
-      disableClose: true,
-      maxWidth: '100vw'
-    });
-
+  logIn(content: TemplateRef<any>) {
+    // const dialogRef = this.dialog.open(AuthenticationComponent, {
+    //   disableClose: true,
+    //   // width: '400px'
+    // });
+    this.modalService.open(content, { size: 'md', centered: true });
 
   }
 
