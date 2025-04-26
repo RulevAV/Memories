@@ -31,9 +31,7 @@ public partial class conMemories : DbContext
 
             entity.ToTable("roles");
 
-            entity.Property(e => e.Code)
-                .ValueGeneratedNever()
-                .HasColumnName("code");
+            entity.Property(e => e.Code).ValueGeneratedNever();
             entity.Property(e => e.Name).HasMaxLength(100);
         });
 
@@ -67,8 +65,6 @@ public partial class conMemories : DbContext
                     {
                         j.HasKey("IdUser", "CodeRoles").HasName("PK_APPROLE");
                         j.ToTable("userRoles");
-                        j.IndexerProperty<Guid>("IdUser").HasColumnName("idUser");
-                        j.IndexerProperty<int>("CodeRoles").HasColumnName("codeRoles");
                     });
         });
 

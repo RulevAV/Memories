@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
 using Npgsql;
 using System;
+using System.Data;
 using System.Security.Principal;
 using System.Xml.Linq;
 
@@ -23,13 +24,13 @@ namespace Memories.Server.Controllers
             _logger = logger;
             _context = context;
         }
-        
+
         [HttpGet("[action]")]
         [Authorize]
         public User InfoUser()
         {
-            var userId = User.Claims.First(u=> u.Type == "Id").Value;
-            User user = _context.Users.First(u=> u.Id.ToString() == userId);
+            var userId = User.Claims.First(u => u.Type == "Id").Value;
+            User user = _context.Users.First(u => u.Id.ToString() == userId);
             return user;
         }
 
@@ -64,21 +65,52 @@ namespace Memories.Server.Controllers
 
         [HttpGet("[action]")]
         [Authorize]
-        public async Task<PaginatorEntity<User>> Users(int page, int pageSize)
+        public async Task<PaginatorEntity<User>> Users(int page, int pageSize, string? login, string? email, int? codeRole)
         {
-            int totalCount = await _context.Users.CountAsync();
+            var sql = $@"
+SELECT DISTINCT u.*
+FROM public.""users"" u
+LEFT JOIN public.""userRoles"" ur ON ur.""IdUser"" = u.""Id""
+LEFT JOIN public.""roles"" r ON ur.""CodeRoles"" = r.""Code""
+WHERE u.""Login"" ILIKE '%{login?.Trim()}%'
+AND u.""Email"" ILIKE '%{email?.Trim()}%'
+{(codeRole == null ? "" : $@" AND r.""Code"" = {codeRole}")}";
 
-            // Fetching paginated results
-            List<User> products = await _context.Users.Include(u=> u.CodeRoles)
-                .OrderBy(p => p.Id)  // or any other column to maintain a consistent order
+            int totalCount = await _context.Users.FromSqlRaw(sql).CountAsync();
+
+            var sqlRole = $@"
+SELECT DISTINCT u.*, ur.""CodeRoles"" 
+FROM public.""users"" u
+LEFT JOIN public.""userRoles"" ur ON ur.""IdUser"" = u.""Id""
+LEFT JOIN public.""roles"" r ON ur.""CodeRoles"" = r.""Code""
+WHERE u.""Login"" ILIKE '%{login?.Trim()}%'
+AND u.""Email"" ILIKE '%{email?.Trim()}%'
+{(codeRole == null ? "" : $@" AND r.""Code"" = {codeRole}")}";
+
+            List<User> users = await _context.Users.FromSqlRaw(sqlRole)
+                .Include(u => u.CodeRoles)  // В зависимости от структуры может не работать
+                .OrderBy(u => u.Id)
                 .Skip(page * pageSize)
                 .Take(pageSize)
                 .ToListAsync();
             return new PaginatorEntity<User>()
             {
-                Elements = products,
+                Elements = users,
                 TotalCount = totalCount
             };
         }
+
+        [HttpGet("[action]")]
+        [Authorize]
+        public async Task<List<Role>> Roles(int page, int pageSize)
+        {
+            int totalCount = await _context.Users.CountAsync();
+
+            // Fetching paginated results
+            var roles = await _context.Roles.ToListAsync();
+            return roles;
+        }
+
+
     }
 }

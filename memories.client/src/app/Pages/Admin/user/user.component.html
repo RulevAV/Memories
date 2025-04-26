@@ -1,48 +1,36 @@
-<!--<form class="d-flex m-1" >-->
-<!--  <div>-->
-<!--    <label for="id-login">Search for a state:</label>-->
-<!--    <input id="id-login" type="text" formControlName="login" class="form-control" />-->
-<!--  </div>-->
-<!--  <div>-->
-<!--    <label for="id-mail">Search for a state:</label>-->
-<!--    <input id="id-mail" type="text" formControlName="email" class="form-control" />-->
-<!--  </div>-->
+<div class="d-flex m-1">
   <div>
-    <label for="typeahead-focus">Search for a state:</label>
-    <input
-      id="typeahead-focus"
-      type="text"
-      class="form-control"
-      [(ngModel)]="model"
-      [ngbTypeahead]="search"
-      (focus)="focus$.next($any($event).target.value)"
-      (click)="click$.next($any($event).target.value)"
-      #instance="ngbTypeahead"
-      (selectItem)="onItemSelected($event)"
-    />
+    <label for="id-login">Логин:</label>
+    <input id="id-login" type="text" [(ngModel)]="login"  (ngModelChange)="updateTable()"  class="form-control" />
   </div>
+  <div>
+    <label for="id-mail">Почта:</label>
+    <input id="id-mail" type="text" [(ngModel)]="email"  (ngModelChange)="updateTable()"  class="form-control" />
+  </div>
+  <div>
+    <label for="inputWithDropdown">Роль:</label>
+    <div class="input-group" ngbDropdown>
+      <input
+        type="text"
+        class="form-control"
+        id="inputWithDropdown"
+        [(ngModel)]="role"
+        ngbDropdownToggle
+        placeholder="Введите или выберите..."
+        readonly
+      />
+      <div class="input-group-append" ngbDropdownMenu>
+        <div *ngFor="let option of this.roles" class="dropdown-item" (click)="selectOption(option)">
+          {{ option.name }}
+        </div>
+      </div>
+    </div>
 
-
-<!--  <mat-form-field class="example-full-width">-->
-<!--    <mat-label>Логин</mat-label>-->
-<!--    <input matInput formControlName="login">-->
-<!--  </mat-form-field>-->
-
-<!--  <mat-form-field class="example-full-width">-->
-<!--    <mat-label>Пароль</mat-label>-->
-<!--    <input matInput formControlName="email">-->
-<!--  </mat-form-field>-->
-
-<!--  <mat-form-field class="example-full-width">-->
-<!--    <mat-label>Повторный пароль</mat-label>-->
-<!--    <input matInput formControlName="confirmPassword">-->
-<!--  </mat-form-field>-->
-
-
-<!--  <div class="d-flex justify-content-center">-->
-<!--    <button type="button" [disabled]="registerForm.invalid" (click)="save()" class="btn btn-primary w-75">Зарегистрироваться</button>-->
-<!--  </div>-->
-<!--</form>-->
+  </div>
+  <div class="d-flex flex-column justify-content-end">
+      <button (click)="clear()" class="btn btn-secondary">Очистить</button>
+  </div>
+</div>
 <div>
   <table mat-table [dataSource]="dataSource">
     <!-- Position Column -->
@@ -64,7 +52,7 @@
     </ng-container>
 
     <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;" (click)="clickRow(row, content22)"></tr>
   </table>
 </div>
 <div>
@@ -80,5 +68,14 @@
                  [pageIndex]="pageIndex"
                  aria-label="Select page">
   </mat-paginator>
-</div>
-
+<ng-template #content22 let-modal>
+  <!--  <div class="modal-header">-->
+  <!--    <button type="button" class="btn-close" aria-label="Close" (click)="modal.dismiss('Cross click')"></button>-->
+  <!--  </div>-->
+  <div class="modal-body">
+   <edit-user></edit-user>
+  </div>
+  <!--  <div class="modal-footer">-->
+  <!--    <button type="button" class="btn btn-secondary" (click)="modal.close('Close click')">Close</button>-->
+  <!--  </div>-->
+</ng-template>

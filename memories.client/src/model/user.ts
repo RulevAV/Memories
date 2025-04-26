@@ -3,8 +3,8 @@ import {PaginatorEntity} from './paginator-entity';
 
 export default interface User {
   id?: string;
-  login: string;
-  password: string;
+  login?: string;
+  password?: string;
   email?: string;
   codeRoles?: Role[];
 }

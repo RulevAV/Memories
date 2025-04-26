@@ -1,0 +1,41 @@
+<mat-dialog-content>
+  <form [formGroup]="myForm" (ngSubmit)="onSubmit()">
+    <mat-form-field>
+      <mat-label>Выберите опции</mat-label>
+      <mat-select formControlName="selectedOptions" multiple  [compareWith]="compareById">
+        <mat-option *ngFor="let option of options" [value]="option">
+          {{ option.name }}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    <button mat-raised-button type="submit" color="primary">Submit</button>
+  </form>
+<!--  <form class="mt-2 d-flex flex-column container-md container-lg" [formGroup]="registerForm">-->
+
+<!--  <mat-form-field class="example-full-width">-->
+<!--    <mat-label>Логин</mat-label>-->
+<!--    <input matInput formControlName="login">-->
+<!--    <mat-hint class="text-danger" *ngIf="registerForm.get('login')?.invalid && registerForm.get('login')?.touched" >Логин не должен быть пустым</mat-hint>-->
+<!--  </mat-form-field>-->
+
+<!--    <mat-form-field class="example-full-width">-->
+<!--      <mat-label>Email</mat-label>-->
+<!--      <input matInput formControlName="mail">-->
+<!--      <mat-hint class="text-danger" *ngIf="registerForm.get('mail')?.invalid && registerForm.get('mail')?.touched" >Неверный mail</mat-hint>-->
+<!--      <mat-hint class="text-danger ms-1" *ngIf="!!errorserver">{{errorserver}}</mat-hint>-->
+<!--    </mat-form-field>-->
+<!--    <mat-form-field>-->
+<!--      <mat-label>Выберите опции</mat-label>-->
+<!--      <mat-select formControlName="selectedOptions" multiple>-->
+<!--        <mat-option *ngFor="let option of options" [value]="option">-->
+<!--          {{ option.name }}-->
+<!--        </mat-option>-->
+<!--      </mat-select>-->
+<!--    </mat-form-field>-->
+<!--  </form>-->
+<!--  <button (click)="test()">test</button>-->
+</mat-dialog-content>
+<mat-dialog-actions>
+<!--    <button type="button" [disabled]="registerForm.invalid" (click)="save()" class="btn btn-primary w-75">Сохранить</button>-->
+</mat-dialog-actions>

@@ -4,6 +4,7 @@ import {MatDialog} from '@angular/material/dialog';
 import {BehaviorSubject, map, Observable} from 'rxjs';
 import {WrapperService} from './core/wrapper.service';
 import User, {PaginatorUser} from '../../model/user';
+import Role from '../../model/role';
 
 @Injectable({
   providedIn: 'root'
@@ -44,13 +45,17 @@ export class UserService extends WrapperService<User> {
     return this.Delete("DeleteUser");
   }
 
-  users(page: number, pageSize: number): Observable<User[]> {
+  users(page: number, pageSize: number, login:string, email:string, codeRole:string|number): Observable<User[]> {
     return this.Get<User[]>("Users", {
       page,
-      pageSize
+      pageSize,
+      login, email, codeRole
     } as any);
   }
 
+  getUserRoles(){
+    return this.Get<Role[]>("Roles");
+  }
 
   async infoUser_W() {
     const fn = () => this.infoUser();
@@ -76,12 +81,16 @@ export class UserService extends WrapperService<User> {
     const fn = () => this.deleteUser();
     return await this.wrapper(fn);
   }
-  async users_W(page: number, pageSize: number): Promise<PaginatorUser> {
+  async users_W(page: number, pageSize: number,  login:string, email:string, codeRole:string| number): Promise<PaginatorUser> {
     const fn = () => {
-      return this.users(page, pageSize)
+      return this.users(page, pageSize, login, email, codeRole)
     };
     return await this.wrapper(fn) as Promise<PaginatorUser>;
   }
 
+  async getUserRoles_W() {
+    const fn = () => this.getUserRoles()
+    return await this.wrapper(fn) as Role[];
+  }
 
 }

@@ -24,6 +24,10 @@ import {MatIconModule} from '@angular/material/icon';
 import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 import {MatTableModule} from '@angular/material/table';
 import {MatPaginator} from '@angular/material/paginator';
+import {EditUserComponent} from './components/edit-user/edit-user.component';
+import { MatSelectModule } from '@angular/material/select';
+import { MatOptionModule } from '@angular/material/core'; // Импорт MatOptionModule
+
 
 @NgModule({
   declarations: [
@@ -38,6 +42,8 @@ import {MatPaginator} from '@angular/material/paginator';
     UserComponent,
     LoginComponent,
     RegistrationComponent,
+    EditUserComponent,
+    EditUserComponent,
   ],
   imports: [
     BrowserModule, HttpClientModule,
@@ -52,7 +58,10 @@ import {MatPaginator} from '@angular/material/paginator';
     MatProgressSpinnerModule,
     MatTableModule,
     MatPaginator,
-    FormsModule
+    FormsModule,
+    MatSelectModule,
+    MatOptionModule
+
   ],
   providers: [],
   bootstrap: [AppComponent]
