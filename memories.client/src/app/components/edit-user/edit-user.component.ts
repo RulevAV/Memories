@@ -1,0 +1,54 @@
+import {Component, EventEmitter, inject, Inject, Output} from '@angular/core';
+import {FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
+import {MAT_DIALOG_DATA, MatDialogRef} from '@angular/material/dialog';
+import User from '../../../model/user';
+import Role from '../../../model/role';
+import {UserService} from '../../services/user.service';
+
+export interface DialogData {
+  user: User,
+  roles: Role[]
+}
+
+@Component({
+  selector: 'edit-user',
+  standalone: false,
+  templateUrl: './edit-user.component.html',
+  styleUrl: './edit-user.component.css'
+})
+export class EditUserComponent {
+  @Output() onClick: EventEmitter<any> = new EventEmitter();
+  readonly data = inject<DialogData>(MAT_DIALOG_DATA);
+  userService: UserService = inject(UserService);
+
+    registerForm = new FormGroup({
+      mail: new FormControl('', [Validators.required, Validators.email]),
+      selectedOptions:  new FormControl([] as Role[]),
+    },
+  );
+  options: any[] = [];
+  compareById(optionA: any, optionB: any): boolean {
+    return optionA && optionB ? optionA.code === optionB.code : optionA === optionB;
+  }
+  constructor(private fb: FormBuilder, private dialogRef: MatDialogRef<EditUserComponent>) {
+    let roles = this.data.roles;
+    let codeRoles = this.data?.user?.codeRoles || [];
+    let email = this.data?.user.email || '';
+    this.options = roles;
+
+    this.registerForm.get('selectedOptions')?.setValue(codeRoles);
+    this.registerForm.get('mail')?.setValue(email);
+
+  }
+
+  closeDialog(): void {
+    console.log(123);
+    this.dialogRef.close(); // Закрытие диалога
+  }
+ async save(){
+   let user = this.data.user;
+   user.email = this.registerForm.get('mail')?.value || '';
+   user.codeRoles = this.registerForm.get('selectedOptions')?.value || [];
+   this.dialogRef.close(user);
+  }
+}

@@ -1,4 +1,4 @@
 export default interface Role {
-  code: number;
+  code: number| null;
   name: string;
 }

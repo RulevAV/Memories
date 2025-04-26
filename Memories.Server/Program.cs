@@ -1,10 +1,17 @@
 using Memories.Server.Entities;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.DependencyInjection.Extensions;
 using Microsoft.IdentityModel.Tokens;
+using System;
 using System.Text;
 using System.Text.Json;
 using System.Text.Json.Serialization;
+using static System.Runtime.InteropServices.JavaScript.JSType;
+using System.Threading.Tasks;
+using Memories.Server;
+using Microsoft.Extensions.Configuration;
+using Npgsql;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -19,8 +26,12 @@ builder.Services.AddSwaggerGen();
 // получаем строку подключения из файла конфигурации
 string connection = builder.Configuration.GetConnectionString("DefaultConnection");
 
+Option.RegistrationRepository(builder.Services);
+// AddDI(services);
+
 // добавляем контекст ApplicationContext в качестве сервиса в приложение
 builder.Services.AddDbContext<conMemories>(options => options.UseNpgsql(connection));
+builder.Services.AddScoped<NpgsqlConnection>(provider => new NpgsqlConnection(connection));
 
 builder.Services.AddCors(options =>
 {
@@ -102,3 +113,4 @@ app.MapControllers();
 app.MapFallbackToFile("/index.html");
 
 app.Run();
+

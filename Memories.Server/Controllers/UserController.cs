@@ -1,4 +1,5 @@
 ﻿using Memories.Server.Entities;
+using Memories.Server.Interface;
 using Memories.Server.Model;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
@@ -6,6 +7,7 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
 using Npgsql;
 using System;
+using System.Data;
 using System.Security.Principal;
 using System.Xml.Linq;
 
@@ -15,70 +17,70 @@ namespace Memories.Server.Controllers
     [Route("[controller]")]
     public class UserController : ControllerBase
     {
-        private readonly ILogger<WeatherForecastController> _logger;
-        private conMemories _context;
+        private readonly ILogger<UserController> _logger;
+        private IUserR _userR;
 
-        public UserController(ILogger<WeatherForecastController> logger, conMemories context)
+        public UserController(ILogger<UserController> logger, IUserR userR)
         {
             _logger = logger;
-            _context = context;
+            _userR = userR;
         }
-        
+
         [HttpGet("[action]")]
         [Authorize]
         public User InfoUser()
         {
-            var userId = User.Claims.First(u=> u.Type == "Id").Value;
-            User user = _context.Users.First(u=> u.Id.ToString() == userId);
-            return user;
+            var userId = User.Claims.First(u => u.Type == "Id").Value;
+            return _userR.GetUser(Guid.Parse(userId));
         }
 
         [HttpGet("[action]")]
         [Authorize]
-        public User GetUser()
+        public User GetUser(Guid userId)
         {
-            var mass = _context.Users.ToList();
-            return mass.First();
+            return _userR.GetUser(userId);
         }
         [HttpPost("[action]")]
         [Authorize]
         public User PostUser()
         {
-            var mass = _context.Users.ToList();
-            return mass.First();
+            var userId = User.Claims.First(u => u.Type == "Id").Value;
+            return _userR.GetUser(Guid.Parse(userId));
         }
         [HttpPut("[action]")]
         [Authorize]
         public User PutUser()
         {
-            var mass = _context.Users.ToList();
-            return mass.First();
+            var userId = User.Claims.First(u => u.Type == "Id").Value;
+            return _userR.GetUser(Guid.Parse(userId));
         }
         [HttpDelete("[action]")]
         [Authorize]
         public User DeleteUser()
         {
-            var mass = _context.Users.ToList();
-            return mass.First();
+            var userId = User.Claims.First(u => u.Type == "Id").Value;
+            return _userR.GetUser(Guid.Parse(userId));
         }
 
         [HttpGet("[action]")]
         [Authorize]
-        public async Task<PaginatorEntity<User>> Users(int page, int pageSize)
+        public async Task<PaginatorEntity<User>> Users(int page, int pageSize, string? login, string? email, int? codeRole)
         {
-            int totalCount = await _context.Users.CountAsync();
+            return await _userR.Users(page, pageSize, login, email, codeRole);
+        }
 
-            // Fetching paginated results
-            List<User> products = await _context.Users.Include(u=> u.CodeRoles)
-                .OrderBy(p => p.Id)  // or any other column to maintain a consistent order
-                .Skip(page * pageSize)
-                .Take(pageSize)
-                .ToListAsync();
-            return new PaginatorEntity<User>()
-            {
-                Elements = products,
-                TotalCount = totalCount
-            };
+        [HttpGet("[action]")]
+        [Authorize]
+        public async Task<List<Role>> Roles(int page, int pageSize)
+        {
+            return await _userR.Roles(page, pageSize);
+        }
+
+        [HttpPost("[action]")]
+        [Authorize]
+        public async Task<User> Update(User user)
+        {
+            return await _userR.Update(user);
         }
     }
 }
