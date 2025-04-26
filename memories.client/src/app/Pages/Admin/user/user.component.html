@@ -1,17 +1,4 @@
 <!--<form class="d-flex m-1" >-->
-<div>
-  <div class="dropdown" ngbDropdown>
-    <button class="btn btn-secondary" ngbDropdownToggle>Dropdown with Search</button>
-    <div class="dropdown-menu" ngbDropdownMenu>
-      <input type="text" [(ngModel)]="searchTerm" placeholder="Search..." class="form-control" />
-      <div *ngFor="let item of filteredItems" class="dropdown-item">
-        {{ item }}
-      </div>
-    </div>
-  </div>
-</div>
-
-
 <!--  <div>-->
 <!--    <label for="id-login">Search for a state:</label>-->
 <!--    <input id="id-login" type="text" formControlName="login" class="form-control" />-->
@@ -20,19 +7,20 @@
 <!--    <label for="id-mail">Search for a state:</label>-->
 <!--    <input id="id-mail" type="text" formControlName="email" class="form-control" />-->
 <!--  </div>-->
-<!--  <div>-->
-<!--    <label for="typeahead-focus">Искать штат:</label>-->
-<!--    <input-->
-<!--      id="typeahead-focus"-->
-<!--      type="text"-->
-<!--      class="form-control"-->
-<!--      name="stateName"-->
-<!--      [(ngModel)]="model.name"-->
-<!--    [ngbTypeahead]="search"-->
-<!--    (selectItem)="onSelect($event.item)"-->
-<!--    #instance="ngbTypeahead"-->
-<!--    />-->
-<!--  </div>-->
+  <div>
+    <label for="typeahead-focus">Search for a state:</label>
+    <input
+      id="typeahead-focus"
+      type="text"
+      class="form-control"
+      [(ngModel)]="model"
+      [ngbTypeahead]="search"
+      (focus)="focus$.next($any($event).target.value)"
+      (click)="click$.next($any($event).target.value)"
+      #instance="ngbTypeahead"
+      (selectItem)="onItemSelected($event)"
+    />
+  </div>
 
 
 <!--  <mat-form-field class="example-full-width">-->
@@ -49,7 +37,7 @@
 <!--    <mat-label>Повторный пароль</mat-label>-->
 <!--    <input matInput formControlName="confirmPassword">-->
 <!--  </mat-form-field>-->
-<!--  -->
+
 
 <!--  <div class="d-flex justify-content-center">-->
 <!--    <button type="button" [disabled]="registerForm.invalid" (click)="save()" class="btn btn-primary w-75">Зарегистрироваться</button>-->
