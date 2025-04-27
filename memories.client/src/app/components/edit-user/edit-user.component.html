@@ -1,8 +1,10 @@
 <div class="d-flex align-items-center justify-content-between" style="width: 97%">
-  <h2 mat-dialog-title>Пользователь</h2>
-      <button (click)="closeDialog()" mat-icon-button aria-label="Example icon button with a vertical three dot icon">
-        <mat-icon>close</mat-icon>
-      </button>
+  <div class="d-flex w-100 justify-content-center">
+    <h2 mat-dialog-title><span class="fw-bold">{{data.user.login}}</span>.</h2>
+  </div>
+  <button (click)="closeDialog()" mat-icon-button aria-label="Example icon button with a vertical three dot icon">
+    <mat-icon>close</mat-icon>
+  </button>
 </div>
 <mat-dialog-content>
   <form  class="mt-2 d-flex flex-column container-md container-lg" [formGroup]="registerForm" >
@@ -24,3 +26,4 @@
 <mat-dialog-actions>
     <button type="button" [disabled]="registerForm.invalid" (click)="save()" class="btn btn-primary">Сохранить</button>
 </mat-dialog-actions>
+

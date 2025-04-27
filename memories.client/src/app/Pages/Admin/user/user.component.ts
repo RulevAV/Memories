@@ -41,6 +41,7 @@ export class UserComponent implements AfterViewInit {
   pageSize = 2;
   pageIndex = 0;
   pageSizeOptions = [2, 5, 10, 25];
+  isLoading = false;
 
   hidePageSize = false;
   showPageSizeOptions = true;
@@ -60,10 +61,12 @@ async updateTable(){
   let login = this.login || '';
   let email = this.email  || '';
   let codeRole = this.itemRole?.code || '';
-
+    this.isLoading = true;
     const data = await this.userService.users_W(this.pageIndex ,this.pageSize, login, email, codeRole);
     this.dataSource.data = data.elements;
     this.length = data.totalCount;
+  this.isLoading = false;
+
   }
 
 async  handlePageEvent(e: PageEvent) {

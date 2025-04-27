@@ -42,7 +42,6 @@ export class EditUserComponent {
   }
 
   closeDialog(): void {
-    console.log(123);
     this.dialogRef.close(); // Закрытие диалога
   }
  async save(){
