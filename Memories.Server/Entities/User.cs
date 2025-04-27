@@ -18,5 +18,9 @@ public partial class User
 
     public DateTime? RefreshTokenExpiryTime { get; set; }
 
+    public virtual ICollection<AccessArea> AccessAreaIdGuestNavigations { get; set; } = new List<AccessArea>();
+
+    public virtual ICollection<AccessArea> AccessAreaIdOwnerNavigations { get; set; } = new List<AccessArea>();
+
     public virtual ICollection<Role> CodeRoles { get; set; } = new List<Role>();
 }

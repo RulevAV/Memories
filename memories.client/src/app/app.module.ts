@@ -26,7 +26,8 @@ import {MatTableModule} from '@angular/material/table';
 import {MatPaginator} from '@angular/material/paginator';
 import {EditUserComponent} from './components/edit-user/edit-user.component';
 import { MatSelectModule } from '@angular/material/select';
-import { MatOptionModule } from '@angular/material/core'; // Импорт MatOptionModule
+import { MatOptionModule } from '@angular/material/core';
+import { AreaComponent } from './Pages/area/area.component'; // Импорт MatOptionModule
 
 
 @NgModule({
@@ -44,6 +45,7 @@ import { MatOptionModule } from '@angular/material/core'; // Импорт MatOpt
     RegistrationComponent,
     EditUserComponent,
     EditUserComponent,
+    AreaComponent,
   ],
   imports: [
     BrowserModule, HttpClientModule,

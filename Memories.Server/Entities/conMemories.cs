@@ -15,6 +15,12 @@ public partial class conMemories : DbContext
     {
     }
 
+    public virtual DbSet<AccessArea> AccessAreas { get; set; }
+
+    public virtual DbSet<Area> Areas { get; set; }
+
+    public virtual DbSet<Post> Posts { get; set; }
+
     public virtual DbSet<Role> Roles { get; set; }
 
     public virtual DbSet<User> Users { get; set; }
@@ -25,6 +31,64 @@ public partial class conMemories : DbContext
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
+        modelBuilder.Entity<AccessArea>(entity =>
+        {
+            entity.HasKey(e => new { e.IdOwner, e.IdGuest, e.IdArea }).HasName("PK_ACECESS_AREA");
+
+            entity.ToTable("accessArea");
+
+            entity.Property(e => e.IsEditing).HasColumnName("isEditing");
+
+            entity.HasOne(d => d.IdAreaNavigation).WithMany(p => p.AccessAreas)
+                .HasForeignKey(d => d.IdArea)
+                .OnDelete(DeleteBehavior.ClientSetNull)
+                .HasConstraintName("accessArea_fk");
+
+            entity.HasOne(d => d.IdGuestNavigation).WithMany(p => p.AccessAreaIdGuestNavigations)
+                .HasForeignKey(d => d.IdGuest)
+                .OnDelete(DeleteBehavior.ClientSetNull)
+                .HasConstraintName("accessArea_fk1");
+
+            entity.HasOne(d => d.IdOwnerNavigation).WithMany(p => p.AccessAreaIdOwnerNavigations)
+                .HasForeignKey(d => d.IdOwner)
+                .OnDelete(DeleteBehavior.ClientSetNull)
+                .HasConstraintName("accessArea_fk2");
+        });
+
+        modelBuilder.Entity<Area>(entity =>
+        {
+            entity.HasKey(e => e.Id).HasName("area_pkey");
+
+            entity.ToTable("area");
+
+            entity.Property(e => e.Id).ValueGeneratedNever();
+            entity.Property(e => e.Img).HasMaxLength(100);
+            entity.Property(e => e.Name).HasMaxLength(100);
+        });
+
+        modelBuilder.Entity<Post>(entity =>
+        {
+            entity.HasKey(e => e.Id).HasName("post_pkey");
+
+            entity.ToTable("post");
+
+            entity.Property(e => e.Id).ValueGeneratedNever();
+            entity.Property(e => e.Content)
+                .HasMaxLength(1000)
+                .HasColumnName("content");
+            entity.Property(e => e.Img)
+                .HasMaxLength(100)
+                .HasColumnName("img");
+            entity.Property(e => e.Title)
+                .HasMaxLength(20)
+                .HasColumnName("title");
+
+            entity.HasOne(d => d.IdAreaNavigation).WithMany(p => p.Posts)
+                .HasForeignKey(d => d.IdArea)
+                .OnDelete(DeleteBehavior.ClientSetNull)
+                .HasConstraintName("post_fk");
+        });
+
         modelBuilder.Entity<Role>(entity =>
         {
             entity.HasKey(e => e.Code).HasName("Roles_pkey");

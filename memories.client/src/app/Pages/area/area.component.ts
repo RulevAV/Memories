@@ -1,19 +1,19 @@
-import {AfterViewInit, Component, ElementRef, inject, TemplateRef, ViewChild} from '@angular/core';
-import {PageEvent} from '@angular/material/paginator';
-import {MatTableDataSource} from '@angular/material/table';
-import {UserService} from '../../../services/user.service';
-import User from '../../../../model/user';
-import Role from '../../../../model/role';
+import {Component, inject} from '@angular/core';
+import {UserService} from '../../services/user.service';
 import {MatDialog} from '@angular/material/dialog';
-import {EditUserComponent} from '../../../components/edit-user/edit-user.component';
+import Role from '../../../model/role';
+import {MatTableDataSource} from '@angular/material/table';
+import User from '../../../model/user';
+import {PageEvent} from '@angular/material/paginator';
+import {EditUserComponent} from '../../components/edit-user/edit-user.component';
 
 @Component({
-  selector: 'app-user',
+  selector: 'app-area',
   standalone: false,
-  templateUrl: './user.component.html',
-  styleUrl: './user.component.css'
+  templateUrl: './area.component.html',
+  styleUrl: './area.component.css'
 })
-export class UserComponent implements AfterViewInit {
+export class AreaComponent {
   userService: UserService = inject(UserService);
   readonly dialog = inject(MatDialog)
   login!:string;
@@ -37,25 +37,25 @@ export class UserComponent implements AfterViewInit {
   pageEvent!: PageEvent;
 
   modal = '';
- async ngAfterViewInit() {
-  this.roles = await this.userService.getUserRoles_W();
-   await this.updateTable();
+  async ngAfterViewInit() {
+    this.roles = await this.userService.getUserRoles_W();
+    await this.updateTable();
   }
 
 
-async updateTable(){
-  let login = this.login || '';
-  let email = this.email  || '';
-  let codeRole = this.itemRole?.code || '';
+  async updateTable(){
+    let login = this.login || '';
+    let email = this.email  || '';
+    let codeRole = this.itemRole?.code || '';
     this.isLoading = true;
     const data = await this.userService.users_W(this.pageIndex ,this.pageSize, login, email, codeRole);
     this.dataSource.data = data.elements;
     this.length = data.totalCount;
-  this.isLoading = false;
+    this.isLoading = false;
 
   }
 
-async  handlePageEvent(e: PageEvent) {
+  async  handlePageEvent(e: PageEvent) {
     this.pageEvent = e;
     this.length = e.length;
     this.pageSize = e.pageSize;
@@ -64,19 +64,19 @@ async  handlePageEvent(e: PageEvent) {
   }
 
   rolesString(roles: Role[]){
-   return roles.map(r=>r.name).join();
+    return roles.map(r=>r.name).join();
   }
 
-async selectOption(option: any) {
+  async selectOption(option: any) {
     this.itemRole = option;
     this.role = option.name;
     await this.updateTable();
   }
- async clear() {
+  async clear() {
     this.itemRole = null;
     this.login = '';
-   this.email = '';
-   this.role = '';
+    this.email = '';
+    this.role = '';
     await this.updateTable();
   }
 

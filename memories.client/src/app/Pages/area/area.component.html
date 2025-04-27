@@ -1,0 +1,75 @@
+<div class="d-flex m-1">
+  <div>
+    <label for="id-login">Логин:</label>
+    <input id="id-login" type="text" [(ngModel)]="login"  (ngModelChange)="updateTable()"  class="form-control" />
+  </div>
+  <div>
+    <label for="id-mail">Почта:</label>
+    <input id="id-mail" type="text" [(ngModel)]="email"  (ngModelChange)="updateTable()"  class="form-control" />
+  </div>
+  <div>
+    <label for="inputWithDropdown">Роль:</label>
+    <div class="input-group" ngbDropdown>
+      <input
+        type="text"
+        class="form-control"
+        id="inputWithDropdown"
+        [(ngModel)]="role"
+        ngbDropdownToggle
+        placeholder="Введите или выберите..."
+        readonly
+      />
+      <div class="input-group-append" ngbDropdownMenu>
+        <div *ngFor="let option of this.roles" class="dropdown-item" (click)="selectOption(option)">
+          {{ option.name }}
+        </div>
+      </div>
+    </div>
+
+  </div>
+  <div class="d-flex flex-column justify-content-end">
+    <button (click)="clear()" class="btn btn-secondary">Очистить</button>
+  </div>
+</div>
+<div>
+  <div *ngIf="isLoading; else loading" class="h-100 d-flex justify-content-center align-items-center">
+    <mat-spinner></mat-spinner>
+  </div>
+  <ng-template #loading>
+    <table mat-table [dataSource]="dataSource">
+      <!-- Position Column -->
+      <ng-container matColumnDef="login">
+        <th mat-header-cell *matHeaderCellDef> Логин </th>
+        <td mat-cell *matCellDef="let element"> {{element.login}} </td>
+      </ng-container>
+
+      <!-- Name Column -->
+      <ng-container matColumnDef="email">
+        <th mat-header-cell *matHeaderCellDef> Почта </th>
+        <td mat-cell *matCellDef="let element"> {{element.email}} </td>
+      </ng-container>
+
+      <!-- Weight Column -->
+      <ng-container matColumnDef="codeRoles">
+        <th mat-header-cell *matHeaderCellDef> Роли </th>
+        <td mat-cell *matCellDef="let element"> {{rolesString(element.codeRoles)}} </td>
+      </ng-container>
+
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns;" (click)="clickRow(row)"></tr>
+    </table>
+  </ng-template>
+</div>
+<div>
+  <mat-paginator #paginator
+                 class="demo-paginator"
+                 (page)="handlePageEvent($event)"
+                 [length]="length"
+                 [pageSize]="pageSize"
+                 [disabled]="disabled"
+                 [showFirstLastButtons]="showFirstLastButtons"
+                 [pageSizeOptions]="showPageSizeOptions ? pageSizeOptions : []"
+                 [hidePageSize]="hidePageSize"
+                 [pageIndex]="pageIndex"
+                 aria-label="Select page">
+  </mat-paginator>
