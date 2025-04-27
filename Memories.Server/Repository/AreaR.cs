@@ -20,14 +20,15 @@ namespace Memories.Server.Services
     {
         private readonly IConfiguration _configuration;
 
-        public AreaR( conMemories context, NpgsqlConnection npgsqlCon, IConfiguration configuration ) :base(context, npgsqlCon)
+        public AreaR(conMemories context, NpgsqlConnection npgsqlCon, IConfiguration configuration) : base(context, npgsqlCon)
         {
             _configuration = configuration;
         }
 
         public async Task<Area> CreateArea(Guid IdUser, string name, string? img)
         {
-            var area = new Area() {
+            var area = new Area()
+            {
                 Id = Guid.NewGuid(),
                 Name = name,
                 Img = img,
@@ -40,10 +41,32 @@ namespace Memories.Server.Services
 
         public async Task<PaginatorEntity<Area>> Areas(Guid IdUser, int page, int pageSize, string? name, Guid? idGuest)
         {
-            var request = _context.Areas.Where(u => u.IdUser == IdUser &&
-                EF.Functions.ILike(u.Name, $"{name}%") &&
-                u.AccessAreas.Any(a => a.IdGuest == idGuest)
-                ).Include(u=>u.AccessAreas).ThenInclude(u=> u.IdGuestNavigation);
+            // Построение запроса
+            var request = _context.Areas.AsQueryable();
+
+            // Фильтрация по IdUser
+            request = request.Where(u => u.IdUser == IdUser);
+
+            // Фильтрация по имени, если оно указано
+            if (!string.IsNullOrEmpty(name))
+            {
+                request = request.Where(u => EF.Functions.ILike(u.Name, $"{name}%"));
+            }
+
+            // Фильтрация по idGuest, если он указан
+            if (idGuest.HasValue)
+            {
+                request = request.Where(u => u.AccessAreas.Any(a => a.IdGuest == idGuest));
+            }
+
+            // Включение связанных данных
+            request = request.Include(u => u.AccessAreas).ThenInclude(a => a.IdGuestNavigation);
+
+            // Выполните запрос и получите элементы
+            var elements = await request.Skip(page * pageSize)
+                                         .Take(pageSize)
+                                         .ToListAsync();
+
 
             return new PaginatorEntity<Area>()
             {

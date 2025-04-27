@@ -38,7 +38,7 @@ namespace Memories.Server.Controllers
 
         [HttpGet("[action]")]
         [Authorize]
-        public async Task<PaginatorEntity<Area>> Areas(int page, int pageSize, string? name, Guid idGuest)
+        public async Task<PaginatorEntity<Area>> Areas(int page, int pageSize, string? name, Guid? idGuest)
         {
             var userId = User.Claims.First(u => u.Type == "Id").Value;
             return await _areaR.Areas(Guid.Parse(userId), page, pageSize, name, idGuest);
