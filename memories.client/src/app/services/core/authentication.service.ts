@@ -48,7 +48,6 @@ export class AuthenticationService extends BaseService<any> {
       localStorage.setItem('refreshToken',res.refreshToken);
       this.accessToken$.next(res.accessToken);
       this.user = res.user;
-      console.log(this.user);
       this.user$.next(this.user);
       return res;
     }));

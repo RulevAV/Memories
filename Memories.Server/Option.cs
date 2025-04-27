@@ -9,6 +9,8 @@ namespace Memories.Server
         public static void RegistrationRepository(IServiceCollection services) {
             services.AddScoped<IAuthenticateR, AuthenticateR>();
             services.AddScoped<IUserR, UserR>();
+            services.AddScoped<IAreaR, AreaR>();
+            services.AddScoped<IPostR, PostR>();
         }
     }
 }

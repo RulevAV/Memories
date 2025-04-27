@@ -1,11 +1,11 @@
-import {Component, inject} from '@angular/core';
+import {AfterViewInit, Component, inject} from '@angular/core';
 import {UserService} from '../../services/user.service';
 import {MatDialog} from '@angular/material/dialog';
-import Role from '../../../model/role';
 import {MatTableDataSource} from '@angular/material/table';
 import User from '../../../model/user';
 import {PageEvent} from '@angular/material/paginator';
-import {EditUserComponent} from '../../components/edit-user/edit-user.component';
+import {AreaEditComponent} from './area-edit/area-edit.component';
+import {AreaService} from '../../services/area.service';
 
 @Component({
   selector: 'app-area',
@@ -13,20 +13,20 @@ import {EditUserComponent} from '../../components/edit-user/edit-user.component'
   templateUrl: './area.component.html',
   styleUrl: './area.component.css'
 })
-export class AreaComponent {
+export class AreaComponent implements AfterViewInit{
   userService: UserService = inject(UserService);
+  areaService: AreaService = inject(AreaService);
   readonly dialog = inject(MatDialog)
-  login!:string;
-  email!:string;
-  role!: any;
-  roles!: Role[];
-  displayedColumns: string[] = ['login', 'email', 'codeRoles'];
+  name!:string;
+  guest!: any;
+  users!: User[];
+  displayedColumns: string[] = ['name', 'img', 'accessAreas'];
   dataSource = new MatTableDataSource<User>([]);
-  itemRole!: Role| null;
+  itemGuest!: any| null;
   length = 50;
-  pageSize = 2;
+  pageSize = 10;
   pageIndex = 0;
-  pageSizeOptions = [2, 5, 10, 25];
+  pageSizeOptions = [ 10, 25];
   isLoading = false;
 
   hidePageSize = false;
@@ -38,17 +38,16 @@ export class AreaComponent {
 
   modal = '';
   async ngAfterViewInit() {
-    this.roles = await this.userService.getUserRoles_W();
+    this.users = (await this.userService.users_W(0, 100,  '','', '')).elements;
     await this.updateTable();
   }
 
 
   async updateTable(){
-    let login = this.login || '';
-    let email = this.email  || '';
-    let codeRole = this.itemRole?.code || '';
+    let name = this.name || '';
+    let idGuest = this.itemGuest?.id || '' as string;
     this.isLoading = true;
-    const data = await this.userService.users_W(this.pageIndex ,this.pageSize, login, email, codeRole);
+    const data = await this.areaService.areas_W(this.pageIndex ,this.pageSize, name, idGuest);
     this.dataSource.data = data.elements;
     this.length = data.totalCount;
     this.isLoading = false;
@@ -63,28 +62,30 @@ export class AreaComponent {
     await this.updateTable();
   }
 
-  rolesString(roles: Role[]){
-    return roles.map(r=>r.name).join();
+  areasString(accessAreas: any[]){
+    return accessAreas.map(r=> {
+      return r.idGuestNavigation.login;
+    }).join();
   }
 
   async selectOption(option: any) {
-    this.itemRole = option;
-    this.role = option.name;
+    this.itemGuest = option;
+    this.guest = option.login;
     await this.updateTable();
   }
   async clear() {
-    this.itemRole = null;
-    this.login = '';
-    this.email = '';
-    this.role = '';
+    this.itemGuest = null;
+    this.name = '';
+    this.guest = '';
     await this.updateTable();
   }
 
   clickRow(row: any){
-    const dialogRef = this.dialog.open(EditUserComponent, {
+    const dialogRef = this.dialog.open(AreaEditComponent, {
       data: {
-        user: row,
-        roles: this.roles
+        title: 'Редактировать область.',
+        area: row,
+        users: this.users
       },
       width: '40%',
       disableClose: true
@@ -92,10 +93,29 @@ export class AreaComponent {
 
     dialogRef.afterClosed().subscribe(async result => {
       if (result !== undefined) {
-        await this.userService.postUpdate_W(result);
+        await this.areaService.postUpdate_W(result);
         dialogRef.close();
         await this.updateTable();
       }
     });
   }
+
+  // new function
+  createArea(): void {
+    const dialogRef = this.dialog.open(AreaEditComponent, {
+      data: {
+        title: 'Создать область.',
+      },
+      width: '40%',
+      disableClose: true // Заблокировать закрытие диалога
+    });
+
+    dialogRef.afterClosed().subscribe(async result => {
+      if (result !== undefined) {
+        await this.areaService.postArea_W(result);
+      }
+    });
+  }
 }
+
+

@@ -9,7 +9,7 @@ import {AreaComponent} from './Pages/area/area.component';
 
 const routes: Routes = [{ path: "", component: HomeComponent},
   { path: "admin/users", component: UserComponent, canActivate: [authGuard]},
-  { path: "area", component: AreaComponent,  canActivate: [authGuard]},
+  { path: "science", component: AreaComponent,  canActivate: [authGuard]},
   { path: "profile", component: ProfileComponent,  canActivate: [authGuard]},
   { path: "**", component: NotFoundComponent }];
 

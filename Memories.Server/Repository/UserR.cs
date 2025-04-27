@@ -115,10 +115,6 @@ VALUES
 {string.Join(",", strValues)}
 ;
 ";
-                //foreach (var item in userModel.CodeRoles)
-                //{
-                //    sql += $@"('{userModel.Id}','{item.Code}')";
-                //}
             }
 
             _npgsqlCon.Open();

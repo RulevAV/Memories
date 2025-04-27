@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("Memories.Server")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+a77e5a50af0aecbfe6914dcf0f91700d10a0ed39")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+b92bdf357e59bd7b918ff03016b06c45eccc1d43")]
 [assembly: System.Reflection.AssemblyProductAttribute("Memories.Server")]
 [assembly: System.Reflection.AssemblyTitleAttribute("Memories.Server")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

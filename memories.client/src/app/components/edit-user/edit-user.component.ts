@@ -1,9 +1,8 @@
-import {Component, EventEmitter, inject, Inject, Output} from '@angular/core';
+import {Component, EventEmitter, inject, Output} from '@angular/core';
 import {FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
 import {MAT_DIALOG_DATA, MatDialogRef} from '@angular/material/dialog';
 import User from '../../../model/user';
 import Role from '../../../model/role';
-import {UserService} from '../../services/user.service';
 
 export interface DialogData {
   user: User,
@@ -19,7 +18,6 @@ export interface DialogData {
 export class EditUserComponent {
   @Output() onClick: EventEmitter<any> = new EventEmitter();
   readonly data = inject<DialogData>(MAT_DIALOG_DATA);
-  userService: UserService = inject(UserService);
 
     registerForm = new FormGroup({
       mail: new FormControl('', [Validators.required, Validators.email]),

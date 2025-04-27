@@ -106,7 +106,4 @@ export class UserService extends WrapperService<User> {
     }
     return await this.wrapper(fn) as Role[];
   }
-
-
-
 }

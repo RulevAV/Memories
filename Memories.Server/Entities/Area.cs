@@ -7,7 +7,7 @@ public partial class Area
 {
     public Guid Id { get; set; }
 
-    public Guid? Iduser { get; set; }
+    public Guid IdUser { get; set; }
 
     public string? Name { get; set; }
 
