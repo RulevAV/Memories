@@ -1,29 +1,26 @@
-import {AfterViewInit, Component, inject} from '@angular/core';
-import {UserService} from '../../services/user.service';
-import {MatDialog} from '@angular/material/dialog';
-import {MatTableDataSource} from '@angular/material/table';
-import User from '../../../model/user';
-import {PageEvent} from '@angular/material/paginator';
-import {AreaEditComponent} from './area-edit/area-edit.component';
+import {AfterViewInit, Component, inject, OnInit} from '@angular/core';
+import {ActivatedRoute, Router} from '@angular/router';
 import {AreaService} from '../../services/area.service';
-import {Router} from '@angular/router';
+import {MatDialog} from '@angular/material/dialog';
+import User from '../../../model/user';
+import {MatTableDataSource} from '@angular/material/table';
+import {PageEvent} from '@angular/material/paginator';
+import {AreaEditComponent} from '../area/area-edit/area-edit.component';
+import {CardEditComponent} from './card-edit/card-edit.component';
 
 @Component({
-  selector: 'app-area',
+  selector: 'app-cards',
   standalone: false,
-  templateUrl: './area.component.html',
-  styleUrl: './area.component.css'
+  templateUrl: './cards.component.html',
+  styleUrl: './cards.component.css'
 })
-export class AreaComponent implements AfterViewInit{
-  userService: UserService = inject(UserService);
+export class CardsComponent implements OnInit, AfterViewInit {
   areaService: AreaService = inject(AreaService);
   readonly dialog = inject(MatDialog)
-  name!:string;
-  guest!: any;
-  users!: User[];
+  search!:string;
+
   displayedColumns: string[] = ['name', 'img', 'accessAreas','pole1','pole2'];
   dataSource = new MatTableDataSource<User>([]);
-  itemGuest!: any| null;
   length = 50;
   pageSize = 10;
   pageIndex = 0;
@@ -37,21 +34,26 @@ export class AreaComponent implements AfterViewInit{
 
   pageEvent!: PageEvent;
 
-  constructor(private router: Router) {
+  constructor(private router: Router, private route: ActivatedRoute) {
   }
+  area!: string;
+  id!: string;
 
-  modal = '';
+  ngOnInit() {
+    this.route.queryParams.subscribe(params => {
+      this.area = params['area'];
+      this.id = params['id'];
+    });
+  }
   async ngAfterViewInit() {
-    this.users = (await this.userService.users_W(0, 100,  '','', '')).elements;
     await this.updateTable();
   }
 
 
   async updateTable(){
-    let name = this.name || '';
-    let idGuest = this.itemGuest?.id || '' as string;
+    let search = this.search || '';
     this.isLoading = true;
-    const data = await this.areaService.areas_W(this.pageIndex ,this.pageSize, name, idGuest);
+    const data = await this.areaService.areas_W(this.pageIndex ,this.pageSize, 'name', '');
     this.dataSource.data = data.elements;
     this.length = data.totalCount;
     this.isLoading = false;
@@ -72,27 +74,19 @@ export class AreaComponent implements AfterViewInit{
     }).join();
   }
 
-  async selectOption(option: any) {
-    this.itemGuest = option;
-    this.guest = option.login;
-    await this.updateTable();
-  }
   async clear() {
-    this.itemGuest = null;
-    this.name = '';
-    this.guest = '';
+    this.search = '';
     await this.updateTable();
   }
 
   open(item: any){
-    this.router.navigate(['/cards'], { queryParams: { area: 1, id: null } });
+    this.router.navigate(['/cards'], { queryParams: { page: 1, sort: 'asc' } });
   }
   clickRow(row: any){
     const dialogRef = this.dialog.open(AreaEditComponent, {
       data: {
         title: 'Редактировать область.',
         area: row,
-        users: this.users
       },
       width: '40%',
       disableClose: true
@@ -107,11 +101,10 @@ export class AreaComponent implements AfterViewInit{
     });
   }
 
-  // new function
-  createArea(): void {
-    const dialogRef = this.dialog.open(AreaEditComponent, {
+  createCard(): void {
+    const dialogRef = this.dialog.open(CardEditComponent, {
       data: {
-        title: 'Создать область.',
+        title: 'Создать карточку.',
       },
       width: '40%',
       disableClose: true // Заблокировать закрытие диалога
@@ -120,11 +113,7 @@ export class AreaComponent implements AfterViewInit{
     dialogRef.afterClosed().subscribe(async result => {
       if (result !== undefined) {
         await this.areaService.postArea_W(result);
-        dialogRef.close();
-        await this.updateTable();
       }
     });
   }
 }
-
-

@@ -25,16 +25,16 @@ namespace Memories.Server.Services
             _configuration = configuration;
         }
 
-        public async Task<Area> CreateArea(Guid IdUser, string name, string? img)
+        public async Task<Area> CreateArea(Guid IdUser, Area area, List<Guid> guests)
         {
-            var area = new Area()
+            var _area = new Area()
             {
                 Id = Guid.NewGuid(),
-                Name = name,
-                Img = img,
+                Name = area.Name,
+                Img = area.Img,
                 IdUser = IdUser
             };
-            var item = _context.Areas.Add(area);
+            var item = _context.Areas.Add(_area);
             _context.SaveChanges();
             return area;
         }
@@ -77,7 +77,7 @@ namespace Memories.Server.Services
             };
         }
 
-        public async Task<Area> Update(Guid UserId, Area area, List<User> guests)
+        public async Task<Area> Update(Guid UserId, Area area, List<Guid> guests)
         {
             var sql = $@"
 UPDATE public.area 
@@ -91,7 +91,7 @@ WHERE ""IdArea"" = '{area.Id}' and ""IdOwner"" = '{UserId}';
 
             if (guests.Count != 0)
             {
-                var strValues = guests.Select(x => $@"('{UserId}','{x.Id}', '{area.Id}',  false)").ToArray();
+                var strValues = guests.Select(Id => $@"('{UserId}','{Id}', '{area.Id}',  false)").ToArray();
                 sql += $@"
 INSERT INTO public.""accessArea""(""IdOwner"",  ""IdGuest"",  ""IdArea"",  ""isEditing"")
 VALUES 

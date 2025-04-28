@@ -11,8 +11,8 @@ namespace Memories.Server.Interface
 {
     public interface IAreaR
     {
-        public Task<Area> CreateArea(Guid IdUser, string name, string? img);
+        public Task<Area> CreateArea(Guid IdUser, Area area, List<Guid> guests);
         public Task<PaginatorEntity<Area>> Areas(Guid IdUser, int page, int pageSize, string? login, Guid? idGuest);
-        public Task<Area> Update(Guid UserId, Area area, List<User> guests);
+        public Task<Area> Update(Guid UserId, Area area, List<Guid> guests);
     }
 }

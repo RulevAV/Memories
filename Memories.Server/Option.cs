@@ -10,7 +10,7 @@ namespace Memories.Server
             services.AddScoped<IAuthenticateR, AuthenticateR>();
             services.AddScoped<IUserR, UserR>();
             services.AddScoped<IAreaR, AreaR>();
-            services.AddScoped<IPostR, PostR>();
+            services.AddScoped<ICardR, CardR>();
         }
     }
 }

@@ -5,7 +5,7 @@ namespace Memories.Server.Entities;
 
 public partial class Area
 {
-    public Guid Id { get; set; }
+    public Guid? Id { get; set; }
 
     public Guid IdUser { get; set; }
 

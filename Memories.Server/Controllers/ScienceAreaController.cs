@@ -30,10 +30,10 @@ namespace Memories.Server.Controllers
 
         [HttpPost("[action]")]
         [Authorize]
-        public async Task<Area> CreateArea(Area area)
+        public async Task<Area> CreateArea(AreaUserModel model)
         {
             var userId = User.Claims.First(u => u.Type == "Id").Value;
-            return await _areaR.CreateArea(Guid.Parse(userId), area.Name, area.Img);
+            return await _areaR.CreateArea(Guid.Parse(userId), model.area, model.guests);
         }
 
         [HttpGet("[action]")]

@@ -6,10 +6,12 @@ import {ProfileComponent} from './Pages/profile/profile.component';
 import {UserComponent} from './Pages/Admin/user/user.component';
 import {authGuard} from './auth/auth.guard';
 import {AreaComponent} from './Pages/area/area.component';
+import {CardsComponent} from './Pages/cards/cards.component';
 
 const routes: Routes = [{ path: "", component: HomeComponent},
   { path: "admin/users", component: UserComponent, canActivate: [authGuard]},
   { path: "science", component: AreaComponent,  canActivate: [authGuard]},
+  { path: "cards", component: CardsComponent,  canActivate: [authGuard]},
   { path: "profile", component: ProfileComponent,  canActivate: [authGuard]},
   { path: "**", component: NotFoundComponent }];
 

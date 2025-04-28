@@ -6,7 +6,6 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HomeComponent } from './Pages/home/home.component';
 import { ProfileComponent } from './Pages/profile/profile.component';
-import { PostComponent } from './Pages/post/post.component';
 import { NotFoundComponent } from './Pages/not-found/not-found.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { NavbarComponent } from './components/navbar/navbar.component';
@@ -29,6 +28,8 @@ import { MatSelectModule } from '@angular/material/select';
 import { MatOptionModule } from '@angular/material/core';
 import { AreaComponent } from './Pages/area/area.component';
 import {AreaEditComponent} from './Pages/area/area-edit/area-edit.component';
+import {CardsComponent} from './Pages/cards/cards.component';
+import { CardEditComponent } from './Pages/cards/card-edit/card-edit.component';
 
 
 @NgModule({
@@ -36,7 +37,6 @@ import {AreaEditComponent} from './Pages/area/area-edit/area-edit.component';
     AppComponent,
     HomeComponent,
     ProfileComponent,
-    PostComponent,
     NotFoundComponent,
     NavbarComponent,
     MenuComponent,
@@ -48,6 +48,8 @@ import {AreaEditComponent} from './Pages/area/area-edit/area-edit.component';
     EditUserComponent,
     AreaComponent,
     AreaEditComponent,
+    CardsComponent,
+    CardEditComponent
   ],
   imports: [
     BrowserModule, HttpClientModule,

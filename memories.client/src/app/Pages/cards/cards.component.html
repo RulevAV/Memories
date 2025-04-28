@@ -1,31 +1,11 @@
 <div class="d-flex justify-content-between">
   <div class="d-flex flex-column justify-content-end">
-    <button (click)="createArea()" class="btn btn-secondary">Создать область</button>
+    <button (click)="createCard()" class="btn btn-secondary">Создать область</button>
   </div>
   <div class="d-flex">
     <div>
-      <label for="id-login">Наименование:</label>
-      <input id="id-login" type="text" [(ngModel)]="name"  (ngModelChange)="updateTable()"  class="form-control" />
-    </div>
-    <div>
-      <label for="inputWithDropdown">Гость:</label>
-      <div class="input-group" ngbDropdown>
-        <input
-          type="text"
-          class="form-control"
-          id="inputWithDropdown"
-          [(ngModel)]="guest"
-          ngbDropdownToggle
-          placeholder="Введите или выберите..."
-          readonly
-        />
-        <div class="input-group-append" ngbDropdownMenu>
-          <div *ngFor="let option of this.users" class="dropdown-item" (click)="selectOption(option)">
-            {{ option.login }}
-          </div>
-        </div>
-      </div>
-
+      <label for="id-login">Поиск:</label>
+      <input id="id-login" type="text" [(ngModel)]="search"  (ngModelChange)="updateTable()"  class="form-control" />
     </div>
     <div class="d-flex flex-column justify-content-end">
       <button (click)="clear()" class="btn btn-secondary">Очистить</button>
