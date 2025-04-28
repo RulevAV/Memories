@@ -11,10 +11,11 @@ const PROXY_CONFIG = [
       "/authenticate",
       "/user",
       "/scienceArea",
-      "/post"
+      "/card"
     ],
     target,
-    secure: false
+    secure: false,
+    logLevel: 'debug'
   }
 ]
 

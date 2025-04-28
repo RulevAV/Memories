@@ -14,18 +14,18 @@ export class CardEditComponent implements OnInit {
   @ViewChild('fileInput', { static: false }) fileInput!: ElementRef;
   readonly data = inject<DialogData>(MAT_DIALOG_DATA);
 
-  areanForm = new FormGroup({
+  cardForm = new FormGroup({
     id: new FormControl(''),
-    name: new FormControl('',[Validators.required]),
-    content: new FormControl('',[Validators.required]),
+    title: new FormControl('',),//[Validators.required]),
+    content: new FormControl('',),//[Validators.required]),
     img: new FormControl('', ),
   });
 
   constructor(private dialogRef: MatDialogRef<CardEditComponent>) { }
   ngOnInit(){
-    this.areanForm.get('id')?.setValue(this.data.area.id);
-    this.areanForm.get('name')?.setValue(this.data.area.name);
-    this.areanForm.get('img')?.setValue(this.data.area.img);
+    // this.cardForm.get('id')?.setValue(this.data.area.id);
+    // this.cardForm.get('name')?.setValue(this.data.area.name);
+    // this.cardForm.get('img')?.setValue(this.data.area.img);
   }
   changeImg(){
     this.fileInput.nativeElement.click();
@@ -34,13 +34,11 @@ export class CardEditComponent implements OnInit {
     this.dialogRef.close(); // Закрытие диалога
   }
   save(){
-    let area = this.data.area;
-
-    area.name = this.areanForm.get('name')?.value || '';
-    area.img = this.areanForm.get('img')?.value || '';
-    area.accessAreas = [];
-    this.dialogRef.close({
-      area});
+    let card = this.data.area || {};
+    card.title = this.cardForm.get('title')?.value || '';
+    card.content = this.cardForm.get('content')?.value || '';
+    card.img = this.cardForm.get('img')?.value || '';
+    this.dialogRef.close(card);
   }
 
   onFileSelected(event: Event) {
@@ -52,7 +50,7 @@ export class CardEditComponent implements OnInit {
 
       reader.onload = (e) => {
         // После загрузки файла конвертируем его в base64
-        this.areanForm.get('img')?.setValue(e.target?.result as string)
+        this.cardForm.get('img')?.setValue(e.target?.result as string)
       };
 
       // Читаем файл как Data URL для получения base64 строки

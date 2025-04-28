@@ -15,13 +15,30 @@ using System.Text;
 
 namespace Memories.Server.Services
 {
-    public class PostR : BaseR, ICardR
+    public class CardR : BaseR, ICardR
     {
         private readonly IConfiguration _configuration;
 
-        public PostR( conMemories context, NpgsqlConnection npgsqlCon, IConfiguration configuration ) :base(context, npgsqlCon)
+        public CardR( conMemories context, NpgsqlConnection npgsqlCon, IConfiguration configuration ) :base(context, npgsqlCon)
         {
             _configuration = configuration;
+        }
+
+        public Task<PaginatorEntity<Card>> Areas(Guid IdUser, int page, int pageSize, string? login, Guid? idGuest)
+        {
+            throw new NotImplementedException();
+        }
+
+        public async Task<Card> Create(Guid IdUser, Card card)
+        {
+            card.Id = Guid.NewGuid();
+            _context.SaveChanges();
+            return card;
+        }
+
+        public Task<Area> Update(Guid UserId, Card area)
+        {
+            throw new NotImplementedException();
         }
     }
 }

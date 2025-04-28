@@ -11,5 +11,8 @@ namespace Memories.Server.Interface
 {
     public interface ICardR
     {
+        public Task<Card> Create(Guid IdUser, Card area);
+        public Task<PaginatorEntity<Card>> Areas(Guid IdUser, int page, int pageSize, string? login, Guid? idGuest);
+        public Task<Area> Update(Guid UserId, Card area);
     }
 }

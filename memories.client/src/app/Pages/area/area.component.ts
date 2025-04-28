@@ -85,7 +85,7 @@ export class AreaComponent implements AfterViewInit{
   }
 
   open(item: any){
-    this.router.navigate(['/cards'], { queryParams: { area: 1, id: null } });
+    this.router.navigate([`/_cards/${ item.id }`])//), { queryParams: { areaId: item.id, id: null } });
   }
   clickRow(row: any){
     const dialogRef = this.dialog.open(AreaEditComponent, {

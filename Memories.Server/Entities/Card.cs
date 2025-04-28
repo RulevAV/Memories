@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace Memories.Server.Entities;
 
-public partial class Post
+public partial class Card
 {
     public Guid Id { get; set; }
 

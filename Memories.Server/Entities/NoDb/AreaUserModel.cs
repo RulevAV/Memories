@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace Memories.Server.Entities;
+namespace Memories.Server.Entities.NoDb;
 
 public partial class AreaUserModel
 {

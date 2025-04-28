@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using Microsoft.EntityFrameworkCore;
 
-namespace Memories.Server.Entities;
+namespace Memories.Server.ModelBD;
 
 public partial class conMemories : DbContext
 {

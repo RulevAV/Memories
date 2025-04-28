@@ -11,7 +11,7 @@ import {CardsComponent} from './Pages/cards/cards.component';
 const routes: Routes = [{ path: "", component: HomeComponent},
   { path: "admin/users", component: UserComponent, canActivate: [authGuard]},
   { path: "science", component: AreaComponent,  canActivate: [authGuard]},
-  { path: "cards", component: CardsComponent,  canActivate: [authGuard]},
+  { path: "_cards/:areaId", component: CardsComponent,  canActivate: [authGuard]},
   { path: "profile", component: ProfileComponent,  canActivate: [authGuard]},
   { path: "**", component: NotFoundComponent }];
 
