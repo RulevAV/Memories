@@ -28,19 +28,22 @@ import Role from '../../model/role';
     }));
   }
 
-  update(area:any): Observable<any[]> {
-    return this.Post("Update", area).pipe(map(res => {
+  update(card:any): Observable<any[]> {
+    return this.Post("Update", card).pipe(map(res => {
       return res as any;
     }));
   }
 
-  areas(page: number, pageSize: number, name:string, idGuest:string|number): Observable<User[]> {
-    return this.Get<User[]>("Areas", {
+  cards(page: number, pageSize: number, search:string, areaId:string, idParent:string| null| undefined): Observable<User[]> {
+    let item =  {
       page,
       pageSize,
-      name,
-      idGuest
-    } as any);
+      search,
+      areaId
+    } as any ;
+    if (!!idParent)
+      item.idParent = idParent;
+    return this.Get<User[]>("Cards", item);
   }
 
   async postCard_W(card: any) {
@@ -48,16 +51,16 @@ import Role from '../../model/role';
     return await this.wrapper(fn);
   }
 
-  async areas_W(page: number, pageSize: number,  name:string, idGuest:string| number): Promise<PaginatorUser> {
+  async cards_W(page: number, pageSize: number,  search:string, areaId:string, idParent:string| null| undefined): Promise<PaginatorUser> {
     const fn = () => {
-      return this.areas(page, pageSize, name, idGuest)
+      return this.cards(page, pageSize, search, areaId, idParent)
     };
     return await this.wrapper(fn) as Promise<PaginatorUser>;
   }
 
-  async postUpdate_W(area: any) {
+  async postUpdate_W(card: any) {
     const fn = () => {
-      return this.update(area);
+      return this.update(card);
     }
     return await this.wrapper(fn) as Role[];
   }

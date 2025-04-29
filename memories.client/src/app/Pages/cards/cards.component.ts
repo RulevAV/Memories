@@ -6,7 +6,7 @@ import {PageEvent} from '@angular/material/paginator';
 import {AreaEditComponent} from '../area/area-edit/area-edit.component';
 import {CardEditComponent} from './card-edit/card-edit.component';
 import {CardService} from '../../services/card.service';
-import {ActivatedRoute} from '@angular/router';
+import {ActivatedRoute, Router} from '@angular/router';
 
 @Component({
   selector: 'app-cards',
@@ -14,13 +14,13 @@ import {ActivatedRoute} from '@angular/router';
   templateUrl: './cards.component.html',
   styleUrl: './cards.component.css'
 })
-export class CardsComponent implements OnInit, AfterViewInit {
+export class CardsComponent implements OnInit {
   cardService: CardService = inject(CardService);
 
   readonly dialog = inject(MatDialog)
-  search!:string;
+  search:string = '';
 
-  displayedColumns: string[] = ['name', 'img', 'accessAreas','pole1','pole2'];
+  displayedColumns: string[] = ['title','content', 'img', 'pole1', 'pole2'];
   dataSource = new MatTableDataSource<User>([]);
   length = 50;
   pageSize = 10;
@@ -35,29 +35,25 @@ export class CardsComponent implements OnInit, AfterViewInit {
 
   pageEvent!: PageEvent;
 
-  constructor(private route: ActivatedRoute) {
+  constructor(private route: ActivatedRoute, private router: Router) {
   }
   areaId!: string;
-  id!: string;
+  idParent!: string | undefined| null;
 
   ngOnInit() {
-    this.route.paramMap.subscribe(params => {
+    this.route.paramMap.subscribe(async params => {
       this.areaId = params.get('areaId') || '';
+      this.idParent = params.get('idParent')?.trim() || null;
+      await this.updateTable();
     });
   }
-  async ngAfterViewInit() {
-    await this.updateTable();
-  }
-
 
   async updateTable(){
-    // let search = this.search || '';
-    // this.isLoading = true;
-    // const data = await this.cardService.areas_W(this.pageIndex ,this.pageSize, 'name', '');
-    // this.dataSource.data = data.elements;
-    // this.length = data.totalCount;
-    // this.isLoading = false;
-
+    this.isLoading = true;
+    const data = await this.cardService.cards_W(this.pageIndex ,this.pageSize, this.search, this.areaId, this.idParent);
+    this.dataSource.data = data.elements;
+    this.length = data.totalCount;
+    this.isLoading = false;
   }
 
   async  handlePageEvent(e: PageEvent) {
@@ -68,25 +64,19 @@ export class CardsComponent implements OnInit, AfterViewInit {
     await this.updateTable();
   }
 
-  areasString(accessAreas: any[]){
-    return accessAreas.map(r=> {
-      return r.idGuestNavigation.login;
-    }).join();
-  }
-
   async clear() {
     this.search = '';
     await this.updateTable();
   }
 
   open(item: any){
-   // this.router.navigate(['/cards'], { queryParams: { page: 1, sort: 'asc' } });
+    this.router.navigate([`/_cards/${ this.areaId }/${item.id} `])//), { queryParams: { areaId: item.id, id: null } });
   }
   clickRow(row: any){
-    const dialogRef = this.dialog.open(AreaEditComponent, {
+    const dialogRef = this.dialog.open(CardEditComponent, {
       data: {
         title: 'Редактировать область.',
-        area: row,
+        card: row,
       },
       width: '40%',
       disableClose: true
@@ -94,7 +84,7 @@ export class CardsComponent implements OnInit, AfterViewInit {
 
     dialogRef.afterClosed().subscribe(async result => {
       if (result !== undefined) {
-        // await this.areaService.postUpdate_W(result);
+        await this.cardService.postUpdate_W(result);
         dialogRef.close();
         await this.updateTable();
       }
@@ -112,12 +102,10 @@ export class CardsComponent implements OnInit, AfterViewInit {
 
     dialogRef.afterClosed().subscribe(async result => {
       if (result !== undefined) {
-        // this.cardService.infoUser();
-          result.idArea = this.areaId;
-          result.idAreaNavigation = {
-            id: this.areaId
-          }
+        result.idArea = this.areaId;
+        result.idParent = this.idParent;
           await this.cardService.postCard_W(result);
+          await this.updateTable();
       }
     });
   }

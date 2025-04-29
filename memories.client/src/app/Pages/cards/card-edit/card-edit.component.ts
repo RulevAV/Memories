@@ -1,8 +1,11 @@
 import {Component, ElementRef, EventEmitter, inject, OnInit, Output, ViewChild} from '@angular/core';
 import {MAT_DIALOG_DATA, MatDialogRef} from '@angular/material/dialog';
 import {FormControl, FormGroup, Validators} from '@angular/forms';
-import {DialogData} from '../../area/area-edit/area-edit.component';
 
+export interface DialogData {
+  title: string,
+  card: any,
+}
 @Component({
   selector: 'app-card-edit',
   standalone: false,
@@ -16,16 +19,17 @@ export class CardEditComponent implements OnInit {
 
   cardForm = new FormGroup({
     id: new FormControl(''),
-    title: new FormControl('',),//[Validators.required]),
-    content: new FormControl('',),//[Validators.required]),
+    title: new FormControl('',[Validators.required]),
+    content: new FormControl('',[Validators.required]),
     img: new FormControl('', ),
   });
 
   constructor(private dialogRef: MatDialogRef<CardEditComponent>) { }
   ngOnInit(){
-    // this.cardForm.get('id')?.setValue(this.data.area.id);
-    // this.cardForm.get('name')?.setValue(this.data.area.name);
-    // this.cardForm.get('img')?.setValue(this.data.area.img);
+    this.cardForm.get('id')?.setValue(this.data.card.id);
+    this.cardForm.get('title')?.setValue(this.data.card.title);
+    this.cardForm.get('content')?.setValue(this.data.card.content);
+    this.cardForm.get('img')?.setValue(this.data.card.img);
   }
   changeImg(){
     this.fileInput.nativeElement.click();
@@ -34,7 +38,7 @@ export class CardEditComponent implements OnInit {
     this.dialogRef.close(); // Закрытие диалога
   }
   save(){
-    let card = this.data.area || {};
+    let card = this.data.card || {};
     card.title = this.cardForm.get('title')?.value || '';
     card.content = this.cardForm.get('content')?.value || '';
     card.img = this.cardForm.get('img')?.value || '';

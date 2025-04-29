@@ -15,5 +15,9 @@ public partial class Card
 
     public string? Img { get; set; }
 
+    public Guid? IdParent { get; set; }
+
+    public int Number { get; set; }
+
     public virtual Area IdAreaNavigation { get; set; } = null!;
 }

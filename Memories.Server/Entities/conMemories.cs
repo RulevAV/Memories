@@ -63,6 +63,7 @@ public partial class conMemories : DbContext
 
             entity.Property(e => e.Id).ValueGeneratedNever();
             entity.Property(e => e.Name).HasMaxLength(100);
+            entity.Property(e => e.Number).ValueGeneratedOnAdd();
         });
 
         modelBuilder.Entity<Card>(entity =>
@@ -72,15 +73,10 @@ public partial class conMemories : DbContext
             entity.ToTable("card");
 
             entity.Property(e => e.Id).ValueGeneratedNever();
-            entity.Property(e => e.Content)
-                .HasMaxLength(1000)
-                .HasColumnName("content");
-            entity.Property(e => e.Img)
-                .HasMaxLength(100)
-                .HasColumnName("img");
-            entity.Property(e => e.Title)
-                .HasMaxLength(20)
-                .HasColumnName("title");
+            entity.Property(e => e.Content).HasMaxLength(1000);
+            entity.Property(e => e.Img).HasMaxLength(100);
+            entity.Property(e => e.Number).ValueGeneratedOnAdd();
+            entity.Property(e => e.Title).HasMaxLength(20);
 
             entity.HasOne(d => d.IdAreaNavigation).WithMany(p => p.Cards)
                 .HasForeignKey(d => d.IdArea)

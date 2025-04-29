@@ -12,6 +12,7 @@ const routes: Routes = [{ path: "", component: HomeComponent},
   { path: "admin/users", component: UserComponent, canActivate: [authGuard]},
   { path: "science", component: AreaComponent,  canActivate: [authGuard]},
   { path: "_cards/:areaId", component: CardsComponent,  canActivate: [authGuard]},
+  { path: "_cards/:areaId/:idParent", component: CardsComponent,  canActivate: [authGuard]},
   { path: "profile", component: ProfileComponent,  canActivate: [authGuard]},
   { path: "**", component: NotFoundComponent }];
 

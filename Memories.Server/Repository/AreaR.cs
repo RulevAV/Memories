@@ -63,7 +63,7 @@ namespace Memories.Server.Services
             request = request.Include(u => u.AccessAreas).ThenInclude(a => a.IdGuestNavigation);
 
             // Выполните запрос и получите элементы
-            var elements = await request.Skip(page * pageSize)
+            var elements = await request.OrderByDescending(u => u.Number).Skip(page * pageSize)
                                          .Take(pageSize)
                                          .ToListAsync();
 

@@ -1,6 +1,7 @@
 ﻿using Memories.Server.Entities;
 using Memories.Server.Entities.NoDb;
 using Memories.Server.Interface;
+using Memories.Server.Model;
 using Memories.Server.Services;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
@@ -13,31 +14,36 @@ namespace Memories.Server.Controllers
     {
         private readonly ILogger<UserController> _logger;
         private ICardR _cardR;
-        private IUserR _userR;
 
-        public CardController(ILogger<UserController> logger, ICardR cardR, IUserR userR)
+        public CardController(ILogger<UserController> logger, ICardR cardR)
         {
             _logger = logger;
             _cardR = cardR;
-            _userR = userR;
         }
-
-        [HttpGet("[action]")]
-        [Authorize]
-        public User InfoUser()
-        {
-            var userId = User.Claims.First(u => u.Type == "Id").Value;
-            return _userR.GetUser(Guid.Parse(userId));
-        }
-
 
         [HttpPost("[action]")]
         [Authorize]
-        public async Task<int> Create(Card item)
+        public async Task<Card> Create(CardModel item)
         {
-            //var userId = User.Claims.First(u => u.Type == "Id").Value;
-            return 1;
-            //return await _cardR.Create(Guid.Parse(userId), card);
+            var userId = User.Claims.First(u => u.Type == "Id").Value;
+            return await _cardR.Create(Guid.Parse(userId), item);
+        }
+
+
+        [HttpGet("[action]")]
+        [Authorize]
+        public async Task<PaginatorEntity<Card>> Cards(int page, int pageSize, Guid areaId, string? search, Guid? IdParent)
+        {
+            var userId = User.Claims.First(u => u.Type == "Id").Value;
+            return await _cardR.Cards(Guid.Parse(userId), page, pageSize, areaId, search, IdParent);
+        }
+
+        [HttpPost("[action]")]
+        [Authorize]
+        public async Task<Card> Update(CardModel item)
+        {
+            var userId = User.Claims.First(u => u.Type == "Id").Value;
+            return await _cardR.Update(Guid.Parse(userId), item);
         }
     }
 }
