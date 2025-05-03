@@ -8,7 +8,7 @@ import {MatDialog} from '@angular/material/dialog';
   providedIn: 'root'
 })
 export class BaseService<T> {
-  private readonly controllerName: string;
+  protected readonly controllerName: string;
   env = environment;
 
   constructor(protected httpClient: HttpClient, @Inject(String) ControllerName: string, public dialog: MatDialog,) {

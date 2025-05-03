@@ -28,13 +28,13 @@ namespace Memories.Server.Controllers
             _logger = logger;
             _areaR = areaR;
         }
-
-        [HttpPost("[action]")]
         [Authorize]
-        public async Task<Area> CreateArea(AreaUserModel model)
+        [HttpPost("[action]")]
+        public async Task<Area> CreateArea([FromForm] AreaModel model) // Используем модель
         {
             var userId = User.Claims.First(u => u.Type == "Id").Value;
-            return await _areaR.CreateArea(Guid.Parse(userId), model.area, model.guests);
+            return await _areaR.CreateArea(Guid.Parse(userId), model);
+
         }
 
         [HttpGet("[action]")]
@@ -48,10 +48,12 @@ namespace Memories.Server.Controllers
 
         [HttpPost("[action]")]
         [Authorize]
-        public async Task<Area> Update(AreaUserModel model)
+        public async Task<Area> Update([FromForm] AreaModel model)
         {
             var userId = User.Claims.First(u => u.Type == "Id").Value;
-            return await _areaR.Update(Guid.Parse(userId), model.area, model.guests);
+            return await _areaR.Update(Guid.Parse(userId), model);
         }
     }
 }
+
+

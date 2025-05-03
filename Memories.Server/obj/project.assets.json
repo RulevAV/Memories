@@ -3613,25 +3613,23 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\Andrey\\.nuget\\packages\\": {},
-    "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {},
-    "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder": {}
+    "C:\\Users\\rulan\\.nuget\\packages\\": {},
+    "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\Andrey\\Desktop\\Memories\\Memories.Server\\Memories.Server.csproj",
+      "projectUniqueName": "C:\\Users\\rulan\\OneDrive\\Рабочий стол\\Новая папка\\Memories\\Memories.Server\\Memories.Server.csproj",
       "projectName": "Memories.Server",
-      "projectPath": "C:\\Users\\Andrey\\Desktop\\Memories\\Memories.Server\\Memories.Server.csproj",
-      "packagesPath": "C:\\Users\\Andrey\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\Andrey\\Desktop\\Memories\\Memories.Server\\obj\\",
+      "projectPath": "C:\\Users\\rulan\\OneDrive\\Рабочий стол\\Новая папка\\Memories\\Memories.Server\\Memories.Server.csproj",
+      "packagesPath": "C:\\Users\\rulan\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\rulan\\OneDrive\\Рабочий стол\\Новая папка\\Memories\\Memories.Server\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
-        "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages",
-        "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
+        "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
       ],
       "configFilePaths": [
-        "C:\\Users\\Andrey\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\rulan\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],

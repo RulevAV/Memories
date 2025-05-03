@@ -12,12 +12,35 @@ using System.Threading.Tasks;
 using Memories.Server;
 using Microsoft.Extensions.Configuration;
 using Npgsql;
+using Memories.Server.Filters; // Добавьте using для вашего пространства имен фильтров
+using Microsoft.AspNetCore.Diagnostics; // Понадобится, если вы захотите использовать UseExceptionHandler вместе с фильтром
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 
-builder.Services.AddControllers();
+// Добавляем ваш пользовательский фильтр исключений как сервис
+builder.Services.AddScoped<GlobalExceptionFilter>(); // Используйте имя вашего класса фильтра
+
+// Создаем экземпляр JsonSerializerOptions
+JsonSerializerOptions options = new()
+{
+    ReferenceHandler = ReferenceHandler.IgnoreCycles,
+    WriteIndented = true
+};
+
+// Настраиваем контроллеры с использованием созданных параметров
+builder.Services.AddControllers(options =>
+{
+    // Добавляем ваш глобальный фильтр исключений ко всем контроллерам
+    options.Filters.Add(typeof(GlobalExceptionFilter));
+}).AddJsonOptions(opts =>
+{
+    opts.JsonSerializerOptions.ReferenceHandler = options.ReferenceHandler;
+    opts.JsonSerializerOptions.WriteIndented = options.WriteIndented;
+});
+
+
 // Learn more about configuring OpenAPI at https://aka.ms/aspnet/openapi
 builder.Services.AddOpenApi();
 
@@ -46,19 +69,6 @@ builder.Services.AddCors(options =>
 
 builder.Services.AddAuthorization();
 
-// Создаем экземпляр JsonSerializerOptions
-JsonSerializerOptions options = new()
-{
-    ReferenceHandler = ReferenceHandler.IgnoreCycles,
-    WriteIndented = true
-};
-
-// Настраиваем контроллеры с использованием созданных параметров
-builder.Services.AddControllers().AddJsonOptions(opts =>
-{
-    opts.JsonSerializerOptions.ReferenceHandler = options.ReferenceHandler;
-    opts.JsonSerializerOptions.WriteIndented = options.WriteIndented;
-});
 
 var secret = builder.Configuration["Jwt:Secret"];
 var key = Encoding.ASCII.GetBytes(secret);
@@ -100,6 +110,19 @@ if (app.Environment.IsDevelopment())
     app.MapOpenApi();
     app.UseSwagger();
     app.UseSwaggerUI();
+    // В режиме разработки можно использовать DeveloperExceptionPage для более детальной информации об ошибках
+    app.UseDeveloperExceptionPage();
+}
+else
+{
+    // В продакшене можно использовать UseExceptionHandler как резервный вариант для исключений вне контроллеров
+    // Если исключение произошло в контроллере, его сначала перехватит GlobalExceptionFilter
+    // Если вы хотите, чтобы UseExceptionHandler также обрабатывал исключения,
+    // которые не были обработаны фильтром (например, если вы не установили ExceptionHandled = true),
+    // оставьте его здесь.
+    // Если вы полностью полагаетесь на фильтр для контроллеров, и вам не нужна обработка
+    // исключений вне контроллеров, вы можете убрать UseExceptionHandler.
+    app.UseExceptionHandler("/Error"); // Или используйте делегат appBuilder.Run(...)
 }
 
 app.UseHttpsRedirection();
@@ -108,9 +131,8 @@ app.UseCors("AllowOrigin");
 
 app.UseAuthorization();
 
-app.MapControllers();
+app.MapControllers(); // Убедитесь, что MapControllers находится после middleware обработки исключений
 
 app.MapFallbackToFile("/index.html");
 
 app.Run();
-

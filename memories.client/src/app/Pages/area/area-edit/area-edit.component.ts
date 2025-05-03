@@ -19,23 +19,29 @@ export class AreaEditComponent implements OnInit {
   readonly data = inject<DialogData>(MAT_DIALOG_DATA);
 
   options: any[] = [];
-
+  file:any;
+  
   areanForm = new FormGroup({
     id: new FormControl('',),
     name: new FormControl('',[Validators.required]),
     img: new FormControl('', ),
-    selectedOptions:  new FormControl([] as any[]),
+    accessAreas:  new FormControl([] as any[]),
   });
 
   constructor(private dialogRef: MatDialogRef<AreaEditComponent>) { }
   ngOnInit(){
-    this.areanForm.get('id')?.setValue(this.data.area.id);
-    this.areanForm.get('name')?.setValue(this.data.area.name);
-    this.areanForm.get('img')?.setValue(this.data.area.img);
+    this.areanForm.get('id')?.setValue(this.data.area?.id || '');
+    this.areanForm.get('name')?.setValue(this.data.area?.name || '');
+    let img = '';
+    if (!!this.data?.area?.img){
+      img = `data: ${this.data.area.mimeType};base64, ${this.data.area.img}`;
+    }
+    this.areanForm.get('img')?.setValue(img);
     this.options = this.data.users;
+    
     // @ts-ignore
     const accessAreas = this.data?.area?.accessAreas.map(u => u.idGuestNavigation) || [];
-    this.areanForm.get('selectedOptions')?.setValue(accessAreas);
+    this.areanForm.get('accessAreas')?.setValue(accessAreas);
   }
   changeImg(){
     this.fileInput.nativeElement.click();
@@ -47,18 +53,19 @@ export class AreaEditComponent implements OnInit {
     let area = this.data.area || { };
     area.name = this.areanForm.get('name')?.value || '';
     area.img = this.areanForm.get('img')?.value || '';
-    const guests  = this.areanForm.get('selectedOptions')?.value?.map(u=>u.id) || [];
-    area.accessAreas = [];
+    const guests  = this.areanForm.get('accessAreas')?.value?.map(u=>u.id) || [];
     this.dialogRef.close({
-      area,
-      guests});
+      file: this.file,
+      name: area.name, 
+      accessAreas: guests
+   });
   }
 
   onFileSelected(event: Event) {
     const target = event.target as HTMLInputElement;
 
     if (target.files?.length) {
-      const file = target.files[0];
+      this.file = target.files[0];
       const reader = new FileReader();
 
       reader.onload = (e) => {
@@ -67,7 +74,7 @@ export class AreaEditComponent implements OnInit {
       };
 
       // Читаем файл как Data URL для получения base64 строки
-      reader.readAsDataURL(file);
+      reader.readAsDataURL(this.file);
     }
   }
 

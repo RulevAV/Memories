@@ -1,4 +1,5 @@
 ﻿using Memories.Server.Entities;
+using Memories.Server.Entities.NoDb;
 using Memories.Server.Interface;
 using Memories.Server.Model;
 using Memories.Server.Services.Core;
@@ -13,6 +14,7 @@ using System.Security.Claims;
 using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
+using System.Xml.Linq;
 
 namespace Memories.Server.Services
 {
@@ -25,18 +27,46 @@ namespace Memories.Server.Services
             _configuration = configuration;
         }
 
-        public async Task<Area> CreateArea(Guid IdUser, Area area, List<Guid> guests)
+        public async Task<Area> CreateArea(Guid IdUser, AreaModel model)
         {
             var _area = new Area()
             {
                 Id = Guid.NewGuid(),
-                Name = area.Name,
-                Img = area.Img,
+                Name = model.Name,
                 IdUser = IdUser
             };
+            if (model.File != null && model.File.Length > 0)
+            {
+                using (var stream = model.File.OpenReadStream())
+                {
+                    using (var memoryStream = new MemoryStream())
+                    {
+                        await stream.CopyToAsync(memoryStream);
+                        _area.Img = memoryStream.ToArray();
+                        _area.MimeType = model.File.ContentType;
+                    }
+                }
+            }
+            if (model.AccessAreas != null)
+            {
+                foreach (var guest in model.AccessAreas)
+                {
+
+                    _area.AccessAreas.Add(new AccessArea()
+                    {
+                        IdOwner = IdUser,
+                        IdGuest = guest,
+                        IdArea = _area.Id,
+                        IsEditing = false
+                    });
+                }
+                ;
+            }
+           
+
             var item = _context.Areas.Add(_area);
             _context.SaveChanges();
-            return area;
+            return _area;
         }
 
         public async Task<PaginatorEntity<Area>> Areas(Guid IdUser, int page, int pageSize, string? name, Guid? idGuest)
@@ -70,34 +100,33 @@ namespace Memories.Server.Services
 
             return new PaginatorEntity<Area>()
             {
-                Elements = await request.Skip(page * pageSize)
-                .Take(pageSize)
-                .ToListAsync(),
-                TotalCount = await request.CountAsync()
+                Elements = elements,
+                TotalCount = elements.Count()
             };
         }
 
-        public async Task<Area> Update(Guid UserId, Area area, List<Guid> guests)
+        public async Task<Area> Update(Guid IdUser, AreaModel model)
         {
+
             var sql = $@"
-UPDATE public.area 
-SET ""Name"" = '{area.Name}', ""Img"" = '{area.Img}'
-WHERE ""Id"" = '{area.Id}';
+            UPDATE public.area 
+            SET ""Name"" = '{model.Name}'
+            WHERE ""Id"" = '{model.Id}';
 
-DELETE FROM public.""accessArea"" 
-WHERE ""IdArea"" = '{area.Id}' and ""IdOwner"" = '{UserId}';
+            DELETE FROM public.""accessArea"" 
+            WHERE ""IdArea"" = '{model.Id}' and ""IdOwner"" = '{IdUser}';
 
-";
+            ";
 
-            if (guests.Count != 0)
+            if (model.AccessAreas != null && model.AccessAreas.Count != 0)
             {
-                var strValues = guests.Select(Id => $@"('{UserId}','{Id}', '{area.Id}',  false)").ToArray();
+                var strValues = model.AccessAreas.Select(Id => $@"('{IdUser}','{Id}', '{model.Id}',  false)").ToArray();
                 sql += $@"
-INSERT INTO public.""accessArea""(""IdOwner"",  ""IdGuest"",  ""IdArea"",  ""isEditing"")
-VALUES 
-{string.Join(",", strValues)}
-;
-";
+            INSERT INTO public.""accessArea""(""IdOwner"",  ""IdGuest"",  ""IdArea"",  ""isEditing"")
+            VALUES 
+            {string.Join(",", strValues)}
+            ;
+            ";
             }
 
             _npgsqlCon.Open();
@@ -106,6 +135,21 @@ VALUES
             {
                 command.ExecuteNonQuery();
             }
+
+            var area = _context.Areas.First(u=>u.Id == model.Id);
+            if (model.File != null && model.File.Length > 0)
+            {
+                using (var stream = model.File.OpenReadStream())
+                {
+                    using (var memoryStream = new MemoryStream())
+                    {
+                        await stream.CopyToAsync(memoryStream);
+                        area.Img = memoryStream.ToArray();
+                        area.MimeType = model.File.ContentType;
+                    }
+                }
+            }
+            _context.SaveChanges();
 
             return area;
         }

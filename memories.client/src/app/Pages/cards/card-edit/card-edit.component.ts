@@ -16,7 +16,8 @@ export class CardEditComponent implements OnInit {
   @Output() onClick: EventEmitter<any> = new EventEmitter();
   @ViewChild('fileInput', { static: false }) fileInput!: ElementRef;
   readonly data = inject<DialogData>(MAT_DIALOG_DATA);
-
+  file:any;
+  
   cardForm = new FormGroup({
     id: new FormControl(''),
     title: new FormControl('',[Validators.required]),
@@ -29,7 +30,12 @@ export class CardEditComponent implements OnInit {
     this.cardForm.get('id')?.setValue(this.data.card.id);
     this.cardForm.get('title')?.setValue(this.data.card.title);
     this.cardForm.get('content')?.setValue(this.data.card.content);
-    this.cardForm.get('img')?.setValue(this.data.card.img);
+
+    let img = '';
+    if (!!this.data?.card?.img){
+      img = `data: ${this.data.card.mimeType};base64, ${this.data.card.img}`;
+    }
+    this.cardForm.get('img')?.setValue(img);
   }
   changeImg(){
     this.fileInput.nativeElement.click();
@@ -42,14 +48,17 @@ export class CardEditComponent implements OnInit {
     card.title = this.cardForm.get('title')?.value || '';
     card.content = this.cardForm.get('content')?.value || '';
     card.img = this.cardForm.get('img')?.value || '';
-    this.dialogRef.close(card);
+    this.dialogRef.close({
+      file: this.file,
+      card: card
+    });
   }
 
   onFileSelected(event: Event) {
     const target = event.target as HTMLInputElement;
 
     if (target.files?.length) {
-      const file = target.files[0];
+      this.file = target.files[0];
       const reader = new FileReader();
 
       reader.onload = (e) => {
@@ -58,7 +67,7 @@ export class CardEditComponent implements OnInit {
       };
 
       // Читаем файл как Data URL для получения base64 строки
-      reader.readAsDataURL(file);
+      reader.readAsDataURL(this.file);
     }
   }
 

@@ -1,4 +1,5 @@
 ﻿using Memories.Server.Entities;
+using Memories.Server.Entities.NoDb;
 using Memories.Server.Interface;
 using Memories.Server.Model;
 using Memories.Server.Services.Core;
@@ -54,17 +55,54 @@ namespace Memories.Server.Services
             };
         }
 
-        public async Task<Card> Create(Guid IdUser, Card card)
+        public async Task<Card> Create(Guid IdUser, CardModel model)
         {
-            card.Id = Guid.NewGuid();
-            _context.Add(card);
+
+            var card = new Card()
+            {
+                Id = Guid.NewGuid(),
+                Title = model.Title,
+                Content = model.Content,
+                IdParent = model.IdParent,
+                IdArea = model.IdArea,
+            };
+            if (model.File != null && model.File.Length > 0)
+            {
+                using (var stream = model.File.OpenReadStream())
+                {
+                    using (var memoryStream = new MemoryStream())
+                    {
+                        await stream.CopyToAsync(memoryStream);
+                        card.Img = memoryStream.ToArray();
+                        card.MimeType = model.File.ContentType;
+                    }
+                }
+            }
+
+            var item = _context.Cards.Add(card);
             _context.SaveChanges();
             return card;
         }
 
-        public async Task<Card> Update(Guid UserId, Card card)
+        public async Task<Card> Update(Guid UserId, CardModel model)
         {
-            _context.Cards.Update(card);
+            var card = _context.Cards.First(u => u.Id == model.Id);
+            card.Title = model.Title;
+            card.Content = model.Content;
+            if (model.File != null && model.File.Length > 0)
+            {
+                using (var stream = model.File.OpenReadStream())
+                {
+                    using (var memoryStream = new MemoryStream())
+                    {
+                        await stream.CopyToAsync(memoryStream);
+                        card.Img = memoryStream.ToArray();
+                        card.MimeType = model.File.ContentType;
+                    }
+                }
+            }
+
+            var item = _context.Cards.Update(card);
             _context.SaveChanges();
             return card;
         }

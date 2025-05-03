@@ -27,7 +27,7 @@ public partial class conMemories : DbContext
 
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
 #warning To protect potentially sensitive information in your connection string, you should move it out of source code. You can avoid scaffolding the connection string by using the Name= syntax to read it from configuration - see https://go.microsoft.com/fwlink/?linkid=2131148. For more guidance on storing connection strings, see https://go.microsoft.com/fwlink/?LinkId=723263.
-        => optionsBuilder.UseNpgsql("Host=localhost;Port=5435;Database=Memories;Username=kpocc;Password=1;");
+        => optionsBuilder.UseNpgsql("Host=localhost;Port=9991;Database=Memories;Username=Memories;Password=Memories;");
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
@@ -73,10 +73,8 @@ public partial class conMemories : DbContext
             entity.ToTable("card");
 
             entity.Property(e => e.Id).ValueGeneratedNever();
-            entity.Property(e => e.Content).HasMaxLength(1000);
-            entity.Property(e => e.Img).HasMaxLength(100);
             entity.Property(e => e.Number).ValueGeneratedOnAdd();
-            entity.Property(e => e.Title).HasMaxLength(20);
+            entity.Property(e => e.Title).HasMaxLength(1000);
 
             entity.HasOne(d => d.IdAreaNavigation).WithMany(p => p.Cards)
                 .HasForeignKey(d => d.IdArea)

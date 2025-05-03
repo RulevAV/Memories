@@ -23,7 +23,7 @@ namespace Memories.Server.Controllers
 
         [HttpPost("[action]")]
         [Authorize]
-        public async Task<Card> Create(CardModel item)
+        public async Task<Card> Create([FromForm] CardModel item)
         {
             var userId = User.Claims.First(u => u.Type == "Id").Value;
             return await _cardR.Create(Guid.Parse(userId), item);
@@ -40,7 +40,7 @@ namespace Memories.Server.Controllers
 
         [HttpPost("[action]")]
         [Authorize]
-        public async Task<Card> Update(CardModel item)
+        public async Task<Card> Update([FromForm] CardModel item)
         {
             var userId = User.Claims.First(u => u.Type == "Id").Value;
             return await _cardR.Update(Guid.Parse(userId), item);

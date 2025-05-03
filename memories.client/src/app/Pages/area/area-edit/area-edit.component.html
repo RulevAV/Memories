@@ -19,7 +19,7 @@
 
     <mat-form-field>
       <mat-label>Выберите опции</mat-label>
-      <mat-select formControlName="selectedOptions" multiple  [compareWith]="compareById">
+      <mat-select formControlName="accessAreas" multiple  [compareWith]="compareById">
         <mat-option *ngFor="let option of options" [value]="option">
           {{ option.login }}
         </mat-option>

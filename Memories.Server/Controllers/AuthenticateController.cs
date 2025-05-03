@@ -37,16 +37,33 @@ namespace Memories.Server.Controllers
         [Route("register")]
         public async Task<IActionResult> Register([FromBody] RegisterModel model)
         {
-            var Token = await _authenticateR.Register(model);
-            return Ok(Token);
+            
+            try
+            {
+                var Token = await _authenticateR.Register(model);
+                return Ok(Token);
+
+            }
+            catch (Exception e)
+            {
+                return BadRequest(e.Message);
+            }
         }
 
         [HttpPost]
         [Route("refresh-token")]
         public async Task<IActionResult> RefreshToken([FromBody] TokenModel tokenModel)
         {
-            var Token = await _authenticateR.RefreshToken(tokenModel);
-            return Ok(Token);
+            try
+            {
+                var Token = await _authenticateR.RefreshToken(tokenModel);
+                return Ok(Token);
+            }
+            catch (Exception e)
+            {
+                return BadRequest(e.Message);
+            }
+           
         }
     }
 

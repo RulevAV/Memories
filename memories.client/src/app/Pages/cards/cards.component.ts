@@ -84,7 +84,10 @@ export class CardsComponent implements OnInit {
 
     dialogRef.afterClosed().subscribe(async result => {
       if (result !== undefined) {
-        await this.cardService.postUpdate_W(result);
+        result.idArea = this.areaId;
+        result.idParent = this.idParent;
+        
+        await this.cardService.postUpdate_W(row.id, result.file, result.idArea, result.card.title, result.card.content, result.idParent);
         dialogRef.close();
         await this.updateTable();
       }
@@ -104,8 +107,9 @@ export class CardsComponent implements OnInit {
       if (result !== undefined) {
         result.idArea = this.areaId;
         result.idParent = this.idParent;
-          await this.cardService.postCard_W(result);
-          await this.updateTable();
+        
+        await this.cardService.postCard_W(result.file, result.idArea, result.card.title, result.card.content, result.idParent);
+        await this.updateTable();
       }
     });
   }

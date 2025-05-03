@@ -11,9 +11,11 @@ public partial class Area
 
     public string? Name { get; set; }
 
-    public string? Img { get; set; }
+    public byte[]? Img { get; set; }
 
     public int Number { get; set; }
+
+    public string? MimeType { get; set; }
 
     public virtual ICollection<AccessArea> AccessAreas { get; set; } = new List<AccessArea>();
 

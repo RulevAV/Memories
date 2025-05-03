@@ -16,16 +16,54 @@ export class AreaService  extends WrapperService<User> {
     super(httpClient, 'scienceArea', dialog);
   }
 
-  postArea(area: Area): Observable<any[]> {
-    return this.Post("CreateArea", area).pipe(map(res => {
-      return res as any;
-    }));
+
+  postArea(file: any, name: any, accessAreas: any): Observable<any> {
+    const formData: FormData = new FormData();
+    if (!!file) {
+      formData.append('File', file, file?.name); 
+    }
+    formData.append('Id', '00000000-0000-0000-0000-000000000000'); 
+    formData.append('Name', name); 
+
+    if (accessAreas && accessAreas.length > 0) {
+      accessAreas.forEach((area: any) => {
+        formData.append('AccessAreas', area);
+      });
+    }
+
+    const authToken = localStorage.getItem('accessToken'); // Замените 'authToken' на ключ, под которым вы храните токен
+
+    const headers = {
+      'Authorization': `Bearer ${authToken}` // Добавляем заголовок авторизации
+    };
+
+    // Отправляем POST-запрос с FormData и заголовками
+    return this.httpClient.post<string>(`${this.controllerName}/CreateArea`, formData, { headers: headers });
   }
 
-  update(area:any): Observable<any[]> {
-    return this.Post("Update", area).pipe(map(res => {
-      return res as any;
-    }));
+  update( id: string, file: any, name: any, accessAreas: any): Observable<any> {
+    const formData: FormData = new FormData();
+    if (!!file) {
+      formData.append('File', file, file?.name); 
+    }
+    formData.append('Id', id); 
+    formData.append('Name', name); 
+
+    if (accessAreas && accessAreas.length > 0) {
+      accessAreas.forEach((area: any) => {
+        formData.append('AccessAreas', area);
+      });
+    }
+    console.log(formData);
+    
+    const authToken = localStorage.getItem('accessToken'); // Замените 'authToken' на ключ, под которым вы храните токен
+
+    const headers = {
+      'Authorization': `Bearer ${authToken}` // Добавляем заголовок авторизации
+    };
+
+    // Отправляем POST-запрос с FormData и заголовками
+    return this.httpClient.post<string>(`${this.controllerName}/Update`, formData, { headers: headers });
   }
 
   areas(page: number, pageSize: number, name:string, idGuest:string|number): Observable<User[]> {
@@ -37,8 +75,8 @@ export class AreaService  extends WrapperService<User> {
     } as any);
   }
 
-  async postArea_W(area: Area) {
-    const fn = () => this.postArea(area);
+  async postArea_W(file: any, name: any, accessAreas: any) {
+    const fn = () => this.postArea(file, name, accessAreas);
     return await this.wrapper(fn);
   }
 
@@ -49,9 +87,9 @@ export class AreaService  extends WrapperService<User> {
     return await this.wrapper(fn) as Promise<PaginatorUser>;
   }
 
-  async postUpdate_W(area: any) {
+  async postUpdate_W(id: string, file: any, name: any, accessAreas: any) {
     const fn = () => {
-      return this.update(area);
+      return this.update(id, file, name, accessAreas);
     }
     return await this.wrapper(fn) as Role[];
   }

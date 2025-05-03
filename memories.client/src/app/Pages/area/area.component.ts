@@ -36,6 +36,7 @@ export class AreaComponent implements AfterViewInit{
   disabled = false;
 
   pageEvent!: PageEvent;
+  mimeType = 'image/jpeg'; // Замените на соответствующий MIME-тип
 
   constructor(private router: Router) {
   }
@@ -43,9 +44,11 @@ export class AreaComponent implements AfterViewInit{
   modal = '';
   async ngAfterViewInit() {
     this.users = (await this.userService.users_W(0, 100,  '','', '')).elements;
+    
     await this.updateTable();
   }
 
+  test: string = '';
 
   async updateTable(){
     let name = this.name || '';
@@ -55,7 +58,6 @@ export class AreaComponent implements AfterViewInit{
     this.dataSource.data = data.elements;
     this.length = data.totalCount;
     this.isLoading = false;
-
   }
 
   async  handlePageEvent(e: PageEvent) {
@@ -87,6 +89,7 @@ export class AreaComponent implements AfterViewInit{
   open(item: any){
     this.router.navigate([`/_cards/${ item.id }`])//), { queryParams: { areaId: item.id, id: null } });
   }
+
   clickRow(row: any){
     const dialogRef = this.dialog.open(AreaEditComponent, {
       data: {
@@ -100,18 +103,18 @@ export class AreaComponent implements AfterViewInit{
 
     dialogRef.afterClosed().subscribe(async result => {
       if (result !== undefined) {
-        await this.areaService.postUpdate_W(result);
+        await this.areaService.postUpdate_W(row.id, result.file, result.name, result.accessAreas);
         dialogRef.close();
         await this.updateTable();
       }
     });
   }
 
-  // new function
   createArea(): void {
     const dialogRef = this.dialog.open(AreaEditComponent, {
       data: {
         title: 'Создать область.',
+        users: this.users
       },
       width: '40%',
       disableClose: true // Заблокировать закрытие диалога
@@ -119,7 +122,7 @@ export class AreaComponent implements AfterViewInit{
 
     dialogRef.afterClosed().subscribe(async result => {
       if (result !== undefined) {
-        await this.areaService.postArea_W(result);
+        await this.areaService.postArea_W(result.file,result.name, result.accessAreas);
         dialogRef.close();
         await this.updateTable();
       }

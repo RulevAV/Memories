@@ -1,4 +1,5 @@
 ﻿using Memories.Server.Entities;
+using Memories.Server.Entities.NoDb;
 using Memories.Server.Model;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
@@ -11,8 +12,8 @@ namespace Memories.Server.Interface
 {
     public interface IAreaR
     {
-        public Task<Area> CreateArea(Guid IdUser, Area area, List<Guid> guests);
+        public Task<Area> CreateArea(Guid IdUser, AreaModel model);
         public Task<PaginatorEntity<Area>> Areas(Guid IdUser, int page, int pageSize, string? login, Guid? idGuest);
-        public Task<Area> Update(Guid UserId, Area area, List<Guid> guests);
+        public Task<Area> Update(Guid IdUser, AreaModel model);
     }
 }

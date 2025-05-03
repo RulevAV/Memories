@@ -22,16 +22,57 @@ import Role from '../../model/role';
   test(){
    return this.Get('InfoUser');
   }
-  postCard(card: any): Observable<any[]> {
-    return this.Post("Create", card).pipe(map(res => {
-      return res as any;
-    }));
+  postCard(file: any, IdArea: any, Title: any, Content: any, IdParent: any): Observable<any> {
+
+    const formData: FormData = new FormData();
+    if (!!file) {
+      formData.append('File', file, file?.name); 
+    }
+    formData.append('Id', '00000000-0000-0000-0000-000000000000'); 
+    formData.append('IdArea', IdArea); 
+    formData.append('Title', Title); 
+    formData.append('Content', Content); 
+    if (!!IdParent) {
+      formData.append('IdParent', IdParent); 
+    }
+
+
+    const authToken = localStorage.getItem('accessToken'); // Замените 'authToken' на ключ, под которым вы храните токен
+
+    const headers = {
+      'Authorization': `Bearer ${authToken}` // Добавляем заголовок авторизации
+    };
+
+    return this.httpClient.post<string>(`${this.controllerName}/Create`, formData, { headers: headers });
+    // return this.Post("Create", card).pipe(map(res => {
+    //   return res as any;
+    // }));
   }
 
-  update(card:any): Observable<any[]> {
-    return this.Post("Update", card).pipe(map(res => {
-      return res as any;
-    }));
+  update(id: string, file: any, IdArea: any, Title: any, Content: any, IdParent: any): Observable<any> {
+    const formData: FormData = new FormData();
+    if (!!file) {
+      formData.append('File', file, file?.name); 
+    }
+    formData.append('Id', id); 
+    formData.append('IdArea', IdArea); 
+    formData.append('Title', Title); 
+    formData.append('Content', Content); 
+    if (!!IdParent) {
+      formData.append('IdParent', IdParent); 
+    }
+
+
+    const authToken = localStorage.getItem('accessToken'); // Замените 'authToken' на ключ, под которым вы храните токен
+
+    const headers = {
+      'Authorization': `Bearer ${authToken}` // Добавляем заголовок авторизации
+    };
+
+    return this.httpClient.post<string>(`${this.controllerName}/Update`, formData, { headers: headers });
+    // return this.Post("Update", card).pipe(map(res => {
+    //   return res as any;
+    // }));
   }
 
   cards(page: number, pageSize: number, search:string, areaId:string, idParent:string| null| undefined): Observable<User[]> {
@@ -46,8 +87,8 @@ import Role from '../../model/role';
     return this.Get<User[]>("Cards", item);
   }
 
-  async postCard_W(card: any) {
-    const fn = () => this.postCard(card);
+  async postCard_W(file: any, IdArea: any, Title: any, Content: any, IdParent: any) {
+    const fn = () => this.postCard(file, IdArea, Title, Content, IdParent);
     return await this.wrapper(fn);
   }
 
@@ -58,9 +99,9 @@ import Role from '../../model/role';
     return await this.wrapper(fn) as Promise<PaginatorUser>;
   }
 
-  async postUpdate_W(card: any) {
+  async postUpdate_W(id: string, file: any, IdArea: any, Title: any, Content: any, IdParent: any) {
     const fn = () => {
-      return this.update(card);
+      return this.update(id, file, IdArea, Title, Content, IdParent);
     }
     return await this.wrapper(fn) as Role[];
   }
