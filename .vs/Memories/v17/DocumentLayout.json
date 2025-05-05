@@ -1,53 +1,52 @@
 {
   "Version": 1,
-  "WorkspaceRootPath": "C:\\Users\\rulan\\OneDrive\\\u0420\u0430\u0431\u043E\u0447\u0438\u0439 \u0441\u0442\u043E\u043B\\\u041D\u043E\u0432\u0430\u044F \u043F\u0430\u043F\u043A\u0430\\Memories\\",
+  "WorkspaceRootPath": "C:\\Users\\rulan\\OneDrive\\\u0420\u0430\u0431\u043E\u0447\u0438\u0439 \u0441\u0442\u043E\u043B\\Memories\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{1711E55A-C5B7-4989-BC10-E831F1397F2E}|Memories.Server\\Memories.Server.csproj|c:\\users\\rulan\\onedrive\\\u0440\u0430\u0431\u043E\u0447\u0438\u0439 \u0441\u0442\u043E\u043B\\\u043D\u043E\u0432\u0430\u044F \u043F\u0430\u043F\u043A\u0430\\memories\\memories.server\\interface\\icardr.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{1711E55A-C5B7-4989-BC10-E831F1397F2E}|Memories.Server\\Memories.Server.csproj|solutionrelative:memories.server\\interface\\icardr.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{1711E55A-C5B7-4989-BC10-E831F1397F2E}|Memories.Server\\Memories.Server.csproj|c:\\users\\rulan\\onedrive\\\u0440\u0430\u0431\u043E\u0447\u0438\u0439 \u0441\u0442\u043E\u043B\\\u043D\u043E\u0432\u0430\u044F \u043F\u0430\u043F\u043A\u0430\\memories\\memories.server\\repository\\arear.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{1711E55A-C5B7-4989-BC10-E831F1397F2E}|Memories.Server\\Memories.Server.csproj|solutionrelative:memories.server\\repository\\arear.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{1711E55A-C5B7-4989-BC10-E831F1397F2E}|Memories.Server\\Memories.Server.csproj|c:\\users\\rulan\\onedrive\\\u0440\u0430\u0431\u043E\u0447\u0438\u0439 \u0441\u0442\u043E\u043B\\\u043D\u043E\u0432\u0430\u044F \u043F\u0430\u043F\u043A\u0430\\memories\\memories.server\\repository\\cardr.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{1711E55A-C5B7-4989-BC10-E831F1397F2E}|Memories.Server\\Memories.Server.csproj|solutionrelative:memories.server\\repository\\cardr.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{1711E55A-C5B7-4989-BC10-E831F1397F2E}|Memories.Server\\Memories.Server.csproj|c:\\users\\rulan\\onedrive\\\u0440\u0430\u0431\u043E\u0447\u0438\u0439 \u0441\u0442\u043E\u043B\\\u043D\u043E\u0432\u0430\u044F \u043F\u0430\u043F\u043A\u0430\\memories\\memories.server\\controllers\\cardcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{1711E55A-C5B7-4989-BC10-E831F1397F2E}|Memories.Server\\Memories.Server.csproj|solutionrelative:memories.server\\controllers\\cardcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{1711E55A-C5B7-4989-BC10-E831F1397F2E}|Memories.Server\\Memories.Server.csproj|c:\\users\\rulan\\onedrive\\\u0440\u0430\u0431\u043E\u0447\u0438\u0439 \u0441\u0442\u043E\u043B\\\u043D\u043E\u0432\u0430\u044F \u043F\u0430\u043F\u043A\u0430\\memories\\memories.server\\entities\\nodb\\cardmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{1711E55A-C5B7-4989-BC10-E831F1397F2E}|Memories.Server\\Memories.Server.csproj|solutionrelative:memories.server\\entities\\nodb\\cardmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{1711E55A-C5B7-4989-BC10-E831F1397F2E}|Memories.Server\\Memories.Server.csproj|c:\\users\\rulan\\onedrive\\\u0440\u0430\u0431\u043E\u0447\u0438\u0439 \u0441\u0442\u043E\u043B\\\u043D\u043E\u0432\u0430\u044F \u043F\u0430\u043F\u043A\u0430\\memories\\memories.server\\controllers\\scienceareacontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{1711E55A-C5B7-4989-BC10-E831F1397F2E}|Memories.Server\\Memories.Server.csproj|solutionrelative:memories.server\\controllers\\scienceareacontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{1711E55A-C5B7-4989-BC10-E831F1397F2E}|Memories.Server\\Memories.Server.csproj|c:\\users\\rulan\\onedrive\\\u0440\u0430\u0431\u043E\u0447\u0438\u0439 \u0441\u0442\u043E\u043B\\\u043D\u043E\u0432\u0430\u044F \u043F\u0430\u043F\u043A\u0430\\memories\\memories.server\\entities\\card.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{1711E55A-C5B7-4989-BC10-E831F1397F2E}|Memories.Server\\Memories.Server.csproj|solutionrelative:memories.server\\entities\\card.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{1711E55A-C5B7-4989-BC10-E831F1397F2E}|Memories.Server\\Memories.Server.csproj|c:\\users\\rulan\\onedrive\\\u0440\u0430\u0431\u043E\u0447\u0438\u0439 \u0441\u0442\u043E\u043B\\\u043D\u043E\u0432\u0430\u044F \u043F\u0430\u043F\u043A\u0430\\memories\\memories.server\\entities\\nodb\\areamodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{1711E55A-C5B7-4989-BC10-E831F1397F2E}|Memories.Server\\Memories.Server.csproj|solutionrelative:memories.server\\entities\\nodb\\areamodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\rulan\\OneDrive\\\u0420\u0430\u0431\u043E\u0447\u0438\u0439 \u0441\u0442\u043E\u043B\\\u041D\u043E\u0432\u0430\u044F \u043F\u0430\u043F\u043A\u0430\\Memories\\Memories.Server\\ModelBD\\conMemories.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:Memories.Server\\ModelBD\\conMemories.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{1711E55A-C5B7-4989-BC10-E831F1397F2E}|Memories.Server\\Memories.Server.csproj|c:\\users\\rulan\\onedrive\\\u0440\u0430\u0431\u043E\u0447\u0438\u0439 \u0441\u0442\u043E\u043B\\\u043D\u043E\u0432\u0430\u044F \u043F\u0430\u043F\u043A\u0430\\memories\\memories.server\\repository\\authenticater.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{1711E55A-C5B7-4989-BC10-E831F1397F2E}|Memories.Server\\Memories.Server.csproj|c:\\users\\rulan\\onedrive\\\u0440\u0430\u0431\u043E\u0447\u0438\u0439 \u0441\u0442\u043E\u043B\\memories\\memories.server\\repository\\authenticater.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{1711E55A-C5B7-4989-BC10-E831F1397F2E}|Memories.Server\\Memories.Server.csproj|solutionrelative:memories.server\\repository\\authenticater.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{1711E55A-C5B7-4989-BC10-E831F1397F2E}|Memories.Server\\Memories.Server.csproj|c:\\users\\rulan\\onedrive\\\u0440\u0430\u0431\u043E\u0447\u0438\u0439 \u0441\u0442\u043E\u043B\\\u043D\u043E\u0432\u0430\u044F \u043F\u0430\u043F\u043A\u0430\\memories\\memories.server\\entities\\area.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{1711E55A-C5B7-4989-BC10-E831F1397F2E}|Memories.Server\\Memories.Server.csproj|c:\\users\\rulan\\onedrive\\\u0440\u0430\u0431\u043E\u0447\u0438\u0439 \u0441\u0442\u043E\u043B\\memories\\memories.server\\entities\\area.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{1711E55A-C5B7-4989-BC10-E831F1397F2E}|Memories.Server\\Memories.Server.csproj|solutionrelative:memories.server\\entities\\area.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{1711E55A-C5B7-4989-BC10-E831F1397F2E}|Memories.Server\\Memories.Server.csproj|c:\\users\\rulan\\onedrive\\\u0440\u0430\u0431\u043E\u0447\u0438\u0439 \u0441\u0442\u043E\u043B\\\u043D\u043E\u0432\u0430\u044F \u043F\u0430\u043F\u043A\u0430\\memories\\memories.server\\interface\\iarear.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{1711E55A-C5B7-4989-BC10-E831F1397F2E}|Memories.Server\\Memories.Server.csproj|c:\\users\\rulan\\onedrive\\\u0440\u0430\u0431\u043E\u0447\u0438\u0439 \u0441\u0442\u043E\u043B\\memories\\memories.server\\interface\\icardr.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{1711E55A-C5B7-4989-BC10-E831F1397F2E}|Memories.Server\\Memories.Server.csproj|solutionrelative:memories.server\\interface\\icardr.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{1711E55A-C5B7-4989-BC10-E831F1397F2E}|Memories.Server\\Memories.Server.csproj|c:\\users\\rulan\\onedrive\\\u0440\u0430\u0431\u043E\u0447\u0438\u0439 \u0441\u0442\u043E\u043B\\memories\\memories.server\\repository\\arear.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{1711E55A-C5B7-4989-BC10-E831F1397F2E}|Memories.Server\\Memories.Server.csproj|solutionrelative:memories.server\\repository\\arear.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{1711E55A-C5B7-4989-BC10-E831F1397F2E}|Memories.Server\\Memories.Server.csproj|c:\\users\\rulan\\onedrive\\\u0440\u0430\u0431\u043E\u0447\u0438\u0439 \u0441\u0442\u043E\u043B\\memories\\memories.server\\repository\\cardr.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{1711E55A-C5B7-4989-BC10-E831F1397F2E}|Memories.Server\\Memories.Server.csproj|solutionrelative:memories.server\\repository\\cardr.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{1711E55A-C5B7-4989-BC10-E831F1397F2E}|Memories.Server\\Memories.Server.csproj|c:\\users\\rulan\\onedrive\\\u0440\u0430\u0431\u043E\u0447\u0438\u0439 \u0441\u0442\u043E\u043B\\memories\\memories.server\\controllers\\cardcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{1711E55A-C5B7-4989-BC10-E831F1397F2E}|Memories.Server\\Memories.Server.csproj|solutionrelative:memories.server\\controllers\\cardcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{1711E55A-C5B7-4989-BC10-E831F1397F2E}|Memories.Server\\Memories.Server.csproj|c:\\users\\rulan\\onedrive\\\u0440\u0430\u0431\u043E\u0447\u0438\u0439 \u0441\u0442\u043E\u043B\\memories\\memories.server\\entities\\nodb\\cardmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{1711E55A-C5B7-4989-BC10-E831F1397F2E}|Memories.Server\\Memories.Server.csproj|solutionrelative:memories.server\\entities\\nodb\\cardmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{1711E55A-C5B7-4989-BC10-E831F1397F2E}|Memories.Server\\Memories.Server.csproj|c:\\users\\rulan\\onedrive\\\u0440\u0430\u0431\u043E\u0447\u0438\u0439 \u0441\u0442\u043E\u043B\\memories\\memories.server\\controllers\\scienceareacontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{1711E55A-C5B7-4989-BC10-E831F1397F2E}|Memories.Server\\Memories.Server.csproj|solutionrelative:memories.server\\controllers\\scienceareacontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{1711E55A-C5B7-4989-BC10-E831F1397F2E}|Memories.Server\\Memories.Server.csproj|c:\\users\\rulan\\onedrive\\\u0440\u0430\u0431\u043E\u0447\u0438\u0439 \u0441\u0442\u043E\u043B\\memories\\memories.server\\entities\\card.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{1711E55A-C5B7-4989-BC10-E831F1397F2E}|Memories.Server\\Memories.Server.csproj|solutionrelative:memories.server\\entities\\card.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{1711E55A-C5B7-4989-BC10-E831F1397F2E}|Memories.Server\\Memories.Server.csproj|c:\\users\\rulan\\onedrive\\\u0440\u0430\u0431\u043E\u0447\u0438\u0439 \u0441\u0442\u043E\u043B\\memories\\memories.server\\entities\\nodb\\areamodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{1711E55A-C5B7-4989-BC10-E831F1397F2E}|Memories.Server\\Memories.Server.csproj|solutionrelative:memories.server\\entities\\nodb\\areamodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\rulan\\OneDrive\\\u0420\u0430\u0431\u043E\u0447\u0438\u0439 \u0441\u0442\u043E\u043B\\\u041D\u043E\u0432\u0430\u044F \u043F\u0430\u043F\u043A\u0430\\Memories\\Memories.Server\\ModelBD\\conMemories.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{1711E55A-C5B7-4989-BC10-E831F1397F2E}|Memories.Server\\Memories.Server.csproj|c:\\users\\rulan\\onedrive\\\u0440\u0430\u0431\u043E\u0447\u0438\u0439 \u0441\u0442\u043E\u043B\\memories\\memories.server\\interface\\iarear.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{1711E55A-C5B7-4989-BC10-E831F1397F2E}|Memories.Server\\Memories.Server.csproj|solutionrelative:memories.server\\interface\\iarear.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
@@ -58,15 +57,15 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 0,
+          "SelectedChildIndex": 10,
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 2,
               "Title": "ICardR.cs",
-              "DocumentMoniker": "C:\\Users\\rulan\\OneDrive\\\u0420\u0430\u0431\u043E\u0447\u0438\u0439 \u0441\u0442\u043E\u043B\\\u041D\u043E\u0432\u0430\u044F \u043F\u0430\u043F\u043A\u0430\\Memories\\Memories.Server\\Interface\\ICardR.cs",
+              "DocumentMoniker": "C:\\Users\\rulan\\OneDrive\\\u0420\u0430\u0431\u043E\u0447\u0438\u0439 \u0441\u0442\u043E\u043B\\Memories\\Memories.Server\\Interface\\ICardR.cs",
               "RelativeDocumentMoniker": "Memories.Server\\Interface\\ICardR.cs",
-              "ToolTip": "C:\\Users\\rulan\\OneDrive\\\u0420\u0430\u0431\u043E\u0447\u0438\u0439 \u0441\u0442\u043E\u043B\\\u041D\u043E\u0432\u0430\u044F \u043F\u0430\u043F\u043A\u0430\\Memories\\Memories.Server\\Interface\\ICardR.cs",
+              "ToolTip": "C:\\Users\\rulan\\OneDrive\\\u0420\u0430\u0431\u043E\u0447\u0438\u0439 \u0441\u0442\u043E\u043B\\Memories\\Memories.Server\\Interface\\ICardR.cs",
               "RelativeToolTip": "Memories.Server\\Interface\\ICardR.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAABAAAAA3AAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
@@ -75,146 +74,137 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 5,
               "Title": "CardController.cs",
-              "DocumentMoniker": "C:\\Users\\rulan\\OneDrive\\\u0420\u0430\u0431\u043E\u0447\u0438\u0439 \u0441\u0442\u043E\u043B\\\u041D\u043E\u0432\u0430\u044F \u043F\u0430\u043F\u043A\u0430\\Memories\\Memories.Server\\Controllers\\CardController.cs",
+              "DocumentMoniker": "C:\\Users\\rulan\\OneDrive\\\u0420\u0430\u0431\u043E\u0447\u0438\u0439 \u0441\u0442\u043E\u043B\\Memories\\Memories.Server\\Controllers\\CardController.cs",
               "RelativeDocumentMoniker": "Memories.Server\\Controllers\\CardController.cs",
-              "ToolTip": "C:\\Users\\rulan\\OneDrive\\\u0420\u0430\u0431\u043E\u0447\u0438\u0439 \u0441\u0442\u043E\u043B\\\u041D\u043E\u0432\u0430\u044F \u043F\u0430\u043F\u043A\u0430\\Memories\\Memories.Server\\Controllers\\CardController.cs",
+              "ToolTip": "C:\\Users\\rulan\\OneDrive\\\u0420\u0430\u0431\u043E\u0447\u0438\u0439 \u0441\u0442\u043E\u043B\\Memories\\Memories.Server\\Controllers\\CardController.cs",
               "RelativeToolTip": "Memories.Server\\Controllers\\CardController.cs",
               "ViewState": "AgIAAAkAAAAAAAAAAAAAwC0AAAAkAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-05-03T17:10:09.376Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "CardR.cs",
-              "DocumentMoniker": "C:\\Users\\rulan\\OneDrive\\\u0420\u0430\u0431\u043E\u0447\u0438\u0439 \u0441\u0442\u043E\u043B\\\u041D\u043E\u0432\u0430\u044F \u043F\u0430\u043F\u043A\u0430\\Memories\\Memories.Server\\Repository\\CardR.cs",
-              "RelativeDocumentMoniker": "Memories.Server\\Repository\\CardR.cs",
-              "ToolTip": "C:\\Users\\rulan\\OneDrive\\\u0420\u0430\u0431\u043E\u0447\u0438\u0439 \u0441\u0442\u043E\u043B\\\u041D\u043E\u0432\u0430\u044F \u043F\u0430\u043F\u043A\u0430\\Memories\\Memories.Server\\Repository\\CardR.cs",
-              "RelativeToolTip": "Memories.Server\\Repository\\CardR.cs",
-              "ViewState": "AgIAAEoAAAAA/P////8ewFgAAAAMAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-05-03T17:09:45.152Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-05-03T17:10:09.376Z"
             },
             {
               "$type": "Document",
               "DocumentIndex": 4,
-              "Title": "CardModel.cs",
-              "DocumentMoniker": "C:\\Users\\rulan\\OneDrive\\\u0420\u0430\u0431\u043E\u0447\u0438\u0439 \u0441\u0442\u043E\u043B\\\u041D\u043E\u0432\u0430\u044F \u043F\u0430\u043F\u043A\u0430\\Memories\\Memories.Server\\Entities\\NoDb\\CardModel.cs",
-              "RelativeDocumentMoniker": "Memories.Server\\Entities\\NoDb\\CardModel.cs",
-              "ToolTip": "C:\\Users\\rulan\\OneDrive\\\u0420\u0430\u0431\u043E\u0447\u0438\u0439 \u0441\u0442\u043E\u043B\\\u041D\u043E\u0432\u0430\u044F \u043F\u0430\u043F\u043A\u0430\\Memories\\Memories.Server\\Entities\\NoDb\\CardModel.cs",
-              "RelativeToolTip": "Memories.Server\\Entities\\NoDb\\CardModel.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAqwAYAAAAAAAAAAAAAAA==",
+              "Title": "CardR.cs",
+              "DocumentMoniker": "C:\\Users\\rulan\\OneDrive\\\u0420\u0430\u0431\u043E\u0447\u0438\u0439 \u0441\u0442\u043E\u043B\\Memories\\Memories.Server\\Repository\\CardR.cs",
+              "RelativeDocumentMoniker": "Memories.Server\\Repository\\CardR.cs",
+              "ToolTip": "C:\\Users\\rulan\\OneDrive\\\u0420\u0430\u0431\u043E\u0447\u0438\u0439 \u0441\u0442\u043E\u043B\\Memories\\Memories.Server\\Repository\\CardR.cs",
+              "RelativeToolTip": "Memories.Server\\Repository\\CardR.cs",
+              "ViewState": "AgIAAEoAAAAA/P////8ewFgAAAAMAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-05-03T17:07:44.066Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-05-03T17:09:45.152Z"
             },
             {
               "$type": "Document",
               "DocumentIndex": 6,
-              "Title": "Card.cs",
-              "DocumentMoniker": "C:\\Users\\rulan\\OneDrive\\\u0420\u0430\u0431\u043E\u0447\u0438\u0439 \u0441\u0442\u043E\u043B\\\u041D\u043E\u0432\u0430\u044F \u043F\u0430\u043F\u043A\u0430\\Memories\\Memories.Server\\Entities\\Card.cs",
-              "RelativeDocumentMoniker": "Memories.Server\\Entities\\Card.cs",
-              "ToolTip": "C:\\Users\\rulan\\OneDrive\\\u0420\u0430\u0431\u043E\u0447\u0438\u0439 \u0441\u0442\u043E\u043B\\\u041D\u043E\u0432\u0430\u044F \u043F\u0430\u043F\u043A\u0430\\Memories\\Memories.Server\\Entities\\Card.cs",
-              "RelativeToolTip": "Memories.Server\\Entities\\Card.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAqwAcAAAAAAAAAAAAAAA==",
+              "Title": "CardModel.cs",
+              "DocumentMoniker": "C:\\Users\\rulan\\OneDrive\\\u0420\u0430\u0431\u043E\u0447\u0438\u0439 \u0441\u0442\u043E\u043B\\Memories\\Memories.Server\\Entities\\NoDb\\CardModel.cs",
+              "RelativeDocumentMoniker": "Memories.Server\\Entities\\NoDb\\CardModel.cs",
+              "ToolTip": "C:\\Users\\rulan\\OneDrive\\\u0420\u0430\u0431\u043E\u0447\u0438\u0439 \u0441\u0442\u043E\u043B\\Memories\\Memories.Server\\Entities\\NoDb\\CardModel.cs",
+              "RelativeToolTip": "Memories.Server\\Entities\\NoDb\\CardModel.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAqwAYAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-05-03T17:07:14.44Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-05-03T17:07:44.066Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 10,
+              "DocumentIndex": 8,
+              "Title": "Card.cs",
+              "DocumentMoniker": "C:\\Users\\rulan\\OneDrive\\\u0420\u0430\u0431\u043E\u0447\u0438\u0439 \u0441\u0442\u043E\u043B\\Memories\\Memories.Server\\Entities\\Card.cs",
+              "RelativeDocumentMoniker": "Memories.Server\\Entities\\Card.cs",
+              "ToolTip": "C:\\Users\\rulan\\OneDrive\\\u0420\u0430\u0431\u043E\u0447\u0438\u0439 \u0441\u0442\u043E\u043B\\Memories\\Memories.Server\\Entities\\Card.cs",
+              "RelativeToolTip": "Memories.Server\\Entities\\Card.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAqwAcAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-05-03T17:07:14.44Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
               "Title": "Area.cs",
-              "DocumentMoniker": "C:\\Users\\rulan\\OneDrive\\\u0420\u0430\u0431\u043E\u0447\u0438\u0439 \u0441\u0442\u043E\u043B\\\u041D\u043E\u0432\u0430\u044F \u043F\u0430\u043F\u043A\u0430\\Memories\\Memories.Server\\Entities\\Area.cs",
+              "DocumentMoniker": "C:\\Users\\rulan\\OneDrive\\\u0420\u0430\u0431\u043E\u0447\u0438\u0439 \u0441\u0442\u043E\u043B\\Memories\\Memories.Server\\Entities\\Area.cs",
               "RelativeDocumentMoniker": "Memories.Server\\Entities\\Area.cs",
-              "ToolTip": "C:\\Users\\rulan\\OneDrive\\\u0420\u0430\u0431\u043E\u0447\u0438\u0439 \u0441\u0442\u043E\u043B\\\u041D\u043E\u0432\u0430\u044F \u043F\u0430\u043F\u043A\u0430\\Memories\\Memories.Server\\Entities\\Area.cs",
+              "ToolTip": "C:\\Users\\rulan\\OneDrive\\\u0420\u0430\u0431\u043E\u0447\u0438\u0439 \u0441\u0442\u043E\u043B\\Memories\\Memories.Server\\Entities\\Area.cs",
               "RelativeToolTip": "Memories.Server\\Entities\\Area.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAMAAAAiAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABEAAAAbAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-05-03T16:11:12.022Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 8,
+              "DocumentIndex": 10,
               "Title": "conMemories.cs",
               "DocumentMoniker": "C:\\Users\\rulan\\OneDrive\\\u0420\u0430\u0431\u043E\u0447\u0438\u0439 \u0441\u0442\u043E\u043B\\\u041D\u043E\u0432\u0430\u044F \u043F\u0430\u043F\u043A\u0430\\Memories\\Memories.Server\\ModelBD\\conMemories.cs",
-              "RelativeDocumentMoniker": "Memories.Server\\ModelBD\\conMemories.cs",
+              "RelativeDocumentMoniker": "..\\\u041D\u043E\u0432\u0430\u044F \u043F\u0430\u043F\u043A\u0430\\Memories\\Memories.Server\\ModelBD\\conMemories.cs",
               "ToolTip": "C:\\Users\\rulan\\OneDrive\\\u0420\u0430\u0431\u043E\u0447\u0438\u0439 \u0441\u0442\u043E\u043B\\\u041D\u043E\u0432\u0430\u044F \u043F\u0430\u043F\u043A\u0430\\Memories\\Memories.Server\\ModelBD\\conMemories.cs",
-              "RelativeToolTip": "Memories.Server\\ModelBD\\conMemories.cs",
+              "RelativeToolTip": "..\\\u041D\u043E\u0432\u0430\u044F \u043F\u0430\u043F\u043A\u0430\\Memories\\Memories.Server\\ModelBD\\conMemories.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAABoAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-05-03T16:03:11.171Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-05-03T16:03:11.171Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 7,
+              "DocumentIndex": 9,
               "Title": "AreaModel.cs",
-              "DocumentMoniker": "C:\\Users\\rulan\\OneDrive\\\u0420\u0430\u0431\u043E\u0447\u0438\u0439 \u0441\u0442\u043E\u043B\\\u041D\u043E\u0432\u0430\u044F \u043F\u0430\u043F\u043A\u0430\\Memories\\Memories.Server\\Entities\\NoDb\\AreaModel.cs",
+              "DocumentMoniker": "C:\\Users\\rulan\\OneDrive\\\u0420\u0430\u0431\u043E\u0447\u0438\u0439 \u0441\u0442\u043E\u043B\\Memories\\Memories.Server\\Entities\\NoDb\\AreaModel.cs",
               "RelativeDocumentMoniker": "Memories.Server\\Entities\\NoDb\\AreaModel.cs",
-              "ToolTip": "C:\\Users\\rulan\\OneDrive\\\u0420\u0430\u0431\u043E\u0447\u0438\u0439 \u0441\u0442\u043E\u043B\\\u041D\u043E\u0432\u0430\u044F \u043F\u0430\u043F\u043A\u0430\\Memories\\Memories.Server\\Entities\\NoDb\\AreaModel.cs",
+              "ToolTip": "C:\\Users\\rulan\\OneDrive\\\u0420\u0430\u0431\u043E\u0447\u0438\u0439 \u0441\u0442\u043E\u043B\\Memories\\Memories.Server\\Entities\\NoDb\\AreaModel.cs",
               "RelativeToolTip": "Memories.Server\\Entities\\NoDb\\AreaModel.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAqwAQAAAAsAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-05-03T15:13:19.134Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-05-03T15:13:19.134Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 3,
               "Title": "AreaR.cs",
-              "DocumentMoniker": "C:\\Users\\rulan\\OneDrive\\\u0420\u0430\u0431\u043E\u0447\u0438\u0439 \u0441\u0442\u043E\u043B\\\u041D\u043E\u0432\u0430\u044F \u043F\u0430\u043F\u043A\u0430\\Memories\\Memories.Server\\Repository\\AreaR.cs",
+              "DocumentMoniker": "C:\\Users\\rulan\\OneDrive\\\u0420\u0430\u0431\u043E\u0447\u0438\u0439 \u0441\u0442\u043E\u043B\\Memories\\Memories.Server\\Repository\\AreaR.cs",
               "RelativeDocumentMoniker": "Memories.Server\\Repository\\AreaR.cs",
-              "ToolTip": "C:\\Users\\rulan\\OneDrive\\\u0420\u0430\u0431\u043E\u0447\u0438\u0439 \u0441\u0442\u043E\u043B\\\u041D\u043E\u0432\u0430\u044F \u043F\u0430\u043F\u043A\u0430\\Memories\\Memories.Server\\Repository\\AreaR.cs",
+              "ToolTip": "C:\\Users\\rulan\\OneDrive\\\u0420\u0430\u0431\u043E\u0447\u0438\u0439 \u0441\u0442\u043E\u043B\\Memories\\Memories.Server\\Repository\\AreaR.cs",
               "RelativeToolTip": "Memories.Server\\Repository\\AreaR.cs",
               "ViewState": "AgIAADUAAAAAoJmZmZn7v3cAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-05-03T14:37:39.202Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-05-03T14:37:39.202Z"
             },
             {
               "$type": "Document",
               "DocumentIndex": 11,
               "Title": "IAreaR.cs",
-              "DocumentMoniker": "C:\\Users\\rulan\\OneDrive\\\u0420\u0430\u0431\u043E\u0447\u0438\u0439 \u0441\u0442\u043E\u043B\\\u041D\u043E\u0432\u0430\u044F \u043F\u0430\u043F\u043A\u0430\\Memories\\Memories.Server\\Interface\\IAreaR.cs",
+              "DocumentMoniker": "C:\\Users\\rulan\\OneDrive\\\u0420\u0430\u0431\u043E\u0447\u0438\u0439 \u0441\u0442\u043E\u043B\\Memories\\Memories.Server\\Interface\\IAreaR.cs",
               "RelativeDocumentMoniker": "Memories.Server\\Interface\\IAreaR.cs",
-              "ToolTip": "C:\\Users\\rulan\\OneDrive\\\u0420\u0430\u0431\u043E\u0447\u0438\u0439 \u0441\u0442\u043E\u043B\\\u041D\u043E\u0432\u0430\u044F \u043F\u0430\u043F\u043A\u0430\\Memories\\Memories.Server\\Interface\\IAreaR.cs",
+              "ToolTip": "C:\\Users\\rulan\\OneDrive\\\u0420\u0430\u0431\u043E\u0447\u0438\u0439 \u0441\u0442\u043E\u043B\\Memories\\Memories.Server\\Interface\\IAreaR.cs",
               "RelativeToolTip": "Memories.Server\\Interface\\IAreaR.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAqwBAAAAA/AAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-05-03T14:37:27.45Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-05-03T14:37:27.45Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 9,
+              "DocumentIndex": 0,
               "Title": "AuthenticateR.cs",
-              "DocumentMoniker": "C:\\Users\\rulan\\OneDrive\\\u0420\u0430\u0431\u043E\u0447\u0438\u0439 \u0441\u0442\u043E\u043B\\\u041D\u043E\u0432\u0430\u044F \u043F\u0430\u043F\u043A\u0430\\Memories\\Memories.Server\\Repository\\AuthenticateR.cs",
+              "DocumentMoniker": "C:\\Users\\rulan\\OneDrive\\\u0420\u0430\u0431\u043E\u0447\u0438\u0439 \u0441\u0442\u043E\u043B\\Memories\\Memories.Server\\Repository\\AuthenticateR.cs",
               "RelativeDocumentMoniker": "Memories.Server\\Repository\\AuthenticateR.cs",
-              "ToolTip": "C:\\Users\\rulan\\OneDrive\\\u0420\u0430\u0431\u043E\u0447\u0438\u0439 \u0441\u0442\u043E\u043B\\\u041D\u043E\u0432\u0430\u044F \u043F\u0430\u043F\u043A\u0430\\Memories\\Memories.Server\\Repository\\AuthenticateR.cs",
+              "ToolTip": "C:\\Users\\rulan\\OneDrive\\\u0420\u0430\u0431\u043E\u0447\u0438\u0439 \u0441\u0442\u043E\u043B\\Memories\\Memories.Server\\Repository\\AuthenticateR.cs",
               "RelativeToolTip": "Memories.Server\\Repository\\AuthenticateR.cs",
-              "ViewState": "AgIAAB4AAAAAAAAAAAAMwAAAAAAAAAAAAAAAAA==",
+              "ViewState": "AgIAAAgAAAAAAAAAAAApwBIAAAAFAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-05-03T14:32:36.805Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 5,
+              "DocumentIndex": 7,
               "Title": "ScienceAreaController.cs",
-              "DocumentMoniker": "C:\\Users\\rulan\\OneDrive\\\u0420\u0430\u0431\u043E\u0447\u0438\u0439 \u0441\u0442\u043E\u043B\\\u041D\u043E\u0432\u0430\u044F \u043F\u0430\u043F\u043A\u0430\\Memories\\Memories.Server\\Controllers\\ScienceAreaController.cs",
+              "DocumentMoniker": "C:\\Users\\rulan\\OneDrive\\\u0420\u0430\u0431\u043E\u0447\u0438\u0439 \u0441\u0442\u043E\u043B\\Memories\\Memories.Server\\Controllers\\ScienceAreaController.cs",
               "RelativeDocumentMoniker": "Memories.Server\\Controllers\\ScienceAreaController.cs",
-              "ToolTip": "C:\\Users\\rulan\\OneDrive\\\u0420\u0430\u0431\u043E\u0447\u0438\u0439 \u0441\u0442\u043E\u043B\\\u041D\u043E\u0432\u0430\u044F \u043F\u0430\u043F\u043A\u0430\\Memories\\Memories.Server\\Controllers\\ScienceAreaController.cs",
+              "ToolTip": "C:\\Users\\rulan\\OneDrive\\\u0420\u0430\u0431\u043E\u0447\u0438\u0439 \u0441\u0442\u043E\u043B\\Memories\\Memories.Server\\Controllers\\ScienceAreaController.cs",
               "RelativeToolTip": "Memories.Server\\Controllers\\ScienceAreaController.cs",
               "ViewState": "AgIAABUAAADAmZmZmRktwDIAAAAyAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-05-03T14:22:31.113Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-05-03T14:22:31.113Z"
             }
           ]
         }
