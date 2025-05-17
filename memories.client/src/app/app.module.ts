@@ -30,6 +30,7 @@ import { AreaComponent } from './Pages/area/area.component';
 import {AreaEditComponent} from './Pages/area/area-edit/area-edit.component';
 import {CardsComponent} from './Pages/cards/cards.component';
 import { CardEditComponent } from './Pages/cards/card-edit/card-edit.component';
+import { LessonComponent } from './Pages/lesson/lesson.component';
 
 
 @NgModule({
@@ -49,7 +50,8 @@ import { CardEditComponent } from './Pages/cards/card-edit/card-edit.component';
     AreaComponent,
     AreaEditComponent,
     CardsComponent,
-    CardEditComponent
+    CardEditComponent,
+    LessonComponent
   ],
   imports: [
     BrowserModule, HttpClientModule,

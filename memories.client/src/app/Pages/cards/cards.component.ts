@@ -20,7 +20,7 @@ export class CardsComponent implements OnInit {
   readonly dialog = inject(MatDialog)
   search:string = '';
 
-  displayedColumns: string[] = ['title','content', 'img', 'pole1', 'pole2'];
+  displayedColumns: string[] = ['title','content', 'img', 'pole1', 'pole2','pole3', 'pole4'];
   dataSource = new MatTableDataSource<User>([]);
   length = 50;
   pageSize = 10;
@@ -71,6 +71,10 @@ export class CardsComponent implements OnInit {
 
   open(item: any){
     this.router.navigate([`/_cards/${ this.areaId }/${item.id} `])//), { queryParams: { areaId: item.id, id: null } });
+  }
+
+  test(Card: any, isGlobal: any){
+    this.router.navigate([`/_lesson/${Card.id}/${isGlobal} `])//), { queryParams: { areaId: item.id, id: null } });
   }
   clickRow(row: any){
     const dialogRef = this.dialog.open(CardEditComponent, {

@@ -11,7 +11,8 @@ const PROXY_CONFIG = [
       "/authenticate",
       "/user",
       "/scienceArea",
-      "/card"
+      "/card",
+      "/lesson"
     ],
     target,
     secure: false,

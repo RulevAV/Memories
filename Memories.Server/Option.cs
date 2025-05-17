@@ -11,6 +11,7 @@ namespace Memories.Server
             services.AddScoped<IUserR, UserR>();
             services.AddScoped<IAreaR, AreaR>();
             services.AddScoped<ICardR, CardR>();
+            services.AddScoped<ILessonR, LessonR>();
         }
     }
 }

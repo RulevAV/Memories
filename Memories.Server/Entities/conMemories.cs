@@ -21,6 +21,10 @@ public partial class conMemories : DbContext
 
     public virtual DbSet<Card> Cards { get; set; }
 
+    public virtual DbSet<CardIgnore> CardIgnores { get; set; }
+
+    public virtual DbSet<Lesson> Lessons { get; set; }
+
     public virtual DbSet<Role> Roles { get; set; }
 
     public virtual DbSet<User> Users { get; set; }
@@ -62,6 +66,7 @@ public partial class conMemories : DbContext
             entity.ToTable("area");
 
             entity.Property(e => e.Id).ValueGeneratedNever();
+            entity.Property(e => e.MimeType).HasMaxLength(20);
             entity.Property(e => e.Name).HasMaxLength(100);
             entity.Property(e => e.Number).ValueGeneratedOnAdd();
         });
@@ -73,6 +78,7 @@ public partial class conMemories : DbContext
             entity.ToTable("card");
 
             entity.Property(e => e.Id).ValueGeneratedNever();
+            entity.Property(e => e.MimeType).HasMaxLength(20);
             entity.Property(e => e.Number).ValueGeneratedOnAdd();
             entity.Property(e => e.Title).HasMaxLength(1000);
 
@@ -80,6 +86,28 @@ public partial class conMemories : DbContext
                 .HasForeignKey(d => d.IdArea)
                 .OnDelete(DeleteBehavior.ClientSetNull)
                 .HasConstraintName("post_fk");
+        });
+
+        modelBuilder.Entity<CardIgnore>(entity =>
+        {
+            entity
+                .HasNoKey()
+                .ToTable("cardIgnore");
+
+            entity.Property(e => e.IdCard).HasColumnName("idCard");
+            entity.Property(e => e.IdLesson).HasColumnName("idLesson");
+        });
+
+        modelBuilder.Entity<Lesson>(entity =>
+        {
+            entity.HasKey(e => new { e.Id, e.Idcardstart, e.Iduser }).HasName("lesson_pk");
+
+            entity.ToTable("lesson");
+
+            entity.Property(e => e.Id).HasColumnName("id");
+            entity.Property(e => e.Idcardstart).HasColumnName("idcardstart");
+            entity.Property(e => e.Iduser).HasColumnName("iduser");
+            entity.Property(e => e.Isglobal).HasColumnName("isglobal");
         });
 
         modelBuilder.Entity<Role>(entity =>
