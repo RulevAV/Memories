@@ -31,27 +31,31 @@ namespace Memories.Server.Services
             // Построение запроса
             var request = _context.Cards.AsQueryable();
 
-            // Фильтрация по IdUser
+// Фильтрация по IdUser
             request = request.Where(u => u.IdArea == areaId && u.IdParent == IdParent);
 
-            // Фильтрация по имени, если оно указано
+// Фильтрация по имени, если оно указано
             if (!string.IsNullOrEmpty(search))
             {
                 request = request.Where(u => EF.Functions.ILike(u.Title, $"{search}%") || EF.Functions.ILike(u.Content, $"{search}%"));
             }
 
-            // Выполните запрос и получите элементы
-            var elements = await request.Skip(page * pageSize)
-                                         .Take(pageSize)
-                                         .ToListAsync();
+// Обязательно добавляем сортировку перед пропуском и выборкой
+            request = request.OrderByDescending(u => u.Number);
 
+// Получение элементов с пагинацией
+            var elements = await request
+                .Skip(page * pageSize)
+                .Take(pageSize)
+                .ToListAsync();
+
+// Подсчёт общего количества элементов
+            var totalCount = await request.CountAsync();
 
             return new PaginatorEntity<Card>()
             {
-                Elements = await request.Skip(page * pageSize).OrderByDescending(u=>u.Number)
-                .Take(pageSize)
-                .ToListAsync(),
-                TotalCount = await request.CountAsync()
+                Elements = elements,
+                TotalCount = totalCount
             };
         }
 

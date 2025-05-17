@@ -3613,31 +3613,25 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\rulan\\.nuget\\packages\\": {},
-    "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {}
+    "/Users/andreyrulev/.nuget/packages/": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\rulan\\OneDrive\\Рабочий стол\\Memories\\Memories.Server\\Memories.Server.csproj",
+      "projectUniqueName": "/Users/andreyrulev/Desktop/Memories/Memories.Server/Memories.Server.csproj",
       "projectName": "Memories.Server",
-      "projectPath": "C:\\Users\\rulan\\OneDrive\\Рабочий стол\\Memories\\Memories.Server\\Memories.Server.csproj",
-      "packagesPath": "C:\\Users\\rulan\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\rulan\\OneDrive\\Рабочий стол\\Memories\\Memories.Server\\obj\\",
+      "projectPath": "/Users/andreyrulev/Desktop/Memories/Memories.Server/Memories.Server.csproj",
+      "packagesPath": "/Users/andreyrulev/.nuget/packages/",
+      "outputPath": "/Users/andreyrulev/Desktop/Memories/Memories.Server/obj/",
       "projectStyle": "PackageReference",
-      "fallbackFolders": [
-        "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
-      ],
       "configFilePaths": [
-        "C:\\Users\\rulan\\AppData\\Roaming\\NuGet\\NuGet.Config",
-        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
-        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        "/Users/andreyrulev/.nuget/NuGet/NuGet.Config"
       ],
       "originalTargetFrameworks": [
         "net9.0"
       ],
       "sources": {
-        "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+        "/opt/homebrew/Cellar/dotnet/9.0.4/libexec/library-packs": {},
         "https://api.nuget.org/v3/index.json": {}
       },
       "frameworks": {
@@ -3656,7 +3650,7 @@
         "auditLevel": "low",
         "auditMode": "direct"
       },
-      "SdkAnalysisLevel": "9.0.200"
+      "SdkAnalysisLevel": "9.0.100"
     },
     "frameworks": {
       "net9.0": {
@@ -3730,7 +3724,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.203/PortableRuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "/opt/homebrew/Cellar/dotnet/9.0.4/libexec/sdk/9.0.105/PortableRuntimeIdentifierGraph.json"
       }
     }
   }
