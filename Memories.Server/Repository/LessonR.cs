@@ -15,6 +15,7 @@ using System.Security.Claims;
 using System.Security.Cryptography;
 using System.Text;
 using System.Xml.Linq;
+using Memories.Server.Entities.NoDb;
 using static Microsoft.EntityFrameworkCore.DbLoggerCategory;
 
 namespace Memories.Server.Services
@@ -29,16 +30,17 @@ namespace Memories.Server.Services
         }
         public async Task<int> SetIgnore(Guid IdLesson, Guid IdCard)
         {
-           await _context.CardIgnores.AddAsync(new CardIgnore()
+            await _context.CardIgnores.AddAsync(new CardIgnore()
             {
                 IdCard = IdCard,
                 IdLesson = IdLesson
             });
             _context.SaveChanges();
+
             return 1;
         }
 
-        public async Task<Card> GetCard(Guid idCard, Guid idUser, bool isGlobal)
+        public async Task<LessonCard> GetCard(Guid idCard, Guid idUser, bool isGlobal)
         {
             var lesson = _context.Lessons.Where(x => x.Idcardstart == idCard 
                                                      && x.Iduser == idUser
@@ -47,6 +49,7 @@ namespace Memories.Server.Services
             {
                 lesson = new Lesson()
                 {
+                    Id = Guid.NewGuid(),
                     Idcardstart = idCard,
                     Iduser = idUser,
                     Isglobal = isGlobal
@@ -55,20 +58,45 @@ namespace Memories.Server.Services
                 await _context.SaveChangesAsync();
             }
 
-            var sqlCard = $@"         
+            string sqlCard = $@"
+                select * from card c
+                where ""IdParent"" = '{idCard}'
+                and ""Id"" NOT IN (
+    SELECT ""idCard""
+    FROM ""cardIgnore""
+    WHERE ""idLesson"" = '{lesson.Id}'
+)
+";
+            if (lesson.Isglobal == true)
+            {
+                sqlCard = $@"         
 with ids as (         
-SELECT * FROM public.generate_uuid_list('29eeafc3-f401-48bc-a5e2-08d97c0a997b')
+SELECT * FROM public.generate_uuid_list('{idCard}')
 WHERE uuid NOT IN (
     SELECT ""idCard""
     FROM ""cardIgnore""
-    WHERE ""idLesson"" = 'fed58848-ea2e-49d3-99f6-68e9f59a2c69'
+    WHERE ""idLesson"" = '{lesson.Id}'
 )
 )
 select * from ids s
 left join card c on c.""Id"" = s.uuid
 ";
-            var card = await _context.Cards.FromSqlRaw(sqlCard).FirstAsync();
-            return card;
+            }
+            var count = await _context.Cards.FromSqlRaw(sqlCard).CountAsync();
+            sqlCard += $@"
+ORDER BY RANDOM() 
+LIMIT 1
+";
+            var card = await _context.Cards.FromSqlRaw(sqlCard).FirstOrDefaultAsync();
+            return new LessonCard { Lesson = lesson, Card = card,  Count = count };
         }
-     }
+
+        public async Task<int> Clear(Guid idLesson)
+        {
+            var delete =  await _context.CardIgnores.Where(x => x.IdLesson == idLesson).ToListAsync();
+            _context.CardIgnores.RemoveRange(delete);
+            _context.SaveChanges();
+            return 1;
+        }
+    }
 }

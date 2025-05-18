@@ -10,6 +10,7 @@ using System;
 using System.Data;
 using System.Security.Principal;
 using System.Xml.Linq;
+using Memories.Server.Entities.NoDb;
 
 namespace Memories.Server.Controllers
 {
@@ -28,7 +29,7 @@ namespace Memories.Server.Controllers
 
         [HttpGet("[action]")]
         [Authorize]
-        public async Task<Card> GetCard(Guid idCard, bool isGlobal)
+        public async Task<LessonCard> GetCard(Guid idCard, bool isGlobal)
         {
             string userI2d = User.Claims.FirstOrDefault(c => c.Type == "Id")?.Value;
             var userId = User.FindFirst("Id").Value;
@@ -37,9 +38,16 @@ namespace Memories.Server.Controllers
 
         [HttpPost("[action]")]
         [Authorize]
-        public async Task<int> SetIgnore(Guid idLesson, Guid idCard)
+        public async Task<int> SetIgnore([FromQuery] Guid idCard, [FromQuery] Guid idLesson)
         {
             return await _lessonR.SetIgnore(idLesson, idCard);
+        }
+        
+        [HttpPost("[action]")]
+        [Authorize]
+        public async Task<int> Clear([FromQuery] Guid idLesson)
+        {
+            return await _lessonR.Clear(idLesson);
         }
     }
 }

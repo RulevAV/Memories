@@ -1,3 +1,26 @@
-{{cardId}}
-{{isGlobal}}
-<p>lesson works!</p>
+<div> <button type="button" class="btn btn-primary" [disabled]="isLoaded" (click)="next()">Дальше</button>
+    <button type="button" class="btn btn-primary" [disabled]="isLoaded" (click)="inList()">В список</button>
+    <button type="button" class="btn btn-primary" [disabled]="isLoaded" (click)="clearTest()">Сбросить тест</button>
+</div>
+<div *ngIf="isLoaded === true; else cardUndefined" class="h-100 d-flex justify-content-center align-items-center">
+    <mat-spinner></mat-spinner>
+  </div>
+<ng-template #cardUndefined >
+  <h1>Осталост - {{count}}</h1>
+    <div *ngIf="card === null; else cardNull" class="h-100 d-flex justify-content-center align-items-center">
+    Тест закончен  
+    </div>
+    <ng-template #cardNull >
+        <h1>{{card?.title}}</h1>
+        <div>{{card?.content}}</div>
+        <div> 
+          <img class="img-thumbnail img"  *ngIf="card?.img; else imgStr" [src]="'data:' + card?.mimeType + ';base64,' + card?.img" alt="Uploaded Image" />
+        <ng-template #imgStr >
+          <img class="img-thumbnail img"  src="logo.svg">
+        </ng-template>       
+        </div>
+    </ng-template>  
+    
+</ng-template>  
+
+

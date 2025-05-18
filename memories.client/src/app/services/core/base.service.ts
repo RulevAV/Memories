@@ -32,13 +32,13 @@ export class BaseService<T> {
           return throwError(err);
         }));
   }
-  protected Post<A>(url: string, body: T) {
+  protected Post<A>(url: string, body: T, params?:  HttpParams) {
     const headers = {
       'Authorization': `Bearer ${localStorage.getItem('accessToken')}`,
       'content-type': 'application/json'
     }
 
-    return this.httpClient.post<A>(`${this.controllerName}/${url}`, body, { headers })
+    return this.httpClient.post<A>(`${this.controllerName}/${url}`, body, {params, headers })
       .pipe(
         map(res => {
           return res;
