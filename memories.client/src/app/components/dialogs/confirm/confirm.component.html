@@ -1,0 +1,8 @@
+<h2 mat-dialog-title><span class="fw-bold">{{data.title}}</span></h2>
+<mat-dialog-content>
+{{data.context}}    
+</mat-dialog-content>
+<mat-dialog-actions >
+    <button type="button" (click)="close()" class="btn btn-primary m-2">Отмена</button>
+    <button type="button" (click)="ok()" class="btn btn-primary">Да</button>
+</mat-dialog-actions>

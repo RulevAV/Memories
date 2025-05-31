@@ -15,5 +15,8 @@ namespace Memories.Server.Interface
         public Task<Card> Create(Guid IdUser, CardModel area);
         public Task<PaginatorEntity<Card>> Cards(Guid IdUser, int page, int pageSize, Guid areaId, string? search, Guid? IdParent);
         public Task<Card> Update(Guid UserId, CardModel card);
+        public Task<int> Delete(Guid UserId, Guid idCard);
+        
+        
     }
 }

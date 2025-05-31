@@ -37,7 +37,7 @@ namespace Memories.Server.Services
 // Фильтрация по имени, если оно указано
             if (!string.IsNullOrEmpty(search))
             {
-                request = request.Where(u => EF.Functions.ILike(u.Title, $"{search}%") || EF.Functions.ILike(u.Content, $"{search}%"));
+                request = request.Where(u => EF.Functions.ILike(u.Title, $"%{search}%") || EF.Functions.ILike(u.Content, $"%{search}%"));
             }
 
 // Обязательно добавляем сортировку перед пропуском и выборкой
@@ -109,6 +109,17 @@ namespace Memories.Server.Services
             var item = _context.Cards.Update(card);
             _context.SaveChanges();
             return card;
+        }
+       
+        public async Task<int> Delete(Guid UserId, Guid idCard)
+        {
+            var card = await _context.Cards.Include(u => u.IdAreaNavigation).FirstOrDefaultAsync(u => u.Id == idCard);
+            if (card.IdAreaNavigation.IdUser == UserId)
+            {
+               _context.Cards.Remove(card);
+               return _context.SaveChanges();
+            }
+            return 1;
         }
     }
 }

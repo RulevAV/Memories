@@ -45,5 +45,13 @@ namespace Memories.Server.Controllers
             var userId = User.Claims.First(u => u.Type == "Id").Value;
             return await _cardR.Update(Guid.Parse(userId), item);
         }
+        
+        [HttpDelete("[action]/{Id}")]
+        [Authorize]
+        public async Task<int> Delete([FromRoute] Guid Id)
+        {
+            var userId = User.Claims.First(u => u.Type == "Id").Value;
+            return await _cardR.Delete(Guid.Parse(userId), Id);
+        }
     }
 }
