@@ -45,7 +45,8 @@ export class EditUserComponent {
  async save(){
    let user = this.data.user;
    user.email = this.registerForm.get('mail')?.value || '';
-   user.codeRoles = this.registerForm.get('selectedOptions')?.value || [];
+   const codeRoles = this.registerForm.get('selectedOptions')?.value || [];
+   user.codeRoles = codeRoles.map(r => Role.generate(r));
    this.dialogRef.close(user);
   }
 }

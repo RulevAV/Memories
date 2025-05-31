@@ -1,8 +1,8 @@
 <div class="d-flex justify-content-between">
   <div class="d-flex flex-column justify-content-end">
-    <button (click)="createArea()" class="btn btn-secondary">Создать область2</button>
+    <button (click)="createArea()" class="btn btn-secondary">Создать область</button>
   </div>
-  <div class="d-flex">
+  <div class="d-flex align-items-end z-n1">
     <div>
       <label for="id-login">Наименование:</label>
       <input id="id-login" type="text" [(ngModel)]="name"  (ngModelChange)="updateTable()"  class="form-control" />

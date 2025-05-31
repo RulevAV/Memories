@@ -66,6 +66,11 @@ namespace Memories.Server.Services
     FROM ""cardIgnore""
     WHERE ""idLesson"" = '{lesson.Id}'
 )
+                and ""Id"" NOT IN (
+    SELECT ""idCard""
+    FROM ""userCardIgnore""
+    WHERE ""idUser"" = '{idUser}'
+)
 ";
             if (lesson.Isglobal == true)
             {
@@ -76,6 +81,11 @@ WHERE uuid NOT IN (
     SELECT ""idCard""
     FROM ""cardIgnore""
     WHERE ""idLesson"" = '{lesson.Id}'
+)
+and uuid NOT IN (
+    SELECT ""idCard""
+    FROM ""userCardIgnore""
+    WHERE ""idUser"" = '{idUser}'
 )
 )
 select * from ids s

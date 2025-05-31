@@ -10,6 +10,7 @@ using System;
 using System.Data;
 using System.Security.Principal;
 using System.Xml.Linq;
+using Memories.Server.Entities.NoDb;
 
 namespace Memories.Server.Controllers
 {
@@ -28,7 +29,7 @@ namespace Memories.Server.Controllers
 
         [HttpGet("[action]")]
         [Authorize]
-        public User InfoUser()
+        public SUser InfoUser()
         {
             var userId = User.Claims.First(u => u.Type == "Id").Value;
             return _userR.GetUser(Guid.Parse(userId));
@@ -36,27 +37,27 @@ namespace Memories.Server.Controllers
 
         [HttpGet("[action]")]
         [Authorize]
-        public User GetUser(Guid userId)
+        public SUser GetUser(Guid userId)
         {
             return _userR.GetUser(userId);
         }
         [HttpPost("[action]")]
         [Authorize]
-        public User PostUser()
+        public SUser PostUser()
         {
             var userId = User.Claims.First(u => u.Type == "Id").Value;
             return _userR.GetUser(Guid.Parse(userId));
         }
         [HttpPut("[action]")]
         [Authorize]
-        public User PutUser()
+        public SUser PutUser()
         {
             var userId = User.Claims.First(u => u.Type == "Id").Value;
             return _userR.GetUser(Guid.Parse(userId));
         }
         [HttpDelete("[action]")]
         [Authorize]
-        public User DeleteUser()
+        public SUser DeleteUser()
         {
             var userId = User.Claims.First(u => u.Type == "Id").Value;
             return _userR.GetUser(Guid.Parse(userId));
@@ -64,7 +65,7 @@ namespace Memories.Server.Controllers
 
         [HttpGet("[action]")]
         [Authorize]
-        public async Task<PaginatorEntity<User>> Users(int page, int pageSize, string? login, string? email, int? codeRole)
+        public async Task<PaginatorEntity<SUser>> Users(int page, int pageSize, string? login, string? email, int? codeRole)
         {
             return await _userR.Users(page, pageSize, login, email, codeRole);
         }
@@ -78,9 +79,9 @@ namespace Memories.Server.Controllers
 
         [HttpPost("[action]")]
         [Authorize]
-        public async Task<User> Update(User user)
+        public async Task<SUser> Update(User user)
         {
-            return await _userR.Update(user);
+            return await _userR.Update(user.GenerateSUser());
         }
     }
 }

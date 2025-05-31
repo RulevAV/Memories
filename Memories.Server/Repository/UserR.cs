@@ -15,6 +15,7 @@ using System.Security.Claims;
 using System.Security.Cryptography;
 using System.Text;
 using System.Xml.Linq;
+using Memories.Server.Entities.NoDb;
 using static Microsoft.EntityFrameworkCore.DbLoggerCategory;
 
 namespace Memories.Server.Services
@@ -27,27 +28,27 @@ namespace Memories.Server.Services
         {
             _configuration = configuration;
         }
-        public User GetUser(Guid userId)
+        public SUser GetUser(Guid userId)
         {
-            User user = _context.Users.First(u => u.Id == userId);
+            SUser user = _context.Users.First(u => u.Id == userId).GenerateSUser();
             return user;
         }
-        public User PostUser()
+        public SUser PostUser()
         {
-            var mass = _context.Users.ToList();
+            var mass = _context.Users.Select(u => u.GenerateSUser());
             return mass.First();
         }
-        public User PutUser()
+        public SUser PutUser()
         {
             var mass = _context.Users.ToList();
-            return mass.First();
+            return mass.First().GenerateSUser();
         }
-        public User DeleteUser()
+        public SUser DeleteUser()
         {
             var mass = _context.Users.ToList();
-            return mass.First();
+            return mass.First().GenerateSUser();
         }
-        public async Task<PaginatorEntity<User>> Users(int page, int pageSize, string? login, string? email, int? codeRole)
+        public async Task<PaginatorEntity<SUser>> Users(int page, int pageSize, string? login, string? email, int? codeRole)
         {
             var sql = $@"
 SELECT DISTINCT u.*
@@ -72,10 +73,11 @@ ORDER by u.""Login""
 limit {pageSize} offset {page * pageSize}
 ";
 
-            List<User> users = await _context.Users.FromSqlRaw(sqlRole)
+            List<SUser> users = await _context.Users.FromSqlRaw(sqlRole)
                 .Include(u => u.CodeRoles)  // В зависимости от структуры может не работать
+                .Select(u => u.GenerateSUser())
                 .ToListAsync();
-            return new PaginatorEntity<User>()
+            return new PaginatorEntity<SUser>()
             {
                 Elements = users,
                 TotalCount = totalCount
@@ -89,7 +91,7 @@ limit {pageSize} offset {page * pageSize}
             var roles = await _context.Roles.ToListAsync();
             return roles;
         }
-        public async Task<User> Update(User userModel)
+        public async Task<SUser> Update(SUser userModel)
         {
             var user2 = _context.Users.First(u => u.Email == userModel.Email);
             if (user2.Id != userModel.Id) {

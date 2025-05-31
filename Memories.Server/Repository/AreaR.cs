@@ -3,18 +3,8 @@ using Memories.Server.Entities.NoDb;
 using Memories.Server.Interface;
 using Memories.Server.Model;
 using Memories.Server.Services.Core;
-using Microsoft.AspNetCore.Identity;
-using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.Configuration;
-using Microsoft.IdentityModel.Tokens;
 using Npgsql;
-using System.IdentityModel.Tokens.Jwt;
-using System.Security.Claims;
-using System.Security.Cryptography;
-using System.Text;
-using System.Threading.Tasks;
-using System.Xml.Linq;
 
 namespace Memories.Server.Services
 {
