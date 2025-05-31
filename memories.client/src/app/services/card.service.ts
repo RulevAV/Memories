@@ -81,6 +81,20 @@ export class CardService extends WrapperService<Card> {
     return this.httpClient.delete<string>(`${this.controllerName}/Delete/${id}`, { headers: headers });
   }
 
+  updateIgnoreUserCard(id: string): Observable<string> {
+    const authToken = localStorage.getItem('accessToken'); // Замените 'authToken' на ключ, под которым вы храните токен
+
+    const headers = {
+      'Authorization': `Bearer ${authToken}` // Добавляем заголовок авторизации
+    };
+
+    return this.httpClient.post<string>(`${this.controllerName}/SetIgnoreUserCard/${id}`, null, { headers: headers });
+  }
+
+
+
+
+
   async postCard_W(file: any, IdArea: any, Title: any, Content: any, IdParent: any) {
     const fn = () => this.postCard(file, IdArea, Title, Content, IdParent);
     return await this.wrapper(fn);
@@ -103,6 +117,13 @@ export class CardService extends WrapperService<Card> {
   async delete_W(id: string) {
     const fn = () => {
       return this.delete(id);
+    }
+    return await this.wrapper(fn);
+  }
+
+  async updateIgnoreUserCard_W(id: string) {
+    const fn = () => {
+      return this.updateIgnoreUserCard(id);
     }
     return await this.wrapper(fn);
   }

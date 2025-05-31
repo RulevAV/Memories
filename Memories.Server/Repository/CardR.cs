@@ -26,10 +26,10 @@ namespace Memories.Server.Services
             _configuration = configuration;
         }
 
-        public async Task<PaginatorEntity<Card>> Cards(Guid IdUser, int page, int pageSize, Guid areaId, string? search, Guid? IdParent)
+        public async Task<PaginatorEntity<SCard>> Cards(Guid IdUser, int page, int pageSize, Guid areaId, string? search, Guid? IdParent)
         {
             // Построение запроса
-            var request = _context.Cards.AsQueryable();
+            var request = _context.Cards.Include(u => u.IdUsers).Include(u => u.IdUsers).AsQueryable();
 
 // Фильтрация по IdUser
             request = request.Where(u => u.IdArea == areaId && u.IdParent == IdParent);
@@ -52,9 +52,9 @@ namespace Memories.Server.Services
 // Подсчёт общего количества элементов
             var totalCount = await request.CountAsync();
 
-            return new PaginatorEntity<Card>()
+            return new PaginatorEntity<SCard>()
             {
-                Elements = elements,
+                Elements = elements.Select(u => new SCard(u, IdUser)).ToList(),
                 TotalCount = totalCount
             };
         }
@@ -120,6 +120,25 @@ namespace Memories.Server.Services
                return _context.SaveChanges();
             }
             return 1;
+        }
+
+        public async Task<int> SetIgnoreUserCard(Guid UserId, Guid idCard)
+        {
+            var card = await _context.Cards
+                .Include(c => c.IdUsers) // Загружаем связанные пользовательские объекты
+                .FirstOrDefaultAsync(c => c.Id == idCard);
+
+            var user = card.IdUsers.FirstOrDefault(u => u.Id == UserId);
+            if (user == null)
+            {
+                user = _context.Users.First(u => u.Id == UserId);
+                card.IdUsers.Add(user);
+            }
+            else
+            {
+                card.IdUsers.Remove(user);
+            }
+            return await _context.SaveChangesAsync();
         }
     }
 }

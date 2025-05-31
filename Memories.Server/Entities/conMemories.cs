@@ -29,8 +29,6 @@ public partial class conMemories : DbContext
 
     public virtual DbSet<User> Users { get; set; }
 
-    public virtual DbSet<UserCardIgnore> UserCardIgnores { get; set; }
-
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
 #warning To protect potentially sensitive information in your connection string, you should move it out of source code. You can avoid scaffolding the connection string by using the Name= syntax to read it from configuration - see https://go.microsoft.com/fwlink/?linkid=2131148. For more guidance on storing connection strings, see https://go.microsoft.com/fwlink/?LinkId=723263.
         => optionsBuilder.UseNpgsql("Host=localhost;Port=9991;Database=Memories;Username=Memories;Password=Memories;");
@@ -88,6 +86,25 @@ public partial class conMemories : DbContext
                 .HasForeignKey(d => d.IdArea)
                 .OnDelete(DeleteBehavior.ClientSetNull)
                 .HasConstraintName("post_fk");
+
+            entity.HasMany(d => d.IdUsers).WithMany(p => p.IdCards)
+                .UsingEntity<Dictionary<string, object>>(
+                    "UserCardIgnore",
+                    r => r.HasOne<User>().WithMany()
+                        .HasForeignKey("IdUser")
+                        .OnDelete(DeleteBehavior.ClientSetNull)
+                        .HasConstraintName("usercardignore_users_fk"),
+                    l => l.HasOne<Card>().WithMany()
+                        .HasForeignKey("IdCard")
+                        .OnDelete(DeleteBehavior.ClientSetNull)
+                        .HasConstraintName("usercardignore_card_fk"),
+                    j =>
+                    {
+                        j.HasKey("IdCard", "IdUser").HasName("cardignore_pk_1");
+                        j.ToTable("userCardIgnore");
+                        j.IndexerProperty<Guid>("IdCard").HasColumnName("idCard");
+                        j.IndexerProperty<Guid>("IdUser").HasColumnName("idUser");
+                    });
         });
 
         modelBuilder.Entity<CardIgnore>(entity =>
@@ -128,7 +145,7 @@ public partial class conMemories : DbContext
 
             entity.ToTable("users");
 
-            entity.HasIndex(e => e.Login, "users_Login_key").IsUnique();
+            entity.HasIndex(e => e.Login, "users_unique").IsUnique();
 
             entity.Property(e => e.Id).ValueGeneratedNever();
             entity.Property(e => e.Email).HasMaxLength(20);
@@ -153,16 +170,6 @@ public partial class conMemories : DbContext
                         j.HasKey("IdUser", "CodeRoles").HasName("PK_APPROLE");
                         j.ToTable("userRoles");
                     });
-        });
-
-        modelBuilder.Entity<UserCardIgnore>(entity =>
-        {
-            entity.HasKey(e => new { e.IdCard, e.IdUser }).HasName("cardignore_pk_1");
-
-            entity.ToTable("userCardIgnore");
-
-            entity.Property(e => e.IdCard).HasColumnName("idCard");
-            entity.Property(e => e.IdUser).HasColumnName("idUser");
         });
 
         OnModelCreatingPartial(modelBuilder);

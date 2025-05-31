@@ -22,4 +22,6 @@ public partial class User
     public virtual ICollection<AccessArea> AccessAreaIdOwnerNavigations { get; set; } = new List<AccessArea>();
 
     public virtual ICollection<Role> CodeRoles { get; set; } = new List<Role>();
+
+    public virtual ICollection<Card> IdCards { get; set; } = new List<Card>();
 }

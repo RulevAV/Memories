@@ -1,12 +1,12 @@
-import {AfterViewInit, Component, inject, OnInit} from '@angular/core';
-import {MatDialog} from '@angular/material/dialog';
+import { AfterViewInit, Component, inject, OnInit } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
 import User from '../../../model/user';
-import {MatTableDataSource} from '@angular/material/table';
-import {PageEvent} from '@angular/material/paginator';
-import {AreaEditComponent} from '../area/area-edit/area-edit.component';
-import {CardEditComponent, DialogData} from './card-edit/card-edit.component';
-import {CardService} from '../../services/card.service';
-import {ActivatedRoute, Router} from '@angular/router';
+import { MatTableDataSource } from '@angular/material/table';
+import { PageEvent } from '@angular/material/paginator';
+import { AreaEditComponent } from '../area/area-edit/area-edit.component';
+import { CardEditComponent, DialogData } from './card-edit/card-edit.component';
+import { CardService } from '../../services/card.service';
+import { ActivatedRoute, Router } from '@angular/router';
 import { ConfirmComponent, ConfirmDataType } from '../../components/dialogs/confirm/confirm.component';
 import { Card } from '../../../model/card';
 
@@ -20,14 +20,14 @@ export class CardsComponent implements OnInit {
   cardService: CardService = inject(CardService);
 
   readonly dialog = inject(MatDialog)
-  search:string = '';
+  search: string = '';
 
-  displayedColumns: string[] = ['title','content', 'img', 'pole1', 'pole2','pole3', 'pole4', 'pole5'];
+  displayedColumns: string[] = ['title', 'content', 'img', 'ignoreUserCard', 'pole1', 'pole2', 'pole3', 'pole4', 'pole5'];
   dataSource = new MatTableDataSource<Card>([]);
   length = 50;
   pageSize = 10;
   pageIndex = 0;
-  pageSizeOptions = [ 10, 25];
+  pageSizeOptions = [10, 25];
   isLoading = false;
 
   hidePageSize = false;
@@ -40,7 +40,7 @@ export class CardsComponent implements OnInit {
   constructor(private route: ActivatedRoute, private router: Router) {
   }
   areaId!: string;
-  idParent!: string | undefined| null;
+  idParent!: string | undefined | null;
 
   ngOnInit() {
     this.route.paramMap.subscribe(async params => {
@@ -50,15 +50,15 @@ export class CardsComponent implements OnInit {
     });
   }
 
-  async updateTable(){
+  async updateTable() {
     this.isLoading = true;
-    const data = await this.cardService.cards_W(this.pageIndex ,this.pageSize, this.search, this.areaId, this.idParent);
+    const data = await this.cardService.cards_W(this.pageIndex, this.pageSize, this.search, this.areaId, this.idParent);
     this.dataSource.data = data.elements;
     this.length = data.totalCount;
     this.isLoading = false;
   }
 
-  async  handlePageEvent(e: PageEvent) {
+  async handlePageEvent(e: PageEvent) {
     this.pageEvent = e;
     this.length = e.length;
     this.pageSize = e.pageSize;
@@ -71,14 +71,14 @@ export class CardsComponent implements OnInit {
     await this.updateTable();
   }
 
-  open(item: any){
-    this.router.navigate([`/_cards/${ this.areaId }/${item.id} `])//), { queryParams: { areaId: item.id, id: null } });
+  open(item: any) {
+    this.router.navigate([`/_cards/${this.areaId}/${item.id} `])//), { queryParams: { areaId: item.id, id: null } });
   }
 
-  test(Card: any, isGlobal: any){
+  test(Card: any, isGlobal: any) {
     this.router.navigate([`/_lesson/${Card.id}/${isGlobal} `])//), { queryParams: { areaId: item.id, id: null } });
   }
-  clickRow(row: Card){
+  clickRow(row: Card) {
     const dialogRef = this.dialog.open(CardEditComponent, {
       data: {
         title: 'Редактировать область.',
@@ -92,7 +92,7 @@ export class CardsComponent implements OnInit {
       if (result !== undefined) {
         result.idArea = this.areaId;
         result.idParent = this.idParent;
-        
+
         await this.cardService.postUpdate_W(row.id, result.file, result.idArea, result.card.title, result.card.content, result.idParent);
         dialogRef.close();
         await this.updateTable();
@@ -100,7 +100,7 @@ export class CardsComponent implements OnInit {
     });
   }
 
-  deleteRow(row: Card){
+  deleteRow(row: Card) {
     const dialogRef = this.dialog.open(ConfirmComponent, {
       data: {
         title: 'Предупреждение!!!',
@@ -132,10 +132,15 @@ export class CardsComponent implements OnInit {
       if (result !== undefined) {
         result.idArea = this.areaId;
         result.idParent = this.idParent;
-        
+
         await this.cardService.postCard_W(result.file, result.idArea, result.card.title, result.card.content, result.idParent);
         await this.updateTable();
       }
     });
+  }
+
+ async updateIgnoreUserCard(checked: boolean, row: Card) {
+    await this.cardService.updateIgnoreUserCard_W(row.id);
+    await this.updateTable();
   }
 }

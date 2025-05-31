@@ -98,7 +98,7 @@ ORDER BY RANDOM()
 LIMIT 1
 ";
             var card = await _context.Cards.FromSqlRaw(sqlCard).FirstOrDefaultAsync();
-            return new LessonCard { Lesson = lesson, Card = card,  Count = count };
+            return new LessonCard { Lesson = lesson, Card = new SCard(card, idUser),  Count = count };
         }
 
         public async Task<int> Clear(Guid idLesson)

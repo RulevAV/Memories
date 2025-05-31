@@ -22,4 +22,6 @@ public partial class Card
     public string? MimeType { get; set; }
 
     public virtual Area IdAreaNavigation { get; set; } = null!;
+
+    public virtual ICollection<User> IdUsers { get; set; } = new List<User>();
 }

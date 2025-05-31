@@ -32,7 +32,7 @@ namespace Memories.Server.Controllers
 
         [HttpGet("[action]")]
         [Authorize]
-        public async Task<PaginatorEntity<Card>> Cards(int page, int pageSize, Guid areaId, string? search, Guid? IdParent)
+        public async Task<PaginatorEntity<SCard>> Cards(int page, int pageSize, Guid areaId, string? search, Guid? IdParent)
         {
             var userId = User.Claims.First(u => u.Type == "Id").Value;
             return await _cardR.Cards(Guid.Parse(userId), page, pageSize, areaId, search, IdParent);
@@ -52,6 +52,14 @@ namespace Memories.Server.Controllers
         {
             var userId = User.Claims.First(u => u.Type == "Id").Value;
             return await _cardR.Delete(Guid.Parse(userId), Id);
+        }
+        
+        [HttpPost("[action]/{Id}")]
+        [Authorize]
+        public async Task<int> SetIgnoreUserCard([FromRoute] Guid Id)
+        {
+            var userId = User.Claims.First(u => u.Type == "Id").Value;
+            return await _cardR.SetIgnoreUserCard(Guid.Parse(userId), Id);
         }
     }
 }

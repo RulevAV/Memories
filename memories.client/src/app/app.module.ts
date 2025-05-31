@@ -32,6 +32,7 @@ import { CardsComponent } from './Pages/cards/cards.component';
 import { CardEditComponent } from './Pages/cards/card-edit/card-edit.component';
 import { LessonComponent } from './Pages/lesson/lesson.component';
 import { ConfirmComponent } from './components/dialogs/confirm/confirm.component';
+import { MatCheckboxModule } from '@angular/material/checkbox';
 
 
 @NgModule({
@@ -70,7 +71,8 @@ import { ConfirmComponent } from './components/dialogs/confirm/confirm.component
     MatPaginator,
     FormsModule,
     MatSelectModule,
-    MatOptionModule
+    MatOptionModule,
+    MatCheckboxModule
   ],
   providers: [],
   bootstrap: [AppComponent]
